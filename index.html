@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Electoral Chile - SERVEL</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Quiz Electoral Chile</h1>
+            <p>Testea tus conocimientos sobre el sistema electoral chileno.</p>
+        </header>
+
+        <div id="quiz-area">
+            <div id="welcome-screen">
+                <h2>Bienvenido/a al Quiz del Sistema de Integridad Electoral</h2>
+                <p>Ingresa tu nombre o apodo para el ranking:</p>
+                <input type="text" id="player-name-input" placeholder="Tu Nombre/Apodo" maxlength="50">
+                <p>Presiona el botón para comenzar.</p>
+                <button id="start-quiz-btn">Comenzar Quiz</button>
+                <button id="view-leaderboard-btn">Ver Ranking</button>
+            </div>
+
+            <div id="question-screen" class="hidden">
+                <div id="progress-bar-container">
+                    <div id="progress-bar"></div>
+                </div>
+                <div id="question-counter"></div>
+                <h2 id="question-text"></h2>
+                <div id="options-container">
+                    </div>
+                <button id="next-question-btn" class="hidden">Siguiente Pregunta</button>
+            </div>
+
+            <div id="results-screen" class="hidden">
+                <h2>Resultados del Quiz</h2>
+                <p>Has completado el quiz.</p>
+                <p>Tu puntaje: <span id="score"></span>/<span id="total-questions"></span></p>
+                
+                <div class="results-summary">
+                    <h3>Resumen de tus Respuestas:</h3>
+                    <div id="summary-container">
+                        <!-- Summary items will be injected here -->
+                    </div>
+                </div>
+                <button id="restart-quiz-btn" class="btn">Volver a Jugar</button>
+            </div>
+        </div>
+
+        <div id="leaderboard-container" class="hidden">
+            <div class="leaderboard-content">
+                <h2><i class="fas fa-trophy"></i> Ranking de Puntajes (Top 10)</h2>
+                <table id="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>Posición</th>
+                            <th>Nombre</th>
+                            <th>Puntaje</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-list">
+                        <!-- Scores will be populated here by script.js -->
+                    </tbody>
+                </table>
+                <button id="close-leaderboard-btn" class="btn btn-secondary">Cerrar</button>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 - Inspirado en el trabajo del Sistema de Integridad Electoral SERVEL</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
