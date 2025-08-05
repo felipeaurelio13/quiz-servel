@@ -9,6 +9,8 @@ const resultsScreen = document.getElementById('results-screen');
 
 const startQuizBtn = document.getElementById('start-quiz-btn');
 const nextQuestionBtn = document.getElementById('next-question-btn');
+const changeAnswerBtn = document.getElementById('change-answer-btn');
+const answerActions = document.getElementById('answer-actions');
 const restartQuizBtn = document.getElementById('restart-quiz-btn');
 
 const progressBar = document.getElementById('progress-bar');
@@ -34,6 +36,8 @@ let currentQuestionIndex = 0;
 let score = 0;
 let userAnswers = []; // To store { question_text, selected_key, correct_key, explanation, is_correct }
 let currentPlayerName = 'Anónimo'; // Added for ranking
+let currentSelectedAnswer = null; // To track current answer for change functionality
+let answerSubmitted = false; // To track if answer has been submitted
 
 // --- SUPABASE CLIENT (minimal, for fetching data) ---
 // In a real app, you would use the Supabase JS library for a better experience.
@@ -91,6 +95,7 @@ async function saveToSupabase(table, dataObject) {
 // --- EVENT LISTENERS ---
 startQuizBtn.addEventListener('click', startQuiz);
 nextQuestionBtn.addEventListener('click', showNextQuestion);
+changeAnswerBtn.addEventListener('click', changeAnswer);
 restartQuizBtn.addEventListener('click', restartQuiz);
 
 viewLeaderboardBtn.addEventListener('click', async () => {
@@ -109,7 +114,7 @@ async function initializeQuiz() {
         leaderboardContainer.classList.add('hidden'); // Ensure leaderboard is hidden on initial load if it was somehow left open
         allQuestions = await fetchFromSupabase('questions', 'question_text,options,correct_answer_key,explanation');
         if (!allQuestions || allQuestions.length === 0) {
-            alert('No se pudieron cargar las preguntas. Intenta de nuevo más tarde.');
+            showNotification('No se pudieron cargar las preguntas. Intenta de nuevo más tarde.', 'error', 5000);
             return;
         }
         // Shuffle all fetched questions (Fisher-Yates shuffle algorithm for better randomness)
@@ -119,7 +124,7 @@ async function initializeQuiz() {
         }
     } catch (error) {
         console.error('Initialization Error:', error);
-        alert('Error al inicializar el quiz. Revisa la consola para más detalles.');
+        showNotification('Error al inicializar el quiz. Por favor, recarga la página.', 'error', 5000);
     }
 }
 
@@ -127,7 +132,7 @@ function startQuiz() {
     const nameFromInput = playerNameInput.value.trim();
     
     if (!nameFromInput) {
-        alert('Por favor, ingresa tu nombre o apodo para continuar.');
+        showNotification('Por favor, ingresa tu nombre o apodo para continuar.', 'warning', 4000);
         playerNameInput.focus(); // Focus on the input field
         return; // Stop the function if no name is entered
     }
@@ -143,7 +148,7 @@ function startQuiz() {
     currentQuizQuestions = shuffledAllQuestions.slice(0, Math.min(15, allQuestions.length));
 
     if (currentQuizQuestions.length === 0) {
-        alert("No hay preguntas disponibles para iniciar el quiz.");
+        showNotification("No hay preguntas disponibles para iniciar el quiz.", 'error', 4000);
         showScreen('welcome');
         return;
     }
@@ -162,8 +167,12 @@ function displayQuestion() {
     questionTextEl.textContent = currentQuestion.question_text;
     optionsContainer.innerHTML = ''; // Clear previous options
 
-    // Shuffle a copy of the options for random display order of content
-    const shuffledOptionsContent = [...currentQuestion.options].sort(() => Math.random() - 0.5);
+    // Shuffle a copy of the options for random display order of content using Fisher-Yates algorithm
+    const shuffledOptionsContent = [...currentQuestion.options];
+    for (let i = shuffledOptionsContent.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledOptionsContent[i], shuffledOptionsContent[j]] = [shuffledOptionsContent[j], shuffledOptionsContent[i]];
+    }
 
     const displayKeys = ['a', 'b', 'c', 'd']; // Fixed display keys
 
@@ -174,23 +183,56 @@ function displayQuestion() {
         button.textContent = `${displayKeys[index].toUpperCase()}) ${option.text}`;
         button.dataset.key = option.key; // Store the ORIGINAL key for answer checking
         button.addEventListener('click', selectAnswer);
+        
+        // Staggered animation delay
+        button.style.animationDelay = `${index * 0.1}s`;
+        
         optionsContainer.appendChild(button);
     });
 
     const progressPercentage = ((currentQuestionIndex) / currentQuizQuestions.length) * 100;
     progressBar.style.width = `${progressPercentage}%`;
     questionCounterEl.textContent = `Pregunta ${currentQuestionIndex + 1} de ${currentQuizQuestions.length}`;
-    nextQuestionBtn.classList.add('hidden');
+    
+    // Reset answer state
+    currentSelectedAnswer = null;
+    answerSubmitted = false;
+    answerActions.classList.add('hidden');
+    changeAnswerBtn.style.display = 'inline-block'; // Reset change button visibility
 }
 
 function selectAnswer(event) {
+    if (answerSubmitted) return; // Prevent selection if answer is already submitted
+    
     const selectedButton = event.target;
     const selectedKey = selectedButton.dataset.key;
+    
+    // Clear previous selection styling
+    Array.from(optionsContainer.children).forEach(btn => {
+        btn.classList.remove('selected', 'correct', 'incorrect');
+    });
+    
+    // Mark current selection
+    selectedButton.classList.add('selected');
+    currentSelectedAnswer = {
+        button: selectedButton,
+        key: selectedKey
+    };
+    
+    // Show action buttons
+    answerActions.classList.remove('hidden');
+}
+
+function submitAnswer() {
+    if (!currentSelectedAnswer || answerSubmitted) return;
+    
+    answerSubmitted = true;
+    const selectedKey = currentSelectedAnswer.key;
     const currentQuestion = currentQuizQuestions[currentQuestionIndex];
     const correctKey = currentQuestion.correct_answer_key;
-
     const isCorrect = selectedKey === correctKey;
 
+    // Add answer to user answers array
     userAnswers.push({
         question_text: currentQuestion.question_text,
         selected_key: selectedKey,
@@ -200,11 +242,14 @@ function selectAnswer(event) {
         is_correct: isCorrect
     });
 
+    // Update score if correct
     if (isCorrect) {
         score++;
-        selectedButton.classList.add('correct');
+        currentSelectedAnswer.button.classList.remove('selected');
+        currentSelectedAnswer.button.classList.add('correct');
     } else {
-        selectedButton.classList.add('incorrect');
+        currentSelectedAnswer.button.classList.remove('selected');
+        currentSelectedAnswer.button.classList.add('incorrect');
         // Highlight the correct answer
         const correctButton = optionsContainer.querySelector(`[data-key='${correctKey}']`);
         if (correctButton) {
@@ -212,18 +257,41 @@ function selectAnswer(event) {
         }
     }
 
-    // Disable all option buttons after selection
+    // Disable all option buttons after submission
     Array.from(optionsContainer.children).forEach(btn => {
         btn.classList.add('disabled');
-        btn.removeEventListener('click', selectAnswer); // Prevent multiple clicks
+        btn.removeEventListener('click', selectAnswer);
     });
 
-    nextQuestionBtn.classList.remove('hidden');
+    // Hide change answer button, keep next button
+    changeAnswerBtn.style.display = 'none';
+}
+
+function changeAnswer() {
+    if (answerSubmitted) return;
+    
+    // Clear current selection
+    Array.from(optionsContainer.children).forEach(btn => {
+        btn.classList.remove('selected');
+    });
+    
+    currentSelectedAnswer = null;
+    answerActions.classList.add('hidden');
 }
 
 function showNextQuestion() {
+    // If user hasn't submitted their answer yet, submit it first
+    if (currentSelectedAnswer && !answerSubmitted) {
+        submitAnswer();
+        // Use setTimeout to show feedback briefly before moving to next question
+        setTimeout(() => {
+            currentQuestionIndex++;
+            displayQuestion();
+        }, 1500); // 1.5 second delay to show correct/incorrect feedback
+    } else {
     currentQuestionIndex++;
     displayQuestion();
+    }
 }
 
 async function showResults() { // Made async to await score saving
@@ -271,16 +339,16 @@ async function showResults() { // Made async to await score saving
             };
             await saveToSupabase('leaderboard', scoreData);
             console.log('Score saved for player:', currentPlayerName);
+            showNotification('¡Puntaje guardado en el ranking!', 'success', 3000);
         } catch (error) {
             console.error('Failed to save score:', error);
-            // Optionally, inform the user that the score could not be saved
-            // alert('Tu puntaje no pudo ser guardado en el ranking esta vez.');
+            showNotification('No se pudo guardar tu puntaje en el ranking esta vez.', 'warning', 4000);
         }
     }
 }
 
 async function fetchAndDisplayLeaderboard() {
-    leaderboardList.innerHTML = '<tr><td colspan="4">Cargando ranking...</td></tr>'; // Loading state
+    leaderboardList.innerHTML = '<tr class="loading-row"><td colspan="4"><span class="loading-spinner"></span>Cargando ranking...</td></tr>'; // Loading state
     leaderboardContainer.classList.remove('hidden');
 
     try {
@@ -288,7 +356,7 @@ async function fetchAndDisplayLeaderboard() {
             'leaderboard', 
             'player_name,score,total_questions_in_quiz,created_at', 
             'score.desc,created_at.asc', // Order by score descending, then by date ascending for ties
-            10 // Limit to top 10
+            50 // Limit to top 50 to prevent excessive loading while allowing more entries
         );
 
         leaderboardList.innerHTML = ''; // Clear loading/previous state
@@ -315,7 +383,8 @@ async function fetchAndDisplayLeaderboard() {
         }
     } catch (error) {
         console.error('Error fetching leaderboard:', error);
-        leaderboardList.innerHTML = '<tr><td colspan="4">No se pudo cargar el ranking. Intenta más tarde.</td></tr>';
+        leaderboardList.innerHTML = '<tr class="loading-row"><td colspan="4">❌ No se pudo cargar el ranking. Intenta más tarde.</td></tr>';
+        showNotification('Error al cargar el ranking. Verifica tu conexión.', 'error', 4000);
     }
 }
 
@@ -338,6 +407,35 @@ function showScreen(screenName) {
     } else if (screenName === 'results') {
         resultsScreen.classList.remove('hidden');
     }
+}
+
+// --- NOTIFICATION SYSTEM ---
+function showNotification(message, type = 'info', duration = 3000) {
+    // Remove existing notifications
+    const existingNotifications = document.querySelectorAll('.notification');
+    existingNotifications.forEach(notification => notification.remove());
+    
+    // Create new notification
+    const notification = document.createElement('div');
+    notification.classList.add('notification', type);
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    // Show notification
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 100);
+    
+    // Hide and remove notification
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, duration);
 }
 
 // --- INITIALIZE ---
