@@ -116,6 +116,7 @@ let consecutiveCorrectCount = 0;
 let longestStreak = 0;
 let correctCount = 0;
 let incorrectCount = 0;
+let questionsLoadPromise = null;
 
 // --- Firestore helpers ---
 async function fetchQuestions() {
@@ -189,7 +190,11 @@ async function initializeQuiz() {
         optionsContainer.setAttribute('role', 'listbox');
         const savedName = localStorage.getItem('player_name');
         if (savedName) playerNameInput.value = savedName;
-        allQuestions = await fetchQuestions();
+        setStartButtonLoading(true);
+        questionsLoadPromise = fetchQuestions();
+        allQuestions = await questionsLoadPromise;
+        questionsLoadPromise = null;
+        setStartButtonLoading(false);
         if (!allQuestions || allQuestions.length === 0) {
             showNotification('No se pudieron cargar las preguntas. Intenta de nuevo más tarde.', 'error', 5000);
             return;
@@ -205,6 +210,27 @@ async function initializeQuiz() {
 }
 
 function startQuiz() {
+    // Ensure questions are loaded before starting
+    if (!allQuestions || allQuestions.length === 0) {
+        if (questionsLoadPromise) {
+            setStartButtonLoading(true);
+            questionsLoadPromise.then(() => {
+                setStartButtonLoading(false);
+                if (!allQuestions || allQuestions.length === 0) {
+                    showNotification('No se pudieron cargar las preguntas. Intenta de nuevo más tarde.', 'error', 4000);
+                    return;
+                }
+                startQuiz();
+            }).catch(() => {
+                setStartButtonLoading(false);
+                showNotification('Error al cargar preguntas. Intenta nuevamente.', 'error', 4000);
+            });
+            return;
+        } else {
+            showNotification('No se pudieron cargar las preguntas. Intenta de nuevo más tarde.', 'error', 4000);
+            return;
+        }
+    }
     const nameFromInput = playerNameInput.value.trim();
     if (!nameFromInput) {
         showNotification('Por favor, ingresa tu nombre o apodo para continuar.', 'warning', 4000);
@@ -505,6 +531,21 @@ function maybeCelebrateStreak(streak) {
 function updateLiveStats() {
     if (correctCountEl) correctCountEl.textContent = String(correctCount);
     if (incorrectCountEl) incorrectCountEl.textContent = String(incorrectCount);
+}
+
+function setStartButtonLoading(isLoading) {
+    if (!startQuizBtn) return;
+    if (isLoading) {
+        startQuizBtn.disabled = true;
+        startQuizBtn.dataset.originalText = startQuizBtn.textContent;
+        startQuizBtn.textContent = 'Cargando preguntas...';
+    } else {
+        startQuizBtn.disabled = false;
+        if (startQuizBtn.dataset.originalText) {
+            startQuizBtn.textContent = startQuizBtn.dataset.originalText;
+            delete startQuizBtn.dataset.originalText;
+        }
+    }
 }
 
 // Keyboard shortcuts: 1-4 select, Enter -> next/submit

@@ -287,7 +287,7 @@ button:active {
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     transform: translateY(0);
-    opacity: 0;
+    opacity: 1; /* visible by default; animation will still run */
     animation: slideInFromBottom 0.4s ease-out forwards;
 }
 
