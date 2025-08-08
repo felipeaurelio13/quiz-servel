@@ -1,0 +1,29 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /questions/{doc} {
+      allow read: if true;
+      // TEMPORAL para seeding desde cliente. Luego volver a write:false
+      allow create: if request.resource.data.keys().hasOnly([
+        'question_text','options','correct_answer_key','explanation'
+      ]) &&
+      (request.resource.data.question_text is string &&
+       request.resource.data.question_text.size() > 5) &&
+      (request.resource.data.correct_answer_key in ['a','b','c','d']) &&
+      (request.resource.data.options is list && request.resource.data.options.size() >= 2);
+      allow update, delete: if false;
+    }
+    match /leaderboard/{doc} {
+      allow read: if true;
+      allow create: if request.resource.data.keys().hasOnly([
+        'player_name','score','total_questions_in_quiz','created_at'
+      ]) &&
+      (request.resource.data.player_name is string &&
+       request.resource.data.player_name.size() >= 2 &&
+       request.resource.data.player_name.size() <= 50) &&
+      (request.resource.data.score is number && request.resource.data.score >= 0) &&
+      (request.resource.data.total_questions_in_quiz is number && request.resource.data.total_questions_in_quiz > 0);
+      allow update, delete: if false;
+    }
+  }
+}

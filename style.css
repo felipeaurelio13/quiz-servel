@@ -1,3 +1,55 @@
+/* Minimal tweaks to improve readability and focus without changing layout */
+
+/* Buttons focus ring for accessibility */
+button:focus-visible {
+    outline: 3px solid #90c2ff;
+    outline-offset: 2px;
+}
+
+/* Make option cards slightly larger on hover and add subtle shadow */
+.option-btn:hover:not(.selected):not(.correct):not(.incorrect) {
+    background-color: #e9f2ff;
+    border-color: #b6d3ff;
+    box-shadow: 0 2px 8px rgba(0, 80, 158, 0.12);
+}
+
+/* Tighten screen transitions */
+#quiz-area > div {
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* Larger progress bar for clarity */
+#progress-bar-container { height: 12px; }
+#progress-bar { border-radius: 6px; }
+
+/* Disable state */
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Hide change-answer button to simplify flow */
+#change-answer-btn { display: none !important; }
+
+/* Inline explanation after incorrect answer */
+#inline-explanation {
+    margin-top: 12px;
+    text-align: left;
+    background: #fff7f8;
+    border: 1px solid #ffd6db;
+    color: #6a1a21;
+    border-radius: 8px;
+    padding: 12px 14px;
+    box-shadow: 0 2px 8px rgba(214, 54, 66, 0.08);
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
 :root {
     --servel-blue: #00509E;
     --servel-red: #D63642;
@@ -53,9 +105,21 @@ header p {
     margin-bottom: 0.8em;
 }
 
-#welcome-screen p {
-    margin-bottom: 1em;
-    color: #454545;
+/* Welcome layout tweaks */
+.welcome-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+#player-name-input { max-width: 420px; width: 100%; }
+.container { max-width: 760px; }
+
+/* Subtle header badge */
+header::before {
+    content: 'Quiz Electoral Chile';
+    display: inline-block;
+    background: var(--servel-blue-light);
+    color: var(--servel-blue);
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
 }
 
 input[type="text"]#player-name-input {
@@ -321,6 +385,11 @@ button:active {
     color: #666;
     margin-bottom: 10px;
 }
+
+/* Question meta (counter + live stats) */
+#question-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; gap: 12px; }
+#live-stats { display: flex; gap: 14px; font-size: 0.9em; color: #444; }
+#live-stats strong { color: #111; }
 
 #results-screen p {
     font-size: 1.1em;

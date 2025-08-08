@@ -8,29 +8,33 @@
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Quiz Electoral Chile</h1>
-            <p>Testea tus conocimientos sobre el sistema electoral chileno.</p>
-        </header>
+        <header></header>
 
         <div id="quiz-area">
             <div id="welcome-screen">
                 <h2>Bienvenido/a al Quiz del Sistema de Integridad Electoral</h2>
-                <p>Ingresa tu nombre o apodo para el ranking:</p>
                 <input type="text" id="player-name-input" placeholder="Tu Nombre/Apodo" maxlength="50">
-                <p>Presiona el botón para comenzar.</p>
-                <button id="start-quiz-btn">Comenzar Quiz</button>
-                <button id="view-leaderboard-btn">Ver Ranking</button>
+                <div class="welcome-actions">
+                    <button id="start-quiz-btn">Comenzar Quiz</button>
+                    <button id="view-leaderboard-btn">Ver Ranking</button>
+                </div>
             </div>
 
             <div id="question-screen" class="hidden">
                 <div id="progress-bar-container">
                     <div id="progress-bar"></div>
                 </div>
-                <div id="question-counter"></div>
+                <div id="question-meta">
+                    <div id="question-counter"></div>
+                    <div id="live-stats" aria-live="polite">
+                        <span>✔ Correctas: <strong id="correct-count">0</strong></span>
+                        <span>✘ Incorrectas: <strong id="incorrect-count">0</strong></span>
+                    </div>
+                </div>
                 <h2 id="question-text"></h2>
                 <div id="options-container">
                     </div>
+                <div id="inline-explanation" class="hidden"></div>
                 <div id="answer-actions" class="hidden">
                     <button id="change-answer-btn" class="btn-secondary">Cambiar Respuesta</button>
                     <button id="next-question-btn">Siguiente Pregunta</button>
@@ -79,6 +83,6 @@
         </footer>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html> 
