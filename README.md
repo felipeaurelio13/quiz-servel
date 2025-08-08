@@ -1,11 +1,15 @@
-### Quiz Electoral Chile (SERVEL) – Migrado a Firebase Firestore
+### Quiz Electoral Chile (SERVEL) – Firebase Firestore + Hosting
 
-App estática de preguntas y ranking. Ahora usa Firebase Firestore.
+App estática de preguntas y ranking usando Firebase (Firestore + Hosting).
 
-Qué hace:
-- 15 preguntas aleatorias
-- Feedback y resumen con explicación
-- Ranking persistente
+Características clave
+- 15 preguntas aleatorias por sesión
+- Confirmar → Siguiente (flujo claro de respuesta)
+- Explicación en línea cuando fallas (sin cambiar de pantalla)
+- Contadores en vivo: correctas e incorrectas
+- Gamificación: notificaciones por racha (3, 5 y múltiplos de 10) y racha máxima en resultados
+- Atajos de teclado: 1–4 para elegir opción, Enter para confirmar/avanzar
+- Ranking persistente (leaderboard)
 
 Lo que debes hacer tú
 1) Crear proyecto en Firebase y habilitar Firestore (modo producción)
@@ -32,7 +36,7 @@ service cloud.firestore {
   match /databases/{database}/documents {
     match /questions/{doc} {
       allow read: if true;
-      allow write: if false;
+      allow write: if false; // solo lectura
     }
     match /leaderboard/{doc} {
       allow read: if true;
@@ -58,6 +62,15 @@ Cómo correr
 - Abre `index.html` o usa un servidor estático (Live Server/Vercel/Netlify)
 - Asegúrate de configurar `firebaseConfig` en `script.js`
 
+Seed (poblar preguntas desde `questions.json`)
+- Temporal: habilitar `create` en reglas de `questions` (ya se usó y luego se volvió a bloquear)
+- Visitar una vez: `/?seed=1` (ej: `https://<tu-hosting>.web.app/?seed=1`)
+- Luego volver a dejar `questions` en solo lectura (como en las reglas de arriba)
+
+Hosting / Deploy
+- Archivo `firebase.json` incluido (Hosting + Firestore configurados)
+- Despliegue: `firebase deploy --only hosting --project <projectId>`
+
 Notas
-- `questions.json` es de referencia y no se usa en runtime (el esquema difiere)
-- La `apiKey` de Firebase es pública por diseño; mantén reglas estrictas
+- `questions.json` es de referencia (esquema difiere del de Firestore) y se usa solo para seed
+- La `apiKey` de Firebase es pública por diseño; mantén reglas RLS estrictas
