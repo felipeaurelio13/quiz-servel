@@ -1,3 +1,5 @@
+import { normalizeQuestionSchema, normalizeQuestionList, calculateProgress } from './utils/quizUtils.js';
+
 // Firebase SDK (via CDN ESM)
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js';
 import {
@@ -58,18 +60,13 @@ async function seedQuestionsFromLocalJson() {
         const resp = await fetch('questions.json', { cache: 'no-cache' });
         if (!resp.ok) throw new Error('No se pudo leer questions.json');
         const items = await resp.json();
-        const toInsert = Array.isArray(items) ? items : [];
-        for (const q of toInsert) {
-            const docData = {
-                question_text: q.question || q.question_text,
-                options: q.options || [],
-                correct_answer_key: q.correctAnswerKey || q.correct_answer_key,
-                explanation: q.explanation || ''
-            };
-            if (!docData.question_text || !docData.correct_answer_key || !Array.isArray(docData.options)) {
-                continue;
-            }
-            await addDoc(collection(database, 'questions'), docData);
+        const normalizedQuestions = normalizeQuestionList(items);
+        if (normalizedQuestions.length === 0) {
+            showNotification('No se encontraron preguntas válidas para sembrar.', 'warning', 4000);
+            return;
+        }
+        for (const question of normalizedQuestions) {
+            await addDoc(collection(database, 'questions'), question);
         }
         showNotification('Seed completado: preguntas cargadas en Firestore.', 'success', 5000);
     } catch (e) {
@@ -129,15 +126,9 @@ async function fetchQuestions() {
     const database = initializeFirebase();
     if (!database) throw new Error('Firebase no configurado');
     const snapshot = await getDocs(collection(database, 'questions'));
-    return snapshot.docs.map(doc => {
-        const data = doc.data();
-        return {
-            question_text: data.question_text,
-            options: data.options,
-            correct_answer_key: data.correct_answer_key,
-            explanation: data.explanation || ''
-        };
-    });
+    return snapshot.docs
+        .map(doc => normalizeQuestionSchema(doc.data()))
+        .filter(question => question.options.length > 0 && question.correct_answer_key);
 }
 
 async function saveLeaderboardScore(dataObject) {
@@ -318,7 +309,8 @@ function displayQuestion() {
         optionsContainer.appendChild(button);
     });
 
-    updateProgressBar(currentQuestionIndex, currentQuizQuestions.length);
+    const progressPercentage = calculateProgress(currentQuestionIndex, currentQuizQuestions.length);
+    progressBar.style.width = `${progressPercentage}%`;
     questionCounterEl.textContent = `Pregunta ${currentQuestionIndex + 1} de ${currentQuizQuestions.length}`;
 
     currentSelectedAnswer = null;
