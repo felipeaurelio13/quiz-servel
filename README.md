@@ -1,6 +1,9 @@
-### Quiz Electoral Chile (SERVEL) – Firebase Firestore + Hosting
+### Quiz Electoral Chile (SERVEL) – Firebase Firestore + Hosting (v1.1.0)
 
 App estática de preguntas y ranking usando Firebase (Firestore + Hosting).
+
+### Versión
+- Actual: **v1.1.0**
 
 Características clave
 - 15 preguntas aleatorias por sesión
@@ -10,6 +13,8 @@ Características clave
 - Gamificación: notificaciones por racha (3, 5 y múltiplos de 10) y racha máxima en resultados
 - Atajos de teclado: 1–4 para elegir opción, Enter para confirmar/avanzar
 - Ranking persistente (leaderboard)
+- Diseño mobile-first: tarjetas limpias, barra de progreso accesible y modal de ranking con focus automático
+- Recordatorio contextual y consejos iniciales para mejorar la usabilidad
 
 Lo que debes hacer tú
 1) Crear proyecto en Firebase y habilitar Firestore (modo producción)
@@ -62,6 +67,10 @@ Cómo correr
 - Abre `index.html` o usa un servidor estático (Live Server/Vercel/Netlify)
 - Asegúrate de configurar `firebaseConfig` en `script.js`
 
+### Ejecutar tests
+- Instala dependencias: `npm install`
+- Corre la suite: `npm test`
+
 Seed (poblar preguntas desde `questions.json`)
 - Temporal: habilitar `create` en reglas de `questions` (ya se usó y luego se volvió a bloquear)
 - Visitar una vez: `/?seed=1` (ej: `https://<tu-hosting>.web.app/?seed=1`)
@@ -70,6 +79,12 @@ Seed (poblar preguntas desde `questions.json`)
 Hosting / Deploy
 - Archivo `firebase.json` incluido (Hosting + Firestore configurados)
 - Despliegue: `firebase deploy --only hosting --project <projectId>`
+
+Pruebas locales
+- Requisitos: Node.js 18+
+- Instala dependencias del proyecto (no se descarga nada externo): `npm install`
+- Ejecuta los tests con el runner nativo de Node: `npm test`
+- Las pruebas validan que los datos reales de `questions.json` tengan el formato correcto y que el cálculo de avance funcione sin depender de servicios externos.
 
 Notas
 - `questions.json` es de referencia (esquema difiere del de Firestore) y se usa solo para seed

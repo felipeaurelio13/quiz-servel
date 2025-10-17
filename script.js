@@ -1,3 +1,5 @@
+import { normalizeQuestionSchema, normalizeQuestionList, calculateProgress } from './utils/quizUtils.js';
+
 // Firebase SDK (via CDN ESM)
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js';
 import {
@@ -12,6 +14,11 @@ import {
     doc,
     serverTimestamp
 } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js';
+import {
+    getStreakNotification,
+    formatLeaderboardEntry,
+    calculateProgressPercentage
+} from './utils/quizHelpers.js';
 
 // Firebase Config - REEMPLAZA con tu configuración de app web (Firebase Console > Project settings > Your apps)
 const firebaseConfig = {
@@ -55,18 +62,13 @@ async function seedQuestionsFromLocalJson() {
         const resp = await fetch('questions.json', { cache: 'no-cache' });
         if (!resp.ok) throw new Error('No se pudo leer questions.json');
         const items = await resp.json();
-        const toInsert = Array.isArray(items) ? items : [];
-        for (const q of toInsert) {
-            const docData = {
-                question_text: q.question || q.question_text,
-                options: q.options || [],
-                correct_answer_key: q.correctAnswerKey || q.correct_answer_key,
-                explanation: q.explanation || ''
-            };
-            if (!docData.question_text || !docData.correct_answer_key || !Array.isArray(docData.options)) {
-                continue;
-            }
-            await addDoc(collection(database, 'questions'), docData);
+        const normalizedQuestions = normalizeQuestionList(items);
+        if (normalizedQuestions.length === 0) {
+            showNotification('No se encontraron preguntas válidas para sembrar.', 'warning', 4000);
+            return;
+        }
+        for (const question of normalizedQuestions) {
+            await addDoc(collection(database, 'questions'), question);
         }
         showNotification('Seed completado: preguntas cargadas en Firestore.', 'success', 5000);
     } catch (e) {
@@ -143,6 +145,7 @@ const totalQuestionsEl = document.getElementById('total-questions');
 const summaryContainer = document.getElementById('summary-container');
 const leaderboardContainer = document.getElementById('leaderboard-container');
 const leaderboardList = document.getElementById('leaderboard-list');
+const leaderboardBackdrop = document.getElementById('leaderboard-backdrop');
 
 const playerNameInput = document.getElementById('player-name-input');
 
@@ -169,15 +172,9 @@ async function fetchQuestions() {
     const database = initializeFirebase();
     if (!database) throw new Error('Firebase no configurado');
     const snapshot = await getDocs(collection(database, 'questions'));
-    return snapshot.docs.map(doc => {
-        const data = doc.data();
-        return {
-            question_text: data.question_text,
-            options: data.options,
-            correct_answer_key: data.correct_answer_key,
-            explanation: data.explanation || ''
-        };
-    });
+    return snapshot.docs
+        .map(doc => normalizeQuestionSchema(doc.data()))
+        .filter(question => question.options.length > 0 && question.correct_answer_key);
 }
 
 async function saveLeaderboardScore(dataObject) {
@@ -219,15 +216,21 @@ restartQuizBtn.addEventListener('click', restartQuiz);
 updateQuestionsBtn.addEventListener('click', forceUpdateQuestions);
 
 viewLeaderboardBtn.addEventListener('click', async () => {
-    leaderboardContainer.classList.remove('hidden');
-    await fetchAndDisplayLeaderboard();
+    await openLeaderboard();
 });
 
 closeLeaderboardBtn.addEventListener('click', () => {
-    leaderboardContainer.classList.add('hidden');
+    closeLeaderboard();
 });
 
+if (leaderboardBackdrop) {
+    leaderboardBackdrop.addEventListener('click', () => {
+        closeLeaderboard();
+    });
+}
+
 document.addEventListener('keydown', handleKeyboardShortcuts);
+document.addEventListener('keydown', handleEscapeClose);
 
 // --- QUIZ LOGIC ---
 async function initializeQuiz() {
@@ -293,6 +296,8 @@ function startQuiz() {
     userAnswers = [];
     correctCount = 0;
     incorrectCount = 0;
+    consecutiveCorrectCount = 0;
+    longestStreak = 0;
     updateLiveStats();
 
     const shuffledAllQuestions = [...allQuestions].sort(() => 0.5 - Math.random());
@@ -331,15 +336,27 @@ function displayQuestion() {
     shuffledOptionsContent.forEach((option, index) => {
         const button = document.createElement('button');
         button.classList.add('option-btn');
-        button.textContent = `${displayKeys[index].toUpperCase()}) ${option.text}`;
         button.dataset.key = option.key;
         button.setAttribute('role', 'option');
+        const letterBadge = document.createElement('span');
+        letterBadge.className = 'option-letter';
+        const fallbackKey = typeof option.key === 'string' && option.key.length > 0
+            ? option.key.toUpperCase()
+            : String(index + 1);
+        const letter = displayKeys[index]?.toUpperCase() || fallbackKey;
+        letterBadge.textContent = letter;
+        letterBadge.setAttribute('aria-hidden', 'true');
+        const optionText = document.createElement('span');
+        optionText.className = 'option-text';
+        optionText.textContent = option.text;
+        button.setAttribute('aria-label', letter ? `${letter}) ${option.text}` : option.text);
+        button.append(letterBadge, optionText);
         button.addEventListener('click', selectAnswer);
         button.style.animationDelay = `${index * 0.1}s`;
         optionsContainer.appendChild(button);
     });
 
-    const progressPercentage = ((currentQuestionIndex) / currentQuizQuestions.length) * 100;
+    const progressPercentage = calculateProgress(currentQuestionIndex, currentQuizQuestions.length);
     progressBar.style.width = `${progressPercentage}%`;
     questionCounterEl.textContent = `Pregunta ${currentQuestionIndex + 1} de ${currentQuizQuestions.length}`;
 
@@ -476,6 +493,8 @@ async function showResults() {
         summaryContainer.appendChild(item);
     });
 
+    updateProgressBar(currentQuizQuestions.length, currentQuizQuestions.length);
+
     if (currentPlayerName && currentPlayerName !== 'Anónimo') {
         try {
             const scoreData = {
@@ -494,25 +513,23 @@ async function showResults() {
 
 async function fetchAndDisplayLeaderboard() {
     leaderboardList.innerHTML = '<tr class="loading-row"><td colspan="4"><span class="loading-spinner"></span>Cargando ranking...</td></tr>';
-    leaderboardContainer.classList.remove('hidden');
 
     try {
         const leaderboardData = await fetchLeaderboardTop();
         leaderboardList.innerHTML = '';
         if (leaderboardData && leaderboardData.length > 0) {
             leaderboardData.forEach((entry, index) => {
+                const formatted = formatLeaderboardEntry(entry, index);
                 const row = leaderboardList.insertRow();
-                const dateObj = entry.created_at && typeof entry.created_at.toDate === 'function' ? entry.created_at.toDate() : new Date();
-                const date = dateObj.toLocaleDateString('es-CL', { year: 'numeric', month: 'short', day: 'numeric' });
 
                 const cellPosition = row.insertCell();
-                cellPosition.textContent = index + 1;
+                cellPosition.textContent = formatted.position;
                 const cellName = row.insertCell();
-                cellName.textContent = entry.player_name;
+                cellName.textContent = formatted.playerName;
                 const cellScore = row.insertCell();
-                cellScore.textContent = `${entry.score}/${entry.total_questions_in_quiz}`;
+                cellScore.textContent = formatted.scoreText;
                 const cellDate = row.insertCell();
-                cellDate.textContent = date;
+                cellDate.textContent = formatted.formattedDate;
             });
         } else {
             leaderboardList.innerHTML = '<tr><td colspan="4">No hay puntajes en el ranking todavía. ¡Sé el primero!</td></tr>';
@@ -566,18 +583,26 @@ function showNotification(message, type = 'info', duration = 3000) {
 }
 
 function maybeCelebrateStreak(streak) {
-    if (streak === 3) {
-        showNotification('¡3 correctas seguidas! 🔥', 'success', 2000);
-    } else if (streak === 5) {
-        showNotification('¡Racha de 5! Increíble 👏', 'success', 2200);
-    } else if (streak > 0 && streak % 10 === 0) {
-        showNotification(`¡${streak} correctas seguidas! 🏆`, 'success', 2500);
+    const notification = getStreakNotification(streak);
+    if (notification) {
+        showNotification(notification.message, notification.type, notification.duration);
     }
 }
 
 function updateLiveStats() {
     if (correctCountEl) correctCountEl.textContent = String(correctCount);
     if (incorrectCountEl) incorrectCountEl.textContent = String(incorrectCount);
+}
+
+function updateProgressBar(currentIndex, totalQuestions) {
+    if (!progressBar) return;
+    const percent = calculateProgressPercentage(currentIndex, totalQuestions);
+    progressBar.style.width = `${percent}%`;
+    progressBar.setAttribute('role', 'progressbar');
+    progressBar.setAttribute('aria-valuemin', '0');
+    progressBar.setAttribute('aria-valuemax', '100');
+    progressBar.setAttribute('aria-valuenow', String(percent));
+    progressBar.setAttribute('aria-label', 'Progreso del quiz');
 }
 
 function setStartButtonLoading(isLoading) {
@@ -603,9 +628,32 @@ function handleKeyboardShortcuts(e) {
         const btn = optionsContainer.querySelectorAll('.option-btn')[map[e.key]];
         if (btn && !btn.classList.contains('disabled')) btn.click();
     }
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && !nextQuestionBtn.disabled) {
         showNextQuestion();
     }
+}
+
+function handleEscapeClose(e) {
+    if (e.key === 'Escape' && !leaderboardContainer.classList.contains('hidden')) {
+        closeLeaderboard();
+    }
+}
+
+async function openLeaderboard() {
+    leaderboardContainer.classList.remove('hidden');
+    if (leaderboardBackdrop) leaderboardBackdrop.classList.remove('hidden');
+    document.body.classList.add('modal-open');
+    if (viewLeaderboardBtn) viewLeaderboardBtn.setAttribute('aria-expanded', 'true');
+    await fetchAndDisplayLeaderboard();
+    if (closeLeaderboardBtn) closeLeaderboardBtn.focus();
+}
+
+function closeLeaderboard() {
+    leaderboardContainer.classList.add('hidden');
+    if (leaderboardBackdrop) leaderboardBackdrop.classList.add('hidden');
+    document.body.classList.remove('modal-open');
+    if (viewLeaderboardBtn) viewLeaderboardBtn.setAttribute('aria-expanded', 'false');
+    if (viewLeaderboardBtn) viewLeaderboardBtn.focus();
 }
 
 // --- INITIALIZE ---

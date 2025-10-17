@@ -1,0 +1,16 @@
+{
+  "name": "quiz-servel",
+  "version": "1.1.0",
+  "description": "Quiz interactivo del Sistema de Integridad Electoral con soporte para pruebas locales",
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "quiz",
+    "servel",
+    "firebase"
+  ],
+  "author": "",
+  "license": "MIT"
+}
