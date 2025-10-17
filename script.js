@@ -94,23 +94,19 @@ async function forceUpdateQuestions() {
         
         showNotification('Cargando nuevas preguntas...', 'info', 3000);
         
-        // Cargar las nuevas preguntas
+        // Cargar las nuevas preguntas usando las utilidades normalizadoras
         const resp = await fetch('questions.json', { cache: 'no-cache' });
         if (!resp.ok) throw new Error('No se pudo leer questions.json');
         const items = await resp.json();
-        const toInsert = Array.isArray(items) ? items : [];
+        const normalizedQuestions = normalizeQuestionList(items);
         
-        for (const q of toInsert) {
-            const docData = {
-                question_text: q.question || q.question_text,
-                options: q.options || [],
-                correct_answer_key: q.correctAnswerKey || q.correct_answer_key,
-                explanation: q.explanation || ''
-            };
-            if (!docData.question_text || !docData.correct_answer_key || !Array.isArray(docData.options)) {
-                continue;
-            }
-            await addDoc(collection(database, 'questions'), docData);
+        if (normalizedQuestions.length === 0) {
+            showNotification('No se encontraron preguntas válidas para actualizar.', 'warning', 4000);
+            return;
+        }
+        
+        for (const question of normalizedQuestions) {
+            await addDoc(collection(database, 'questions'), question);
         }
         
         showNotification('✅ Preguntas actualizadas exitosamente en Firebase!', 'success', 5000);

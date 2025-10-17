@@ -561,3 +561,14 @@ footer {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
+
+/* Estilos específicos para el botón de actualizar preguntas */
+#update-questions-btn {
+    background-color: #ff6b35;
+    margin-top: 10px;
+}
+
+#update-questions-btn:hover,
+#update-questions-btn:focus-visible {
+    background-color: #e55528;
+}
