@@ -1,4 +1,4 @@
-### Quiz Electoral Chile (SERVEL) – Firebase Firestore + Hosting
+### Quiz Electoral Chile (SERVEL) – Firebase Firestore + Hosting (v1.1.0)
 
 App estática de preguntas y ranking usando Firebase (Firestore + Hosting).
 
@@ -70,6 +70,12 @@ Seed (poblar preguntas desde `questions.json`)
 Hosting / Deploy
 - Archivo `firebase.json` incluido (Hosting + Firestore configurados)
 - Despliegue: `firebase deploy --only hosting --project <projectId>`
+
+Pruebas locales
+- Requisitos: Node.js 18+
+- Instala dependencias del proyecto (no se descarga nada externo): `npm install`
+- Ejecuta los tests con el runner nativo de Node: `npm test`
+- Las pruebas validan que los datos reales de `questions.json` tengan el formato correcto y que el cálculo de avance funcione sin depender de servicios externos.
 
 Notas
 - `questions.json` es de referencia (esquema difiere del de Firestore) y se usa solo para seed
