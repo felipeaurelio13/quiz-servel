@@ -2,6 +2,9 @@
 
 App estática de preguntas y ranking usando Firebase (Firestore + Hosting).
 
+### Versión
+- Actual: **v1.1.0**
+
 Características clave
 - 15 preguntas aleatorias por sesión
 - Confirmar → Siguiente (flujo claro de respuesta)
@@ -10,6 +13,8 @@ Características clave
 - Gamificación: notificaciones por racha (3, 5 y múltiplos de 10) y racha máxima en resultados
 - Atajos de teclado: 1–4 para elegir opción, Enter para confirmar/avanzar
 - Ranking persistente (leaderboard)
+- Diseño mobile-first: tarjetas limpias, barra de progreso accesible y modal de ranking con focus automático
+- Recordatorio contextual y consejos iniciales para mejorar la usabilidad
 
 Lo que debes hacer tú
 1) Crear proyecto en Firebase y habilitar Firestore (modo producción)
@@ -61,6 +66,10 @@ service cloud.firestore {
 Cómo correr
 - Abre `index.html` o usa un servidor estático (Live Server/Vercel/Netlify)
 - Asegúrate de configurar `firebaseConfig` en `script.js`
+
+### Ejecutar tests
+- Instala dependencias: `npm install`
+- Corre la suite: `npm test`
 
 Seed (poblar preguntas desde `questions.json`)
 - Temporal: habilitar `create` en reglas de `questions` (ya se usó y luego se volvió a bloquear)
