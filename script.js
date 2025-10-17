@@ -8,6 +8,8 @@ import {
     orderBy,
     limit as fbLimit,
     addDoc,
+    deleteDoc,
+    doc,
     serverTimestamp
 } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js';
 
@@ -73,6 +75,49 @@ async function seedQuestionsFromLocalJson() {
     }
 }
 
+// --- FUNCIÓN PARA ACTUALIZAR PREGUNTAS FORZADAMENTE ---
+async function forceUpdateQuestions() {
+    try {
+        const database = initializeFirebase();
+        if (!database) throw new Error('Firebase no configurado');
+        
+        showNotification('Eliminando preguntas existentes...', 'info', 3000);
+        
+        // Eliminar todas las preguntas existentes
+        const existing = await getDocs(collection(database, 'questions'));
+        const deletePromises = existing.docs.map(docSnapshot => 
+            deleteDoc(doc(database, 'questions', docSnapshot.id))
+        );
+        await Promise.all(deletePromises);
+        
+        showNotification('Cargando nuevas preguntas...', 'info', 3000);
+        
+        // Cargar las nuevas preguntas
+        const resp = await fetch('questions.json', { cache: 'no-cache' });
+        if (!resp.ok) throw new Error('No se pudo leer questions.json');
+        const items = await resp.json();
+        const toInsert = Array.isArray(items) ? items : [];
+        
+        for (const q of toInsert) {
+            const docData = {
+                question_text: q.question || q.question_text,
+                options: q.options || [],
+                correct_answer_key: q.correctAnswerKey || q.correct_answer_key,
+                explanation: q.explanation || ''
+            };
+            if (!docData.question_text || !docData.correct_answer_key || !Array.isArray(docData.options)) {
+                continue;
+            }
+            await addDoc(collection(database, 'questions'), docData);
+        }
+        
+        showNotification('✅ Preguntas actualizadas exitosamente en Firebase!', 'success', 5000);
+    } catch (e) {
+        console.error('Error al actualizar preguntas:', e);
+        showNotification('❌ Error al actualizar preguntas. Revisa la consola.', 'error', 5000);
+    }
+}
+
 // HTML Elements
 const welcomeScreen = document.getElementById('welcome-screen');
 const questionScreen = document.getElementById('question-screen');
@@ -83,6 +128,7 @@ const nextQuestionBtn = document.getElementById('next-question-btn');
 const changeAnswerBtn = document.getElementById('change-answer-btn');
 const answerActions = document.getElementById('answer-actions');
 const restartQuizBtn = document.getElementById('restart-quiz-btn');
+const updateQuestionsBtn = document.getElementById('update-questions-btn');
 
 const progressBar = document.getElementById('progress-bar');
 const questionCounterEl = document.getElementById('question-counter');
@@ -170,6 +216,7 @@ startQuizBtn.addEventListener('click', startQuiz);
 nextQuestionBtn.addEventListener('click', showNextQuestion);
 changeAnswerBtn.addEventListener('click', changeAnswer);
 restartQuizBtn.addEventListener('click', restartQuiz);
+updateQuestionsBtn.addEventListener('click', forceUpdateQuestions);
 
 viewLeaderboardBtn.addEventListener('click', async () => {
     leaderboardContainer.classList.remove('hidden');

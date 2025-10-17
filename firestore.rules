@@ -3,15 +3,7 @@ service cloud.firestore {
   match /databases/{database}/documents {
     match /questions/{doc} {
       allow read: if true;
-      // TEMPORAL para seeding desde cliente. Luego volver a write:false
-      allow create: if request.resource.data.keys().hasOnly([
-        'question_text','options','correct_answer_key','explanation'
-      ]) &&
-      (request.resource.data.question_text is string &&
-       request.resource.data.question_text.size() > 5) &&
-      (request.resource.data.correct_answer_key in ['a','b','c','d']) &&
-      (request.resource.data.options is list && request.resource.data.options.size() >= 2);
-      allow update, delete: if false;
+      allow write: if true; // permitir escritura para actualizar preguntas
     }
     match /leaderboard/{doc} {
       allow read: if true;

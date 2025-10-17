@@ -1,866 +1,122 @@
 [
   {
     "id": 1,
-    "question": "¿Cuál es el rol principal del Sistema de Integridad Electoral (SIE) según las definiciones proporcionadas?",
+    "question": "Según el procedimiento de publicación de resultados PRELIMINARES, ¿qué artículos de la Ley N.º 18.700 fundamentan la obligación del Servicio Electoral de informar a la opinión pública?",
     "options": [
-      { "key": "a", "text": "Capturar los datos electorales desde las mesas receptoras de sufragios." },
-      { "key": "b", "text": "Ser el sistema responsable de procesar los datos recibidos para su cómputo y verificación de integridad, y de publicar resultados a ciudadanos y medios." },
-      { "key": "c", "text": "Comparar los resultados entre el Sistema de Cómputo Electoral (SCE) y otro sistema." },
-      { "key": "d", "text": "Enviar archivos con datos preliminares a los Colegios Escrutadores." }
+      {
+        "key": "a",
+        "text": "Artículos 121 y 154"
+      },
+      {
+        "key": "b",
+        "text": "Artículos 185 y 216"
+      },
+      {
+        "key": "c",
+        "text": "Artículos 104 y 220"
+      },
+      {
+        "key": "d",
+        "text": "Artículos 47 y 48"
+      }
     ],
     "correctAnswerKey": "b",
-    "explanation": "La definición explícita del SIE lo establece como el sistema que procesa datos para cómputo y verifica integridad, además de publicar resultados. Las otras opciones describen funciones de otros sistemas como SCDE, SCR o protocolos de envío."
+    "explanation": "El documento de publicación de resultados PRELIMINARES señala que los artículos 185 y 216 de la Ley N.º 18.700 establecen la obligación de informar a la opinión pública sobre el desarrollo de elecciones y plebiscitos, mediante boletines parciales:contentReference[oaicite:0]{index=0}."
   },
   {
     "id": 2,
-    "question": "¿Qué significa la sigla \"SCDE\" en el contexto de los sistemas electorales descritos?",
+    "question": "¿Qué diferencia principal existe entre los Resultados Electorales Preliminares y los Provisorios?",
     "options": [
-      { "key": "a", "text": "Sistema de Comparación de Datos Escrutados." },
-      { "key": "b", "text": "Sistema de Captura de Datos Electorales, que incluye los componentes MINCAP y COLESC." },
-      { "key": "c", "text": "Sistema de Cómputo y Escrutinio Digital." },
-      { "key": "d", "text": "Sistema de Centralización de Datos Electorales." }
+      {
+        "key": "a",
+        "text": "Los preliminares se generan a partir de la contabilización hecha por los colegios escrutadores y los provisorios por el Servel."
+      },
+      {
+        "key": "b",
+        "text": "Los preliminares son los entregados por el Servel en base a actas de mesas, y los provisorios provienen de la revisión de los colegios escrutadores."
+      },
+      {
+        "key": "c",
+        "text": "Los preliminares son definitivos y los provisorios son temporales."
+      },
+      {
+        "key": "d",
+        "text": "Los preliminares incluyen voto en el extranjero y los provisorios no."
+      }
     ],
     "correctAnswerKey": "b",
-    "explanation": "El protocolo de envío a Colegios Escrutadores define SCDE como la empresa adjudicada para el Sistema de Captura de Datos Electorales, denominando a sus componentes como MINCAP y COLESC. SCDE transmite archivos XML a SCE/SIE."
+    "explanation": "Los Resultados Preliminares son elaborados por el Servicio Electoral en base a actas de mesas receptoras de sufragio, mientras que los Resultados Provisorios se generan con la contabilización hecha por los colegios escrutadores:contentReference[oaicite:1]{index=1}:contentReference[oaicite:2]{index=2}."
   },
   {
     "id": 3,
-    "question": "¿Cuál es el objetivo principal de contar con un Sistema Comparador de Resultados (SCR)?",
+    "question": "En el procedimiento de revisión y corrección de errores de digitación en actas con 'Supera Inscritos', ¿cuál es el rol del Grupo de Visado?",
     "options": [
-      { "key": "a", "text": "Generar informes detallados para los tribunales electorales." },
-      { "key": "b", "text": "Permitir a los ciudadanos comparar resultados de diferentes fuentes." },
-      { "key": "c", "text": "Comparar los resultados entre el Sistema de Cómputo Electoral (SCE) y el Sistema de Integridad Electoral (SIE)." },
-      { "key": "d", "text": "Servir como respaldo en caso de fallas en el sistema de publicación principal." }
+      {
+        "key": "a",
+        "text": "Realizar la digitación inicial de las actas."
+      },
+      {
+        "key": "b",
+        "text": "Emitir el reporte final para el Director Nacional."
+      },
+      {
+        "key": "c",
+        "text": "Evaluar las correcciones propuestas por el Supervisor."
+      },
+      {
+        "key": "d",
+        "text": "Gestionar el envío al Sistema de Cómputo Electoral."
+      }
     ],
     "correctAnswerKey": "c",
-    "explanation": "El documento \"Protocolo Intercambio de Datos con SCR\" establece claramente que el SCR se requiere para realizar la comparación de resultados entre el SCE y el SIE, que son dos empresas distintas."
+    "explanation": "El Grupo de Visado es responsable de evaluar las correcciones revisadas y validadas previamente, antes de que sean aplicadas en el sistema de cómputo:contentReference[oaicite:3]{index=3}."
   },
   {
     "id": 4,
-    "question": "Según el \"Procedimiento para la Recepción, Cómputo y Publicación de Información y Resultados de Escrutinios PRIMARIAS 2025\", ¿cuándo comienza la recepción de actas de escrutinio por los sistemas de cómputo (SCE/SIE)?",
+    "question": "¿Qué sistema es responsable de verificar la integridad de la digitación de actas electorales?",
     "options": [
-      { "key": "a", "text": "Al inicio de la jornada electoral a las 8 AM." },
-      { "key": "b", "text": "De forma continua a partir de las 18 horas del día del evento electoral hasta el término del envío." },
-      { "key": "c", "text": "El lunes siguiente al día de la votación, a partir de las 14 horas." },
-      { "key": "d", "text": "Cada 15 minutos a partir de la constitución de mesas." }
+      {
+        "key": "a",
+        "text": "SCDE (Sistema de Captura de Datos Electorales)"
+      },
+      {
+        "key": "b",
+        "text": "SVIDA (Sistema de Verificación de la Integridad de la Digitación de Actas)"
+      },
+      {
+        "key": "c",
+        "text": "SCE (Sistema de Cómputo y Publicación)"
+      },
+      {
+        "key": "d",
+        "text": "Colesc (Sistema de Colegios Escrutadores)"
+      }
     ],
     "correctAnswerKey": "b",
-    "explanation": "El documento indica que la recepción de actas de escrutinio por SCE/SIE se realiza de forma continua a partir de las 18 horas del día del evento electoral. La opción c) describe el inicio de la jornada de los Colegios Escrutadores para resultados provisorios."
+    "explanation": "El sistema SVIDA fue creado específicamente para verificar la calidad e integridad de la digitación de las actas electorales, tanto durante como después del proceso electoral:contentReference[oaicite:4]{index=4}."
   },
   {
     "id": 5,
-    "question": "¿Qué acción debe tomar el sistema de cómputo (SCE y SIE) si recibe un archivo XML de una Mesa Receptora de Sufragios más de una vez?",
+    "question": "En el contexto de las Elecciones Parlamentarias, ¿qué método matemático se aplica para determinar candidatos electos?",
     "options": [
-      { "key": "a", "text": "Procesar y contabilizar cada envío, sumando los resultados." },
-      { "key": "b", "text": "Ignorar los envíos repetidos, dejando únicamente el primero como recepcionado." },
-      { "key": "c", "text": "Alertar al operador y solicitar confirmación para procesar." },
-      { "key": "d", "text": "Rechazar todos los envíos de esa mesa hasta que se resuelva la incidencia." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "Tanto el procedimiento para resultados preliminares como para resultados provisorios de Colegios Escrutadores establecen que los sistemas de cómputo deben ignorar los envíos repetidos de un acta, procesando solo el primero."
-  },
-  {
-    "id": 6,
-    "question": "En el contexto de la publicación de resultados preliminares de Proceso de Votación, ¿qué información se espera que se publique en lapsos de tiempo iguales y constantes a medida que las mesas culminen su escrutinio?",
-    "options": [
-      { "key": "a", "text": "Solo el total de votos válidamente emitidos." },
-      { "key": "b", "text": "Información sobre los resultados que se vayan produciendo, la cual tendrá carácter de preliminar." },
-      { "key": "c", "text": "Únicamente la cantidad de mesas escrutadas." },
-      { "key": "d", "text": "Resultados definitivos aprobados por el Consejo de SERVEL." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "El documento indica que, según la Ley 18.700, Artículo 185, se publicará información sobre los resultados que se vayan produciendo en lapsos de tiempo iguales y constantes, con carácter preliminar. Los resultados definitivos son responsabilidad de la Justicia Electoral."
-  },
-  {
-    "id": 7,
-    "question": "¿Qué es el COE (Centro de Cómputo Electoral) y quiénes lo componen durante los eventos electorales?",
-    "options": [
-      { "key": "a", "text": "Es el equipo encargado de la ciberseguridad de los sistemas electorales." },
-      { "key": "b", "text": "Es la oficina que se conforma durante pruebas y eventos, compuesta por el Encargado, el equipo de la Unidad de Tecnología Electoral, Encargado de Seguridad de la Información, Equipo Revisor de Integridad y Estado de Plataforma, y la Jefatura de la DTI." },
-      { "key": "c", "text": "Es el sistema que compara los resultados de SCE y SIE." },
-      { "key": "d", "text": "Es la unidad responsable de la comunicación de resultados a los medios." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "La definición del COE se encuentra en el glosario, detallando su conformación y propósito."
-  },
-  {
-    "id": 8,
-    "question": "Según los procedimientos de publicación, ¿cómo se realiza el refresco de datos en el sitio web público de resultados preliminares para las elecciones generales 2025?",
-    "options": [
-      { "key": "a", "text": "Automáticamente cada 5 minutos." },
-      { "key": "b", "text": "Automáticamente cada 15 minutos." },
-      { "key": "c", "text": "De forma manual por el usuario mediante un ícono de \"refresco\"." },
-      { "key": "d", "text": "Se publica una única vez al finalizar el escrutinio de todas las mesas." }
+      {
+        "key": "a",
+        "text": "Método Sainte-Laguë"
+      },
+      {
+        "key": "b",
+        "text": "Método Borda"
+      },
+      {
+        "key": "c",
+        "text": "Método D’Hondt"
+      },
+      {
+        "key": "d",
+        "text": "Mayoría Relativa Simple"
+      }
     ],
     "correctAnswerKey": "c",
-    "explanation": "El procedimiento para primarias y generales 2025 indica que en el sitio público, el refresco de datos se debe realizar de forma manual, ofreciendo un ícono de \"refresco\" al usuario. Esto difiere del refresco automático en el portal interno durante constitución e instalación."
-  },
-  {
-    "id": 9,
-    "question": "En las vistas de resultados de votación, ¿qué tipo de mesas se identifican como \"Mesas con supera inscritos\" (SI)?",
-    "options": [
-      { "key": "a", "text": "Mesas donde la cantidad de votos es menor a la cantidad de electores inscritos." },
-      { "key": "b", "text": "Mesas donde la cantidad de votos válidamente emitidos supera la cantidad de electores inscritos según el padrón." },
-      { "key": "c", "text": "Mesas que no fueron constituidas o instaladas a tiempo." },
-      { "key": "d", "text": "Mesas con inconsistencias en el conteo de votos entre candidatos y totales." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "La definición de \"Supera Inscritos\" se encuentra en el documento de requerimientos SVIDA, indicando que los datos para completar el acta superan los inscritos de acuerdo con el padrón de la mesa, y se identifican con \"SI\"."
-  },
-  {
-    "id": 10,
-    "question": "¿Qué vistas de datos sobre \"Mesas con incidencias\" están disponibles en el portal de publicación de resultados preliminares?",
-    "options": [
-      { "key": "a", "text": "Mesas no escrutadas y Mesas con supera inscritos." },
-      { "key": "b", "text": "Mesas no instaladas, Mesas no escrutadas, Mesas con supera inscritos, y Mesas descuadradas." },
-      { "key": "c", "text": "Mesas con votos nulos y Mesas con votos blancos." },
-      { "key": "d", "text": "Mesas con baja participación y Mesas con alta participación." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "El listado de Mesas con incidencias que se contemplan para publicación incluye estas cuatro categorías."
-  },
-  {
-    "id": 11,
-    "question": "¿Cómo se estructuran generalmente las vistas de resultados en el portal de publicación?",
-    "options": [
-      { "key": "a", "text": "Solo una tabla de datos sin encabezado." },
-      { "key": "b", "text": "Un encabezado con título, subtítulos y fecha/hora de los datos, un área para \"Vista Mesas\", Leyendas informativas, una Tabla de datos, y un Pie de página opcional." },
-      { "key": "c", "text": "Únicamente gráficos y porcentajes." },
-      { "key": "d", "text": "Una lista simple de candidatos con sus votos." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "La disposición genérica de las vistas de resultados se describe detalladamente e incluye estos componentes."
-  },
-  {
-    "id": 12,
-    "question": "En el contexto del intercambio de datos electorales, ¿qué formato de archivo se utiliza comúnmente para la transmisión de actas de escrutinio desde el SCDE a los sistemas de cómputo (SCE/SIE)?",
-    "options": [
-      { "key": "a", "text": "PDF." },
-      { "key": "b", "text": "XLS." },
-      { "key": "c", "text": "XML." },
-      { "key": "d", "text": "TXT con delimitador de punto y coma." }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "El procedimiento de recepción de actas de escrutinio menciona que el SCDE transmite las actas \"por medio de archivos XML\". Otros formatos como TXT se usan para archivos de escenario o resultados a SCR/medios, y PDF/XLS para exportación de vistas."
-  },
-  {
-    "id": 13,
-    "question": "¿Cuál es la finalidad del portal interno de boletines según los procedimientos?",
-    "options": [
-      { "key": "a", "text": "Permitir a los ciudadanos descargar boletines oficiales." },
-      { "key": "b", "text": "Facilitar la generación, consulta, impresión y envío por correo electrónico de boletines informativos (Constitución, Instalación, Escrutinios)." },
-      { "key": "c", "text": "Mostrar los resultados definitivos por colegio escrutador." },
-      { "key": "d", "text": "Ser un canal de comunicación exclusivo para los medios de prensa." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "El punto 7.13 describe la generación y consulta de boletines en un sitio separado (portal interno de Boletines), detallando las funcionalidades para ver, editar, guardar, generar, imprimir y enviar boletines."
-  },
-  {
-    "id": 14,
-    "question": "¿Quiénes son parte del Equipo técnico de contingencia que se activa ante incidencias en el cómputo y/o publicación de resultados?",
-    "options": [
-      { "key": "a", "text": "Únicamente personal de SERVEL." },
-      { "key": "b", "text": "Personal de SERVEL, junto con representantes de las empresas proveedoras (como Evoting y Ademanda)." },
-      { "key": "c", "text": "Solo miembros del Consejo de SERVEL." },
-      { "key": "d", "text": "Directores Regionales del SERVEL." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "El listado de integrantes del Equipo técnico de contingencia incluye nombres de SERVEL (Luis Gutiérrez, Felipe Gorigoitia, Rodrigo González, Gabriel Labra) y de empresas (Tomás Barros - Evoting, Mario Cornejo - Evoting, Juan Pablo Saavedra - Ademanda, Carlos Samaniego - Ademanda)."
-  },
-  {
-    "id": 15,
-    "question": "En la publicación de resultados provisorios provenientes de Colegios Escrutadores, ¿a qué se refiere la opción de filtro \"Escrutinio Colegio Escrutador Especial\"?",
-    "options": [
-      { "key": "a", "text": "Resultados de mesas con incidencias detectadas por los colegios." },
-      { "key": "b", "text": "Resultados revisados por colegios escrutadores que manejan votos en el extranjero." },
-      { "key": "c", "text": "Resultados consolidados a nivel nacional." },
-      { "key": "d", "text": "Resultados detallados mesa por mesa." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "Las opciones de filtro para la publicación de escrutinios de colegios escrutadores incluyen \"Escrutinio Colegio Escrutador\" y \"Escrutinio Colegio Escrutador Especial\". Esta última se asocia a la columna (h) de la tabla de filtros, la cual (aunque la tabla misma no está en las fuentes) está en el contexto de la publicación de resultados provisorios y la revisión de actas de colegios escrutadores (incluyendo el extranjero). El nombre \"Colegio Escrutador Especial\" y ejemplos como el Titulo \"Escrutinio Colegios Escrutadores Especiales Elección de Presidente\" y la descripción \"colegio escrutador especial seleccionado\" para datos a nivel de mesas en el extranjero refuerzan esta asociación."
-  },
-  {
-    "id": 16,
-    "question": "¿Cuál es el rol principal del Sistema de Integridad Electoral (SIE) según los documentos?",
-    "options": [
-      { "key": "a", "text": "Recepción y almacenamiento de actas digitalizadas." },
-      { "key": "b", "text": "Proceso de cómputo, verificación de integridad de resultados y publicación." },
-      { "key": "c", "text": "Digitalización de actas de escrutinio." },
-      { "key": "d", "text": "Coordinación de los colegios escrutadores." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "El SIE es el sistema responsable de procesar los datos recibidos para su cómputo y verificación de integridad de los resultados y de publicar los resultados tanto a la ciudadanía como a los medios de comunicación."
-  },
-  {
-    "id": 17,
-    "question": "¿Cuál es la fuente principal de datos para el cómputo y publicación de resultados preliminares por parte del SCE/SIE?",
-    "options": [
-      { "key": "a", "text": "Archivos XML transmitidos por el SCDE." },
-      { "key": "b", "text": "Datos ingresados manualmente en el Centro de Cómputo Electoral (COE)." },
-      { "key": "c", "text": "Informes de los Tribunales Electorales Regionales (TER)." },
-      { "key": "d", "text": "Archivos enviados por los Colegios Escrutadores." }
-    ],
-    "correctAnswerKey": "a",
-    "explanation": "La recepción de actas de escrutinio por los sistemas de cómputo (SCE/SIE), trasmitidas por medio de archivos XML por el SCDE, se realiza de forma continua."
-  },
-  {
-    "id": 18,
-    "question": "Según los procedimientos, ¿qué ocurre si se recibe un archivo XML de una Mesa Receptora de Sufragios más de una vez?",
-    "options": [
-      { "key": "a", "text": "El sistema procesa todas las versiones y calcula un promedio." },
-      { "key": "b", "text": "El sistema reemplaza la versión anterior con la más reciente." },
-      { "key": "c", "text": "El sistema ignora los envíos repetidos, dejando únicamente el primero como recepcionado." },
-      { "key": "d", "text": "Se genera una incidencia de \"Acta Duplicada\" para revisión manual." }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "Si un archivo XML de una Mesa Receptora de Sufragios es enviado más de una vez, el sistema de cómputo (SCE y SIE) debe ignorar los envíos repetidos, dejando únicamente el primero como recepcionado. Para los escrutinios provisorios de colegios escrutadores, también se indica que si un archivo XML de una Mesa Receptora de Sufragios revisada por el Colegio Escrutador es enviado más de una vez, el SCE debe ignorar los envíos repetidos, dejando únicamente el primero como recepcionado."
-  },
-  {
-    "id": 19,
-    "question": "¿Cuáles de las siguientes son consideradas \"Vistas Mesas con incidencias\" en el procedimiento de publicación de resultados preliminares?",
-    "options": [
-      { "key": "a", "text": "Mesas Constituidas, Mesas Instaladas, Mesas Escrutadas." },
-      { "key": "b", "text": "Mesas no instaladas, Mesas no escrutadas, Mesas con supera inscritos, Mesas descuadradas." },
-      { "key": "c", "text": "Mesas con Votos Nulos, Mesas con Votos en Blanco, Mesas con Preferencias." },
-      { "key": "d", "text": "Mesas Nacionales, Mesas Extranjeras." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "El procedimiento lista \"Mesas con incidencias\" como una de las informaciones a publicar, detallando las opciones: Mesas no instaladas, Mesas no escrutadas, Mesas con supera inscritos, Mesas descuadradas. El procedimiento de resultados provisorios también lista estas mismas cuatro opciones."
-  },
-  {
-    "id": 20,
-    "question": "En las vistas de publicación de resultados, ¿de dónde proviene el dato \"Total de Mesas\" para un determinado filtro o nivel de agregación?",
-    "options": [
-      { "key": "a", "text": "Es calculado por el SCE/SIE sumando las actas recibidas." },
-      { "key": "b", "text": "Proviene directamente del escenario de elecciones." },
-      { "key": "c", "text": "Es informado por el SCDE junto con las actas." },
-      { "key": "d", "text": "Se obtiene de los resultados consolidados del proceso de cómputo." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "El dato \"Total de Mesas\" es descrito consistentemente en varias vistas como \"Cantidad de mesas totales según escenario\" y se indica que es un \"Dato según escenario. (Dato fijo/nro. entero)\"."
-  },
-  {
-    "id": 21,
-    "question": "¿Cómo se calculan las \"Mesas No Constituidas\" o \"Mesas No Instaladas\" según los procedimientos de publicación?",
-    "options": [
-      { "key": "a", "text": "Son datos recibidos directamente del SCDE." },
-      { "key": "b", "text": "Son calculadas por el SCE/SIE como la diferencia entre el total de mesas del escenario y las mesas constituidas/instaladas recibidas." },
-      { "key": "c", "text": "Son informadas manualmente por los delegados de local." },
-      { "key": "d", "text": "Se derivan de la sumatoria de votos en mesas no constituidas o no instaladas." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "El procedimiento indica que \"Mesas No constituidas\" es \"Total de mesas del escenario – Mesas Constituidas\", y \"Mesas No Instaladas\" es \"Total de mesas del escenario – Mesas Instaladas\". (Calculado por el sistema)."
-  },
-  {
-    "id": 22,
-    "question": "Para la publicación de resultados de votación, ¿cómo se obtiene el porcentaje de participación electoral?",
-    "options": [
-      { "key": "a", "text": "Se calcula como (Total Votación / Total de Mesas Escrutadas) * 100." },
-      { "key": "b", "text": "Se calcula como (Total Votación / Total de electores habilitados para votar según Padrón) * 100." },
-      { "key": "c", "text": "Se calcula como (Votos Válidamente Emitidos / Total Votación) * 100." },
-      { "key": "d", "text": "Se calcula como (Mesas Escrutadas / Total de Mesas del Escenario) * 100." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "El porcentaje de participación se define como: ((Total Votación) / (Total de electores habilitados para votar según Padrón)) * 100. El Total Votación es la suma de preferencias + nulos + blancos."
-  },
-  {
-    "id": 23,
-    "question": "En el sitio web de publicación de resultados, ¿cuál es la regla para mostrar la opción de menú \"Escrutinios\" para los Colegios Escrutadores?",
-    "options": [
-      { "key": "a", "text": "Se muestra desde el inicio del día electoral." },
-      { "key": "b", "text": "Se activa el lunes siguiente al día del evento electoral, desde las 14:01 hrs en adelante." },
-      { "key": "c", "text": "Se muestra únicamente después de que todos los colegios hayan cerrado sus actas." },
-      { "key": "d", "text": "Aparece después de la publicación de los resultados preliminares completos." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "El despliegue automático de menús según la etapa del proceso electoral indica que el lunes (14:01 en adelante) se activa la opción Escrutinios (Colegios Escrutadores)."
-  },
-  {
-    "id": 24,
-    "question": "¿Cuál es el propósito del escenario base para el proceso de escrutinio?",
-    "options": [
-      { "key": "a", "text": "Definir los candidatos y sus pactos para la elección." },
-      { "key": "b", "text": "Entregar una estructura de datos predefinida para que los sistemas de cómputo la utilicen, asegurando consistencia." },
-      { "key": "c", "text": "Contener los resultados electorales finales para verificación." },
-      { "key": "d", "text": "Establecer los horarios y plazos para cada etapa del proceso electoral." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "El documento \"Definición Escenario para Escrutinios\" establece que el escenario base (generado por SERVEL) es enviado a los sistemas SCDE, SCE, SIE y proveedores de certificación. El objetivo es que todos utilicen la misma estructura y datos base para el procesamiento."
-  },
-  {
-    "id": 25,
-    "question": "En el \"Protocolo de Intercambio de Datos con SCR (Sistema Comparador de Resultados)\", ¿con qué frecuencia el SCE y el SIE deben enviar los archivos de resultados al SCR?",
-    "options": [
-      { "key": "a", "text": "Cada 5 minutos." },
-      { "key": "b", "text": "Cada 15 minutos." },
-      { "key": "c", "text": "Cada 30 minutos." },
-      { "key": "d", "text": "En forma continua, a medida que se generan nuevos cómputos." }
-    ],
-    "correctAnswerKey": "a",
-    "explanation": "El protocolo especifica que \"Los archivos de resultados serán enviados por el SCE y el SIE al SCR cada 5 minutos.\""
-  },
-  {
-    "id": 26,
-    "question": "¿Qué información principal contiene el archivo de escenario \"Escenario_Mesas_<version><correlativo>.txt\"?",
-    "options": [
-      { "key": "a", "text": "Los resultados de votación de cada mesa." },
-      { "key": "b", "text": "Los datos del padrón electoral de cada mesa, como número de mesa, circunscripción, comuna, local de votación y cantidad de electores." },
-      { "key": "c", "text": "Los nombres y datos de los vocales de cada mesa." },
-      { "key": "d", "text": "Las incidencias reportadas para cada mesa." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "El documento \"Definición Escenario para Escrutinios\" detalla que el archivo de Mesas contiene información como COD_MESA, NRO_MESA, COD_CIRCUNSCRIPCION_ELECTORAL, GLOSA_CIRCUNSCRIPCION_ELECTORAL, COD_COMUNA, GLOSA_COMUNA, COD_LOCAL, GLOSA_LOCAL, QTD_ELECTORES, etc."
-  },
-  {
-    "id": 27,
-    "question": "¿Cuál es la función del \"Protocolo Envío Archivos a Colegios Escrutadores.pdf\"?",
-    "options": [
-      { "key": "a", "text": "Definir el formato en que los Colegios Escrutadores envían sus resultados al SERVEL." },
-      { "key": "b", "text": "Describir el formato y oportunidad del envío de archivos con datos de votaciones preliminares desde SERVEL al SCDE para los Colegios Escrutadores." },
-      { "key": "c", "text": "Establecer cómo los medios de comunicación reciben los datos de los Colegios Escrutadores." },
-      { "key": "d", "text": "Definir los procedimientos internos de trabajo de los Colegios Escrutadores." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "El objetivo del documento es \"Describir el formato y oportunidad del envío de los archivos, desde Servel al SCDE para los Colegios Escrutadores, con los datos de las votaciones preliminares\". El SCDE (MINCAP/COLESC) es el sistema que usan los Colegios."
-  },
-  {
-    "id": 28,
-    "question": "Para la transmisión de archivos a Medios de Comunicación, ¿qué significa el campo CODIGO_COMUNA_ASOCIADA en el archivo de resultados de COLESCRUTADOR?",
-    "options": [
-      { "key": "a", "text": "El código de la comuna donde se ubica el medio de comunicación." },
-      { "key": "b", "text": "Un código interno del SERVEL para la comuna." },
-      { "key": "c", "text": "El Código Único Territorial (CUT) de la comuna a la que pertenece el Colegio Escrutador." },
-      { "key": "d", "text": "El código de la comuna con mayor número de electores dentro del colegio escrutador." }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "En el \"Protocolo Envío archivos a Medios de Comunicación.pdf\", para el archivo COLESCRUTADOR_<CODIGO_ELECCION>_<CODIGO_COLEGIO>.TXT, el campo CODIGO_COMUNA_ASOCIADA se describe como \"Código Único Territorial de la comuna a la que pertenece el Colegio Escrutador.\""
-  },
-  {
-    "id": 29,
-    "question": "¿Qué tipo de información NO se incluye en las vistas de \"Constitución de Mesas\" publicadas según los procedimientos?",
-    "options": [
-      { "key": "a", "text": "Total de Mesas según escenario." },
-      { "key": "b", "text": "Mesas Constituidas." },
-      { "key": "c", "text": "Porcentaje de Mesas Constituidas." },
-      { "key": "d", "text": "Número de votos emitidos en cada mesa constituida." }
-    ],
-    "correctAnswerKey": "d",
-    "explanation": "Las vistas de Constitución de Mesas se centran en el estado de constitución (total, constituidas, no constituidas y sus porcentajes). Los votos emitidos son parte del proceso de escrutinio de votación, no de constitución."
-  },
-  {
-    "id": 30,
-    "question": "En el contexto del SVIDA (Sistema Verificación de la Integridad de la Digitación de Actas Electorales), ¿qué significa que un acta sea marcada como \"M\"?",
-    "options": [
-      { "key": "a", "text": "El acta fue modificada por un supervisor." },
-      { "key": "b", "text": "El acta corresponde a una mesa de militares." },
-      { "key": "c", "text": "El acta presenta una incidencia de descuadre o es inconsistente." },
-      { "key": "d", "text": "El acta es una muestra seleccionada para auditoría." }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "Según el documento de SVIDA, \"Mesas con incidencias de descuadre o inconsistentes, en el proceso de transmisión de datos son identificadas con la etiqueta M\". El SCDE (Mincap/Colesc) envía a SCE/SIE la etiqueta <tipoEnvio> con valor \"M\" para actas descuadradas/inconsistentes."
-  },
-  {
-    "id": 31,
-    "question": "¿Cuál es el objetivo principal del Sistema de Cómputo de Datos Electorales (SCDE) MINCAP?",
-    "options": [
-      { "key": "a", "text": "Verificar la integridad de los resultados electorales." },
-      { "key": "b", "text": "Digitar y digitalizar datos electorales durante las jornadas de constitución, instalación y votación." },
-      { "key": "c", "text": "Publicar los resultados electorales a la ciudadanía." },
-      { "key": "d", "text": "Realizar el cómputo de los resultados provisorios de los colegios escrutadores." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "MINCAP es descrito como un sistema, parte del SCDE, utilizado para digitación y digitalización de datos electorales durante las jornadas de constitución, instalación y votación."
-  },
-  {
-    "id": 32,
-    "question": "Según la descripción en la sección de resultados de \"Participación\", ¿qué comprende la métrica denominada \"Total Votación\"?",
-    "options": [
-      { "key": "a", "text": "Únicamente la suma de los votos válidamente emitidos (preferencias)." },
-      { "key": "b", "text": "La cantidad total de electores inscritos en el padrón según el escenario." },
-      { "key": "c", "text": "Corresponde a la sumatoria de votos de las preferencias, votos nulos y votos en blanco." },
-      { "key": "d", "text": "La cantidad de mesas que han sido escrutadas." }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "Total Votación es la suma de preferencias, votos nulos y votos en blanco."
-  },
-  {
-    "id": 33,
-    "question": "¿Cuál es el propósito principal de la funcionalidad descrita como \"Refresco de datos de resultados\" en los portales de publicación?",
-    "options": [
-      { "key": "a", "text": "Reiniciar el servidor de la aplicación web." },
-      { "key": "b", "text": "Iniciar una nueva ronda de recepción de archivos XML desde SCDE." },
-      { "key": "c", "text": "Permitir al usuario actualizar manualmente los datos que se visualizan en la pantalla con los resultados del último cómputo disponible para publicación." },
-      { "key": "d", "text": "Exportar automáticamente los datos más recientes a un archivo." }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "Permite al usuario actualizar manualmente los datos con el último cómputo disponible."
-  },
-  {
-    "id": 34,
-    "question": "Según las descripciones de datos en las vistas de resultados, ¿de dónde se obtiene la información sobre la \"Cantidad total de mesas\" (Total de Mesas) para un ítem de filtro o nivel de agregación determinado?",
-    "options": [
-      { "key": "a", "text": "Es un dato que se calcula dinámicamente en función de las actas recibidas." },
-      { "key": "b", "text": "Es un dato fijo (número entero) que se basa en la información del escenario electoral para ese ítem." },
-      { "key": "c", "text": "Se obtiene de la sumatoria de mesas instaladas y mesas no instaladas reportadas por SCDE." },
-      { "key": "d", "text": "Es la cantidad de mesas para las cuales se ha recibido el acta de escrutinio." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "Es un dato fijo basado en la información del escenario electoral."
-  },
-  {
-    "id": 35,
-    "question": "En la nomenclatura de un boletín de escrutinio (ej. Boletín Escrutinio PR 250629-1915_M1), ¿qué indica específicamente el sufijo \"_M1\"?",
-    "options": [
-      { "key": "a", "text": "Que es un boletín de prueba o maqueta." },
-      { "key": "b", "text": "Que el boletín corresponde a mesas del extranjero." },
-      { "key": "c", "text": "Que el boletín fue generado manualmente y es la primera generación manual para ese cómputo específico." },
-      { "key": "d", "text": "Que el boletín contiene solo votos válidamente emitidos." }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "Indica que fue generado manualmente (M) y es la primera versión (1) para ese cómputo."
-  },
-  {
-    "id": 36,
-    "question": "En las vistas de resultados de votación, cuando se muestra el porcentaje asociado a un candidato que forma parte de un pacto, ¿cómo se calcula generalmente este porcentaje?",
-    "options": [
-      { "key": "a", "text": "Votos del candidato divididos por el total de electores inscritos en el ítem de filtro seleccionado, multiplicado por 100." },
-      { "key": "b", "text": "Votos del candidato divididos por el total de votos válidamente emitidos en la elección completa (para el ítem de filtro seleccionado), multiplicado por 100." },
-      { "key": "c", "text": "Votos del candidato divididos por el total de votos válidamente emitidos del pacto al que pertenece el candidato (para el ítem de filtro seleccionado), multiplicado por 100." },
-      { "key": "d", "text": "Votos del candidato divididos por la suma de votos nulos y blancos de la mesa, multiplicado por 100." }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "Se calcula como votos del candidato sobre el total de votos válidamente emitidos del pacto."
-  },
-  {
-    "id": 37,
-    "question": "¿Cuál es el propósito del sistema MINCAP?",
-    "options": [
-      { "key": "a", "text": "Realizar el cómputo de los resultados provisorios de los colegios escrutadores." },
-      { "key": "b", "text": "Digitar y digitalizar datos electorales durante las jornadas de constitución, instalación y votación." },
-      { "key": "c", "text": "Comparar los resultados entre el SCE y el SIE." },
-      { "key": "d", "text": "Publicar los resultados definitivos." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "MINCAP es descrito como un sistema, parte del SCDE, utilizado para digitación y digitalización de datos electorales durante las jornadas de constitución, instalación y votación."
-  },
-  {
-    "id": 38,
-    "question": "¿Qué sistema es responsable de procesar los datos recibidos para su cómputo y publicar los resultados tanto a la ciudadanía como a los medios de comunicación, según las definiciones?",
-    "options": [
-      { "key": "a", "text": "SIE" },
-      { "key": "b", "text": "SCDE" },
-      { "key": "c", "text": "COLESC" },
-      { "key": "d", "text": "SCE" }
-    ],
-    "correctAnswerKey": "d",
-    "explanation": "Las fuentes definen al SCE como el sistema responsable de procesar los datos recibidos para su cómputo y publicar los resultados tanto a la ciudadanía como a los medios de comunicación."
-  },
-  {
-    "id": 39,
-    "question": "¿Qué tipo de resultados electorales son determinados por el Tribunal Calificador de Elecciones (TRICEL) o el Tribunal Electoral Regional (TER)?",
-    "options": [
-      { "key": "a", "text": "Preliminares" },
-      { "key": "b", "text": "Provisorios" },
-      { "key": "c", "text": "Definitivos" },
-      { "key": "d", "text": "Parciales" }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "Los Resultados Electorales Definitivos son definidos como aquellos determinados por el Tribunal Calificador de Elecciones (TRICEL) o el Tribunal Electoral Regional (TER), según corresponda a la elección o plebiscito."
-  },
-  {
-    "id": 40,
-    "question": "¿Quién determina los Resultados Electorales Preliminares?",
-    "options": [
-      { "key": "a", "text": "Los Colegios Escrutadores." },
-      { "key": "b", "text": "El Servicio Electoral (SERVEL)." },
-      { "key": "c", "text": "El Tribunal Calificador de Elecciones (TRICEL)." },
-      { "key": "d", "text": "El Sistema de Cómputo Electoral (SCE)." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "Los Resultados Electorales Preliminares son definidos como los resultados determinados por el Servicio Electoral con base en la contabilización de las actas de escrutinio de cada mesa receptora de sufragio enviadas al Servicio Electoral."
-  },
-  {
-    "id": 41,
-    "question": "¿A quiénes debe enviar el SERVEL el escenario base para el proceso de escrutinio?",
-    "options": [
-      { "key": "a", "text": "Solo a los encargados del sistema SCDE." },
-      { "key": "b", "text": "A los encargados de los sistemas SCDE, SCE, SIE y a los proveedores de servicios de certificación." },
-      { "key": "c", "text": "Únicamente a los proveedores de servicios de certificación." },
-      { "key": "d", "text": "Al Centro de Operaciones Electorales (COE)." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "El escenario base será generado por el SERVEL y enviado a los encargados de los sistemas SCDE, SCE y SIE y a los proveedores de los servicios de certificación que participen."
-  },
-  {
-    "id": 42,
-    "question": "¿Qué información debe incluir el nombre de los archivos del escenario base?",
-    "options": [
-      { "key": "a", "text": "Tipo de elección, fecha y hora." },
-      { "key": "b", "text": "Nombre de la tabla, versión de la data y correlativo." },
-      { "key": "c", "text": "Sistema generador (SCE o SIE) y porcentaje de mesas escrutadas." },
-      { "key": "d", "text": "Origen de los datos (RTD, MINCAP o COLESC)." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "El nombre de los archivos del escenario base tendrá la estructura: Escenario_<tabla>_<versión><correlativo>.txt, donde \"tabla\" es el nombre de la tabla del escenario, \"versión\" es la versión de la data, y \"correlativo\" es un número."
-  },
-  {
-    "id": 43,
-    "question": "¿Con qué frecuencia se realiza el cómputo y publicación de resultados en el portal interno durante el proceso de Constitución e Instalación de mesas?",
-    "options": [
-      { "key": "a", "text": "Cada 15 minutos." },
-      { "key": "b", "text": "Cada hora." },
-      { "key": "c", "text": "Cada 5 minutos (esta frecuencia puede cambiar)." },
-      { "key": "d", "text": "Manualmente, cuando un usuario lo solicita." }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "Durante el proceso de constitución e instalación, el cómputo y publicación de resultados en el portal interno se realiza cada 5 minutos, aunque esta frecuencia puede cambiar."
-  },
-  {
-    "id": 44,
-    "question": "Para determinar las actas de escrutinio (XML) a incluir en un ciclo de cómputo de votaciones, ¿qué elementos del archivo XML se utilizan como criterio de corte?",
-    "options": [
-      { "key": "a", "text": "vot:origen y vot:tipo" },
-      { "key": "b", "text": "vot:correlativo y vot:cantidad" },
-      { "key": "c", "text": "vot:fecha y vot:hora" },
-      { "key": "d", "text": "vot:nulos y vot:blancos" }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "Para estandarizar el método de actas a incluir en el cómputo, se deben usar los elementos vot:fecha y vot:hora, contenidos en el elemento vot:cabecera del archivo XML, para determinar si el acta se procesa o no en un determinado ciclo de cómputo."
-  },
-  {
-    "id": 45,
-    "question": "En la publicación de resultados preliminares de votaciones en el sitio web público elecciones.servel.cl, ¿se hace referencia a la opción ganadora en votaciones plebiscitarias?",
-    "options": [
-      { "key": "a", "text": "Sí, siempre se indica la opción ganadora." },
-      { "key": "b", "text": "Solo se indica si la diferencia de votos es mayor al 5%." },
-      { "key": "c", "text": "No, la publicación de resultados preliminares de plebiscitos es sin ninguna referencia a la opción ganadora." },
-      { "key": "d", "text": "Depende del tipo de plebiscito." }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "La publicación de resultados preliminares de las votaciones en los medios digitales será sin ninguna referencia a la opción ganadora en las votaciones plebiscitarias."
-  },
-  {
-    "id": 46,
-    "question": "Según el procedimiento de publicación de resultados preliminares, ¿qué se indica en el caso de elecciones de candidatos?",
-    "options": [
-      { "key": "a", "text": "Se indican los candidatos ganadores definitivos." },
-      { "key": "b", "text": "Se indican los estimativamente nominados de acuerdo con el Artículo 185 letra i) de la Ley 18.700." },
-      { "key": "c", "text": "No se indica ningún candidato, solo los votos por pacto." },
-      { "key": "d", "text": "Se publica una lista completa de todos los candidatos con sus votos." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "Tratándose de elecciones de candidatos, sí se indicarán los estimativamente nominados de acuerdo con el Art. 185 letra i) de la Ley 18.700."
-  },
-  {
-    "id": 47,
-    "question": "En el portal público de resultados provisorios (provisorios.servel.cl), ¿cómo se realiza la actualización de datos para la ciudadanía?",
-    "options": [
-      { "key": "a", "text": "Mediante un ícono de \"refresco\" visible que el usuario puede activar manualmente." },
-      { "key": "b", "text": "Se realiza con base en la información del último cómputo, una vez validados por los Directores Regionales, sin un ícono de actualización visible." },
-      { "key": "c", "text": "Se actualiza automáticamente cada 5 minutos, con la fecha y hora del último cómputo." },
-      { "key": "d", "text": "La actualización se realiza una vez al día." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "En el sitio público, la publicación a la ciudadanía se realiza con base en la información del último cómputo, una vez que todos los Directores Regionales han informado que finalizaron su revisión sin observaciones. No corresponde habilitar el ícono de actualización de datos en este sitio."
-  },
-  {
-    "id": 48,
-    "question": "¿Dónde deben ubicarse el ícono de \"refresco\" y la fecha/hora del cómputo en las vistas del sitio web interno de resultados provisorios?",
-    "options": [
-      { "key": "a", "text": "En la parte inferior de la página." },
-      { "key": "b", "text": "En el menú lateral izquierdo." },
-      { "key": "c", "text": "En la parte superior derecha del área de despliegue de resultados." },
-      { "key": "d", "text": "En el pie de página." }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "El ícono de \"refresco\" debe ser claramente visible en todas las vistas para que los usuarios puedan realizar el refresco. Para ello se deberá ubicar en la parte superior derecha del área de despliegue de resultados de la vista, y al lado del ícono, se debe mostrar la fecha y hora del cómputo."
-  },
-  {
-    "id": 49,
-    "question": "¿Qué es un Acta Descuadrada según las definiciones proporcionadas?",
-    "options": [
-      { "key": "a", "text": "Un Acta de Escrutinio que no ha sido digitalizada correctamente." },
-      { "key": "b", "text": "Un Acta de Escrutinio donde la suma de votos de candidatos/opciones, nulos y blancos no coincide con los totales ingresados." },
-      { "key": "c", "text": "Un Acta de Escrutinio con más votos que electores inscritos." },
-      { "key": "d", "text": "Un Acta de Escrutinio que no fue recibida físicamente." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "Un Acta Descuadrada se define como un Acta de Escrutinio donde la suma real de los votos de cada candidato u opciones, nulos y blancos no coincide con los totales ingresados en el Acta."
-  },
-  {
-    "id": 50,
-    "question": "¿Qué significa un Acta marcada como \"SI\" en el contexto del Sistema Verificación de la Integridad de la Digitación de Actas Electorales (SVIDA)?",
-    "options": [
-      { "key": "a", "text": "Que el acta ha sido revisada satisfactoriamente." },
-      { "key": "b", "text": "Que el acta presenta una incidencia de descuadre." },
-      { "key": "c", "text": "Que los datos usados para completar el acta superan los inscritos de acuerdo con el padrón de la mesa." },
-      { "key": "d", "text": "Que el acta fue digitalizada incorrectamente." }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "Un Acta marcada como SI corresponde a aquella acta electoral donde los datos usados para completar el acta superan los inscritos de acuerdo con el padrón de la mesa."
-  },
-  {
-    "id": 51,
-    "question": "¿Cómo identifica el SCDE (Mincap/Colesc) una mesa con \"Supera Inscritos\" en la transmisión de datos a SCE/SIE?",
-    "options": [
-      { "key": "a", "text": "Enviando la etiqueta vot:tipoEnvio con el valor \"M\"." },
-      { "key": "b", "text": "Incluyendo la etiqueta vot:incidencia con el detalle del error." },
-      { "key": "c", "text": "Enviando la etiqueta <tipoEnvio> con el valor \"SI\"." },
-      { "key": "d", "text": "No lo identifica, esta verificación la hace el SCE/SIE." }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "Las mesas con \"Supera Inscritos\" son identificadas en los datos informados por SCDE (Mincap/Colesc) a SCE/SIE cuando el valor informado en la etiqueta <tipoEnvio> es igual \"SI\"."
-  },
-  {
-    "id": 52,
-    "question": "¿Cómo identifica el SCDE (Mincap/Colesc) una mesa con \"Acta Descuadrada\" o \"Inconsistente\" en la transmisión de datos a SCE/SIE?",
-    "options": [
-      { "key": "a", "text": "Enviando la etiqueta <tipoEnvio> con el valor \"M\"." },
-      { "key": "b", "text": "Enviando la etiqueta <tipoEnvio> con el valor \"SI\"." },
-      { "key": "c", "text": "Enviando la etiqueta <tipoEnvio> con el valor \"N\"." },
-      { "key": "d", "text": "Enviando la etiqueta <tipoEnvio> con el valor \"E\"." }
-    ],
-    "correctAnswerKey": "a",
-    "explanation": "Las mesas con \"Acta Descuadrada\" o \"Inconsistente\" son identificadas en los datos informados por SCDE (Mincap/Colesc) a SCE/SIE cuando el valor informado en la etiqueta <tipoEnvio> es igual \"M\"."
-  },
-  {
-    "id": 53,
-    "question": "¿Cuál es la función del Equipo revisor de integridad y estado de plataforma?",
-    "options": [
-      { "key": "a", "text": "Capacitar al personal de los Colegios Escrutadores." },
-      { "key": "b", "text": "Revisa la Integridad del último cómputo realizado y estado de la plataforma." },
-      { "key": "c", "text": "Desarrollar el sistema de cómputo electoral." },
-      { "key": "d", "text": "Recibir las actas de escrutinio físicas." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "El Equipo revisor de integridad y estado de plataforma es responsable de revisar la Integridad del último cómputo realizado y el estado de la plataforma."
-  },
-  {
-    "id": 54,
-    "question": "¿A quién reporta el Equipo revisor de integridad y estado de plataforma las no conformidades del sistema de cómputo y la conformidad del SIE?",
-    "options": [
-      { "key": "a", "text": "Al Consejo del SERVEL." },
-      { "key": "b", "text": "Directamente a la ciudadanía a través del sitio web." },
-      { "key": "c", "text": "Al Jefe de DTI y al Jefe COE." },
-      { "key": "d", "text": "Al SCDE." }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "El Equipo revisor de integridad y estado de plataforma reporta al Jefe de DTI y al Jefe COE la No conformidad del sistema de cómputo del Servel y la conformidad de la integridad del Sistema de Integridad Electoral (SIE)."
-  },
-  {
-    "id": 55,
-    "question": "En el contexto del procedimiento de publicación de resultados preliminares, ¿qué información se transmite en paralelo a los medios de prensa acreditados?",
-    "options": [
-      { "key": "a", "text": "Solo los resultados definitivos al término del proceso." },
-      { "key": "b", "text": "Información digital de acuerdo con un protocolo de envío de archivos específico." },
-      { "key": "c", "text": "Información solo de las mesas con incidencias." },
-      { "key": "d", "text": "Un resumen de los resultados por región." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "En forma paralela a la publicación pública, se transmitirá información digital a los medios de prensa acreditados, cuyo formato y datos se definen en el documento \"Protocolo Envío archivos a Medios de Comunición.pdf\"."
-  },
-  {
-    "id": 56,
-    "question": "¿Qué documento describe el formato y oportunidad del envío de archivos con datos de votaciones preliminares desde Servel al SCDE para los Colegios Escrutadores?",
-    "options": [
-      { "key": "a", "text": "\"Protocolo Intercambio de Datos Electorales.pdf\"" },
-      { "key": "b", "text": "\"Protocolo Envío Archivos a Colegios Escrutadores.pdf\"" },
-      { "key": "c", "text": "\"Protocolo Envío Archivos a Medios de Comunicación.pdf\"" },
-      { "key": "d", "text": "\"Definición Escenario para Escrutinios.pdf\"" }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "El documento \"Protocolo de envío de archivos a Colegios Escrutadores\" describe el formato y oportunidad del envío de los archivos, desde Servel al SCDE para los Colegios Escrutadores, con los datos de las votaciones preliminares."
-  },
-  {
-    "id": 57,
-    "question": "Según el Protocolo de Envío de Archivos a Medios de Comunicación, ¿qué debe proveer cada medio para que el centro de cómputos deposite la información?",
-    "options": [
-      { "key": "a", "text": "Un servidor web con acceso vía HTTP." },
-      { "key": "b", "text": "Una cuenta de correo electrónico dedicada." },
-      { "key": "c", "text": "Un servidor SFTP, con su respectivo usuario y clave." },
-      { "key": "d", "text": "Un sistema de mensajería instantánea." }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "Cada medio de comunicación deberá proveer un servidor SFTP, con su respectivo usuario y clave, para que el centro de cómputos deposite la información de los archivos."
-  },
-  {
-    "id": 58,
-    "question": "¿Qué información representa la parte XXXXX en el nombre de archivo VOTACION_<CODIGO_ELECCION>_<XXXXX>_<YYYY>.TXT.ZIP enviado a los medios de comunicación?",
-    "options": [
-      { "key": "a", "text": "El número total de mesas en el escenario." },
-      { "key": "b", "text": "El número de votos válidamente emitidos." },
-      { "key": "c", "text": "El porcentaje de mesas escrutadas respecto del total de mesas." },
-      { "key": "d", "text": "La versión de la data del escenario." }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "XXXXX corresponde al porcentaje de mesas escrutadas respecto del total de mesas (total mesas del escenario de cómputo para la elección), truncado al segundo decimal y completado con ceros a la izquierda."
-  },
-  {
-    "id": 59,
-    "question": "¿Qué representa la etiqueta vot:totalGeneral o vot:totalEmitidos dentro del XML de un acta de escrutinio?",
-    "options": [
-      { "key": "a", "text": "La cantidad de votos nulos." },
-      { "key": "b", "text": "La cantidad de votos en blanco." },
-      { "key": "c", "text": "La suma de votos de candidatos u opción." },
-      { "key": "d", "text": "La cantidad total de votos emitidos (preferencias + nulos + blancos)." }
-    ],
-    "correctAnswerKey": "d",
-    "explanation": "La etiqueta vot1:totalGeneral o vot:totalEmitidos (dependiendo del documento, ambos se usan en ejemplos) se obtiene para representar el Total votos emitidos. Las fuentes también muestran que la suma de preferencias, nulos y blancos da el Total Votación (que es sinónimo de Total votos emitidos en este contexto)."
-  },
-  {
-    "id": 60,
-    "question": "¿De dónde provienen los datos utilizados por el SCE/SIE para el cómputo de los resultados de Constitución e Instalación?",
-    "options": [
-      { "key": "a", "text": "Directamente de los Tribunales Electorales." },
-      { "key": "b", "text": "Del SCDE (Mincap)." },
-      { "key": "c", "text": "De los Colegios Escrutadores." },
-      { "key": "d", "text": "De los medios de comunicación." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "Los datos para el cómputo de Constitución e Instalación provienen de SCDE (Mincap) y son procesados por SCE/SIE."
-  },
-  {
-    "id": 61,
-    "question": "En la publicación de resultados de votación preliminares, ¿cómo se calcula el porcentaje de votación de un candidato?",
-    "options": [
-      { "key": "a", "text": "Respecto del total de mesas escrutadas." },
-      { "key": "b", "text": "Respecto del total de electores inscritos." },
-      { "key": "c", "text": "Respecto del total de votos válidamente emitidos del pacto al que pertenece." },
-      { "key": "d", "text": "Respecto del total de votos nulos y blancos." }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "Para un candidato, el porcentaje de votación corresponde al porcentaje del total de votos del Candidato respecto del total de votos válidamente emitidos del pacto al que pertenece."
-  },
-  {
-    "id": 62,
-    "question": "¿Cómo se calcula la cantidad total de votos válidamente emitidos según el último cómputo para publicación?",
-    "options": [
-      { "key": "a", "text": "Sumatoria de todos los votos nulos y blancos." },
-      { "key": "b", "text": "Sumatoria de todos los votos de preferencias recibidos." },
-      { "key": "c", "text": "Sumatoria de votos de preferencias, nulos y blancos." },
-      { "key": "d", "text": "Diferencia entre total de mesas y mesas escrutadas." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "La cantidad de votos válidamente emitidos corresponde a la suma de todos los votos de preferencias recibidos."
-  },
-  {
-    "id": 63,
-    "question": "En el sitio web de publicación de resultados, ¿qué opción de menú se activa el domingo a partir de las 18:01 en adelante?",
-    "options": [
-      { "key": "a", "text": "Constitución." },
-      { "key": "b", "text": "Instalación." },
-      { "key": "c", "text": "La opción correspondiente a la elección de mayor alcance territorial." },
-      { "key": "d", "text": "Un resumen de todas las elecciones." }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "El despliegue automático de menús según la etapa del proceso electoral indica que el domingo (18:01 en adelante) se activa la opción correspondiente a la elección de mayor alcance territorial."
-  },
-  {
-    "id": 64,
-    "question": "¿Cuál es el formulario elaborado por el Servicio Electoral que registra los datos escrutados de cada mesa receptora de sufragio?",
-    "options": [
-      { "key": "a", "text": "Formulario N° 047 (Cuadro de Escrutinio)" },
-      { "key": "b", "text": "Formulario N° 048 (Acta del Colegio Escrutador)" },
-      { "key": "c", "text": "Formulario N° 040 (Acta de Escrutinio)" },
-      { "key": "d", "text": "Formulario N° 049 (Acta Constitución)" }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "Acta de Escrutinio corresponde al formulario N° 040 elaborado por el Servicio Electoral que registra los datos escrutados de cada mesa receptora de sufragio."
-  },
-  {
-    "id": 65,
-    "question": "¿Cuál es el objetivo del Sistema Verificación de la Integridad de la Digitación de Actas Electorales (SVIDA)?",
-    "options": [
-      { "key": "a", "text": "Gestionar la transmisión de datos desde los locales de votación." },
-      { "key": "b", "text": "Determinar la calidad de la digitación de las actas generadas durante el evento electoral." },
-      { "key": "c", "text": "Realizar el cómputo de los resultados preliminares." },
-      { "key": "d", "text": "Publicar los resultados en el sitio web institucional." }
-    ],
-    "correctAnswerKey": "b",
-    "explanation": "El objetivo general del Sistema (SVIDA) es determinar la calidad de la digitación de las actas generadas durante el evento electoral."
-  },
-  {
-    "id": 66,
-    "question": "¿Qué insumos utiliza el SVIDA para la verificación durante el evento electoral?",
-    "options": [
-      { "key": "a", "text": "Solo las imágenes digitalizadas de las actas." },
-      { "key": "b", "text": "Solo los datos digitados correspondientes a cada acta." },
-      { "key": "c", "text": "Actas digitalizadas (imágenes) y datos digitados correspondientes a cada acta." },
-      { "key": "d", "text": "Los resultados del cómputo del SCE." }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "Los insumos para el proceso de verificación durante el evento incluyen actas digitalizadas (imágenes) y datos digitados correspondientes a cada acta, los cuales serán comparados con los datos de las imágenes."
-  },
-  {
-    "id": 67,
-    "question": "¿Qué información se espera reportar sobre las actas revisadas post evento en el SVIDA?",
-    "options": [
-      { "key": "a", "text": "Solo las actas marcadas como \"SI\"." },
-      { "key": "b", "text": "Solo las actas \"Conforme\"." },
-      { "key": "c", "text": "Las actas que presentan la condición de \"No conforme\"." },
-      { "key": "d", "text": "Todas las actas revisadas, detallando su estado." }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "Junto con el informe post evento, se deberán entregar archivos de salida por cada elección informando las actas que presentan la condición de \"No conforme\". Como resultado de la revisión, se establece cuales actas están \"Conforme\" y cuales \"No conforme\"."
-  },
-  {
-    "id": 68,
-    "question": "¿Dónde se publican los resultados provisorios provenientes de los Colegios Escrutadores para la ciudadanía?",
-    "options": [
-      { "key": "a", "text": "En el sitio web elecciones.servel.cl." },
-      { "key": "b", "text": "En el sitio web provisorios-interno.servel.cl." },
-      { "key": "c", "text": "En el sitio web provisorios.servel.cl." },
-      { "key": "d", "text": "Únicamente se entregan a los medios de comunicación." }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "La División de Tecnología de la Información publicará los resultados provisorios provenientes del portal interno en el sitio web provisorios.servel.cl."
-  },
-  {
-    "id": 69,
-    "question": "¿Quién es el responsable de coordinar y operativizar los procesos de sufragio de carácter nacional en Chile, según las fuentes?",
-    "options": [
-      { "key": "a", "text": "La División de Tecnologías de la Información (DTI)." },
-      { "key": "b", "text": "Los Tribunales Electorales Regionales (TER)." },
-      { "key": "c", "text": "El Servicio Electoral de Chile (Servel)." },
-      { "key": "d", "text": "Los Colegios Escrutadores." }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "El Servicio Electoral de Chile (Servel) es el responsable de coordinar y operativizar todos los procesos de sufragio de carácter nacional."
-  },
-  {
-    "id": 70,
-    "question": "En el sitio web de resultados provisorios, ¿qué documento permite visualizar el archivo digitalizado del formulario 47 (CUADRO ESCRUTINIO POR CIRCUNSCRIPCIÓN ELECTORAL) de un colegio escrutador?",
-    "options": [
-      { "key": "a", "text": "Acta CE – F048." },
-      { "key": "b", "text": "Acta Constitución – F049." },
-      { "key": "c", "text": "Cuadro Escrutinio – F047." },
-      { "key": "d", "text": "Acta de Escrutinio – F040." }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "En las vistas del escrutinio de Colegios Escrutadores, el link \"Cuadro Escrutinio – F047\" permite visualizar el archivo digitalizado del formulario 47."
-  },
-  {
-    "id": 71,
-    "question": "¿Cómo se calcula el porcentaje de votos nulos en la publicación de resultados de votación (preliminares o provisorios)?",
-    "options": [
-      { "key": "a", "text": "Respecto del total de electores inscritos en la mesa." },
-      { "key": "b", "text": "Respecto del total de votos válidamente emitidos." },
-      { "key": "c", "text": "Respecto del total votación (suma de votos preferencias + nulos + blancos)." },
-      { "key": "d", "text": "Sumando los porcentajes de todos los candidatos del mismo pacto." }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "El porcentaje de votos nulos se calcula respecto del total votación, según el último cómputo para publicación. La cantidad total de votos (Total Votación) corresponde a la sumatoria de los votos de preferencias + votos nulos + votos en blanco."
-  },
-  {
-    "id": 72,
-    "question": "¿Qué sistema, parte del SCDE, es utilizado por los Colegios Escrutadores para revisar y corregir los datos de votaciones preliminares y así generar los resultados provisorios?",
-    "options": [
-      { "key": "a", "text": "MINCAP." },
-      { "key": "b", "text": "SCE." },
-      { "key": "c", "text": "COLESC." },
-      { "key": "d", "text": "SIE." }
-    ],
-    "correctAnswerKey": "c",
-    "explanation": "El escenario de votaciones preliminares es cargado en la aplicación COLESC que provee el SCDE, en los colegios escrutadores para su revisión/corrección y así generar los resultados provisorios. ColeSC también es definido como parte del SCDE utilizado durante las jornadas de colegios escrutadores."
+    "explanation": "Las elecciones parlamentarias aplican el método D’Hondt, un sistema proporcional inclusivo que busca fortalecer la representatividad del Congreso Nacional:contentReference[oaicite:5]{index=5}."
   }
-] 
+]

@@ -1,5 +1,7 @@
 {
-  "projects": {},
+  "projects": {
+    "quiz-servel": "quiz-servel-app"
+  },
   "targets": {},
   "etags": {}
 }
