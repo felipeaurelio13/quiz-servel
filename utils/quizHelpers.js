@@ -1,5 +1,17 @@
 const DEFAULT_DURATION = 2200;
 
+function toNonNegativeNumber(value) {
+    const numericValue = Number(value);
+    if (!Number.isFinite(numericValue)) return 0;
+    return Math.max(0, numericValue);
+}
+
+function formatPercentValue(value) {
+    if (!Number.isFinite(value)) return '0%';
+    const clamped = Math.max(0, Math.min(100, value));
+    return `${clamped.toFixed(2).replace(/\.?0+$/, '')}%`;
+}
+
 /**
  * Returns the notification metadata for a given streak length.
  * @param {number} streak
@@ -46,18 +58,25 @@ export function formatLeaderboardEntry(entry, index, locale = 'es-CL') {
         ? safeEntry.player_name.trim()
         : 'Anónimo';
 
-    const scoreValue = Number.isFinite(safeEntry.score) ? safeEntry.score : 0;
-    const totalQuestions = Number.isFinite(safeEntry.total_questions_in_quiz)
-        ? safeEntry.total_questions_in_quiz
-        : 0;
+    const scoreValue = toNonNegativeNumber(safeEntry.score);
+    const totalQuestions = toNonNegativeNumber(safeEntry.total_questions_in_quiz);
 
     const createdAt = extractDate(safeEntry.created_at);
     const formatter = new Intl.DateTimeFormat(locale, { dateStyle: 'medium' });
+    const accuracyPercent = calculateProgressPercentage(scoreValue, totalQuestions);
+    const hasValidTotal = totalQuestions > 0;
+    const accuracyText = hasValidTotal ? formatPercentValue(accuracyPercent) : '—';
+    const scoreText = `${scoreValue}/${totalQuestions}`;
 
     return {
         position: index + 1,
         playerName,
-        scoreText: `${scoreValue}/${totalQuestions}`,
+        scoreValue,
+        totalQuestions,
+        scoreText,
+        scoreDisplay: hasValidTotal ? `${scoreText} (${accuracyText})` : scoreText,
+        accuracyPercent,
+        accuracyText,
         formattedDate: formatter.format(createdAt)
     };
 }
@@ -93,8 +112,38 @@ export function calculateProgressPercentage(answered, total) {
     return Number(percent.toFixed(2));
 }
 
+export function calculateLeaderboardAccuracy(entry) {
+    if (!entry || typeof entry !== 'object') return 0;
+    const score = toNonNegativeNumber(entry.score);
+    const total = toNonNegativeNumber(entry.total_questions_in_quiz);
+    if (total <= 0) return 0;
+    const ratio = score / total;
+    if (!Number.isFinite(ratio)) return 0;
+    return Math.max(0, Math.min(1, ratio));
+}
+
+export function sortLeaderboardEntries(entries = []) {
+    if (!Array.isArray(entries)) return [];
+
+    return entries
+        .map(item => ({
+            entry: item,
+            accuracy: calculateLeaderboardAccuracy(item),
+            score: toNonNegativeNumber(item?.score),
+            createdAt: extractDate(item?.created_at)
+        }))
+        .sort((a, b) => {
+            if (b.accuracy !== a.accuracy) return b.accuracy - a.accuracy;
+            if (b.score !== a.score) return b.score - a.score;
+            return a.createdAt.getTime() - b.createdAt.getTime();
+        })
+        .map(({ entry }) => entry);
+}
+
 export default {
     getStreakNotification,
     formatLeaderboardEntry,
-    calculateProgressPercentage
+    calculateProgressPercentage,
+    calculateLeaderboardAccuracy,
+    sortLeaderboardEntries
 };

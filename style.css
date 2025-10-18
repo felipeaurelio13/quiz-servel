@@ -127,10 +127,102 @@ body.modal-open {
     font-size: 0.92rem;
 }
 
+.quiz-length-selector {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.quiz-length-selector legend {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--color-text);
+}
+
+.quiz-length-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.quiz-length-option {
+    position: relative;
+    cursor: pointer;
+}
+
+.quiz-length-option input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.quiz-length-option span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    padding: 10px 14px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-muted);
+    font-weight: 600;
+    transition: border-color var(--transition-base), background var(--transition-base), color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.quiz-length-option input:checked + span {
+    background: var(--color-accent-soft);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    box-shadow: 0 10px 20px rgba(0, 84, 182, 0.12);
+}
+
+.quiz-length-option input:focus-visible + span {
+    outline: 3px solid rgba(0, 84, 182, 0.35);
+    outline-offset: 2px;
+}
+
 .welcome-actions {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
+}
+
+.admin-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.btn-quiet {
+    background: transparent;
+    color: var(--color-muted);
+    border: 1px dashed var(--color-border);
+    font-size: 0.88rem;
+    padding: 10px 14px;
+    min-height: 40px;
+}
+
+.btn-quiet:hover,
+.btn-quiet:focus-visible {
+    background: var(--color-surface);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    box-shadow: none;
+}
+
+.admin-hint {
+    margin: 0;
+    font-size: 0.78rem;
+    color: var(--color-muted);
 }
 
 button {
@@ -426,6 +518,42 @@ footer {
     margin: 4px 0 0;
     color: var(--color-muted);
     font-size: 0.92rem;
+}
+
+.leaderboard-length-selector {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.leaderboard-length-btn {
+    background: var(--color-surface);
+    color: var(--color-muted);
+    border: 1px solid var(--color-border);
+    min-height: 40px;
+    padding: 10px 16px;
+    font-size: 0.95rem;
+    box-shadow: none;
+}
+
+.leaderboard-length-btn:hover,
+.leaderboard-length-btn:focus-visible {
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+.leaderboard-length-btn[aria-pressed="true"] {
+    background: var(--color-accent);
+    color: #fff;
+    border-color: var(--color-accent);
+    box-shadow: 0 12px 24px rgba(0, 84, 182, 0.16);
+}
+
+.leaderboard-active-length {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.9rem;
 }
 
 .leaderboard-table-container {

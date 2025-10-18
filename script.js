@@ -8,6 +8,7 @@ import {
     getDocs,
     query,
     orderBy,
+    where,
     limit as fbLimit,
     addDoc,
     deleteDoc,
@@ -17,7 +18,8 @@ import {
 import {
     getStreakNotification,
     formatLeaderboardEntry,
-    calculateProgressPercentage
+    calculateProgressPercentage,
+    sortLeaderboardEntries
 } from './utils/quizHelpers.js';
 
 // Firebase Config - REEMPLAZA con tu configuración de app web (Firebase Console > Project settings > Your apps)
@@ -29,6 +31,11 @@ const firebaseConfig = {
     messagingSenderId: "914422302247",
     appId: "1:914422302247:web:a42e492e754aca33367002"
 };
+
+const ALLOWED_QUIZ_LENGTHS = [5, 10, 15];
+const DEFAULT_QUIZ_LENGTH = 15;
+const QUIZ_LENGTH_STORAGE_KEY = 'quiz_length_preference';
+const LEADERBOARD_LENGTH_STORAGE_KEY = 'leaderboard_length_preference';
 
 let db = null;
 function initializeFirebase() {
@@ -80,6 +87,14 @@ async function seedQuestionsFromLocalJson() {
 // --- FUNCIÓN PARA ACTUALIZAR PREGUNTAS FORZADAMENTE ---
 async function forceUpdateQuestions() {
     try {
+        if (typeof window !== 'undefined') {
+            const confirmation = window.confirm('Esta acción sobrescribe todas las preguntas en Firebase. ¿Deseas continuar?');
+            if (!confirmation) {
+                showNotification('Sincronización cancelada.', 'info', 2500);
+                return;
+            }
+        }
+
         const database = initializeFirebase();
         if (!database) throw new Error('Firebase no configurado');
         
@@ -123,7 +138,6 @@ const resultsScreen = document.getElementById('results-screen');
 
 const startQuizBtn = document.getElementById('start-quiz-btn');
 const nextQuestionBtn = document.getElementById('next-question-btn');
-const changeAnswerBtn = document.getElementById('change-answer-btn');
 const answerActions = document.getElementById('answer-actions');
 const restartQuizBtn = document.getElementById('restart-quiz-btn');
 const updateQuestionsBtn = document.getElementById('update-questions-btn');
@@ -142,8 +156,11 @@ const summaryContainer = document.getElementById('summary-container');
 const leaderboardContainer = document.getElementById('leaderboard-container');
 const leaderboardList = document.getElementById('leaderboard-list');
 const leaderboardBackdrop = document.getElementById('leaderboard-backdrop');
+const leaderboardLengthLabel = document.getElementById('leaderboard-length-label');
+const leaderboardLengthButtons = document.querySelectorAll('.leaderboard-length-btn');
 
 const playerNameInput = document.getElementById('player-name-input');
+const quizLengthInputs = document.querySelectorAll('input[name="quiz-length"]');
 
 const viewLeaderboardBtn = document.getElementById('view-leaderboard-btn');
 const closeLeaderboardBtn = document.getElementById('close-leaderboard-btn');
@@ -162,6 +179,8 @@ let longestStreak = 0;
 let correctCount = 0;
 let incorrectCount = 0;
 let questionsLoadPromise = null;
+let selectedQuizLength = DEFAULT_QUIZ_LENGTH;
+let selectedLeaderboardLength = DEFAULT_QUIZ_LENGTH;
 
 // --- Firestore helpers ---
 async function fetchQuestions() {
@@ -180,12 +199,16 @@ async function saveLeaderboardScore(dataObject) {
     return true;
 }
 
-async function fetchLeaderboardTop() {
+async function fetchLeaderboardTop(questionsInQuiz) {
     const database = initializeFirebase();
     if (!database) throw new Error('Firebase no configurado');
+    const sanitizedLength = ALLOWED_QUIZ_LENGTHS.includes(Number(questionsInQuiz))
+        ? Number(questionsInQuiz)
+        : DEFAULT_QUIZ_LENGTH;
     try {
         const q = query(
             collection(database, 'leaderboard'),
+            where('total_questions_in_quiz', '==', sanitizedLength),
             orderBy('score', 'desc'),
             orderBy('created_at', 'asc'),
             fbLimit(50)
@@ -193,21 +216,39 @@ async function fetchLeaderboardTop() {
         const snapshot = await getDocs(q);
         return snapshot.docs.map(d => d.data());
     } catch (e) {
-        console.warn('Fallo índice compuesto, usando orden simple:', e?.message);
-        const q = query(
-            collection(database, 'leaderboard'),
-            orderBy('score', 'desc'),
-            fbLimit(50)
-        );
-        const snapshot = await getDocs(q);
-        return snapshot.docs.map(d => d.data());
+        console.warn('Fallo índice compuesto, se aplicará filtrado local:', e?.message);
+        if (e?.code === 'failed-precondition') {
+            try {
+                const fallbackQuery = query(
+                    collection(database, 'leaderboard'),
+                    orderBy('score', 'desc'),
+                    orderBy('created_at', 'asc'),
+                    fbLimit(200)
+                );
+                const snapshot = await getDocs(fallbackQuery);
+                return snapshot.docs
+                    .map(d => d.data())
+                    .filter(entry => Number(entry?.total_questions_in_quiz) === sanitizedLength);
+            } catch (fallbackError) {
+                console.warn('El filtrado local también requirió índice, usando orden por score únicamente:', fallbackError?.message);
+                const simpleQuery = query(
+                    collection(database, 'leaderboard'),
+                    orderBy('score', 'desc'),
+                    fbLimit(200)
+                );
+                const snapshot = await getDocs(simpleQuery);
+                return snapshot.docs
+                    .map(d => d.data())
+                    .filter(entry => Number(entry?.total_questions_in_quiz) === sanitizedLength);
+            }
+        }
+        throw e;
     }
 }
 
 // --- EVENT LISTENERS ---
 startQuizBtn.addEventListener('click', startQuiz);
 nextQuestionBtn.addEventListener('click', showNextQuestion);
-changeAnswerBtn.addEventListener('click', changeAnswer);
 restartQuizBtn.addEventListener('click', restartQuiz);
 updateQuestionsBtn.addEventListener('click', forceUpdateQuestions);
 
@@ -225,6 +266,19 @@ if (leaderboardBackdrop) {
     });
 }
 
+quizLengthInputs.forEach(input => {
+    input.addEventListener('change', handleQuizLengthSelection);
+});
+
+leaderboardLengthButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const parsedLength = Number(button.dataset.length);
+        if (Number.isFinite(parsedLength)) {
+            setSelectedLeaderboardLength(parsedLength);
+        }
+    });
+});
+
 document.addEventListener('keydown', handleKeyboardShortcuts);
 document.addEventListener('keydown', handleEscapeClose);
 
@@ -236,6 +290,7 @@ async function initializeQuiz() {
         optionsContainer.setAttribute('role', 'listbox');
         const savedName = localStorage.getItem('player_name');
         if (savedName) playerNameInput.value = savedName;
+        applyStoredPreferences();
         setStartButtonLoading(true);
         questionsLoadPromise = fetchQuestions();
         allQuestions = await questionsLoadPromise;
@@ -253,6 +308,64 @@ async function initializeQuiz() {
         console.error('Initialization Error:', error);
         showNotification('Error al inicializar el quiz. Por favor, recarga la página.', 'error', 5000);
     }
+}
+
+function applyStoredPreferences() {
+    const storedQuizLength = Number(localStorage.getItem(QUIZ_LENGTH_STORAGE_KEY));
+    if (ALLOWED_QUIZ_LENGTHS.includes(storedQuizLength)) {
+        setSelectedQuizLength(storedQuizLength, { persist: false });
+    } else {
+        setSelectedQuizLength(DEFAULT_QUIZ_LENGTH, { persist: false });
+    }
+
+    const storedLeaderboardLength = Number(localStorage.getItem(LEADERBOARD_LENGTH_STORAGE_KEY));
+    const fallbackLength = selectedQuizLength;
+    if (ALLOWED_QUIZ_LENGTHS.includes(storedLeaderboardLength)) {
+        setSelectedLeaderboardLength(storedLeaderboardLength, { persist: false, refresh: false });
+    } else {
+        setSelectedLeaderboardLength(fallbackLength, { persist: false, refresh: false });
+    }
+}
+
+function setSelectedQuizLength(newLength, { persist = true } = {}) {
+    const numericLength = Number(newLength);
+    if (!ALLOWED_QUIZ_LENGTHS.includes(numericLength)) return;
+    selectedQuizLength = numericLength;
+    if (persist) localStorage.setItem(QUIZ_LENGTH_STORAGE_KEY, String(numericLength));
+    quizLengthInputs.forEach(input => {
+        const matches = Number(input.value) === numericLength;
+        input.checked = matches;
+    });
+}
+
+function isLeaderboardOpen() {
+    return leaderboardContainer && !leaderboardContainer.classList.contains('hidden');
+}
+
+function handleQuizLengthSelection(event) {
+    const parsedLength = Number(event.target?.value);
+    if (!Number.isFinite(parsedLength)) return;
+    setSelectedQuizLength(parsedLength);
+    const refreshLeaderboard = isLeaderboardOpen();
+    setSelectedLeaderboardLength(parsedLength, { refresh: refreshLeaderboard }).catch(error => {
+        console.warn('No se pudo actualizar el ranking al cambiar la longitud del quiz:', error);
+    });
+}
+
+function setSelectedLeaderboardLength(newLength, { persist = true, refresh = true } = {}) {
+    const numericLength = Number(newLength);
+    if (!ALLOWED_QUIZ_LENGTHS.includes(numericLength)) return Promise.resolve();
+    selectedLeaderboardLength = numericLength;
+    leaderboardLengthButtons.forEach(button => {
+        const matches = Number(button.dataset.length) === numericLength;
+        button.setAttribute('aria-pressed', String(matches));
+    });
+    if (leaderboardLengthLabel) leaderboardLengthLabel.textContent = String(numericLength);
+    if (persist) localStorage.setItem(LEADERBOARD_LENGTH_STORAGE_KEY, String(numericLength));
+    if (refresh) {
+        return fetchAndDisplayLeaderboard(numericLength);
+    }
+    return Promise.resolve();
 }
 
 function startQuiz() {
@@ -283,6 +396,16 @@ function startQuiz() {
         playerNameInput.focus();
         return;
     }
+    if (nameFromInput.length < 2) {
+        showNotification('El nombre debe tener al menos 2 caracteres.', 'warning', 4000);
+        playerNameInput.focus();
+        return;
+    }
+    if (nameFromInput.length > 50) {
+        showNotification('El nombre no puede superar los 50 caracteres.', 'warning', 4000);
+        playerNameInput.focus();
+        return;
+    }
     currentPlayerName = nameFromInput;
     localStorage.setItem('player_name', currentPlayerName);
 
@@ -296,8 +419,16 @@ function startQuiz() {
     longestStreak = 0;
     updateLiveStats();
 
+    const effectiveQuizLength = ALLOWED_QUIZ_LENGTHS.includes(selectedQuizLength)
+        ? selectedQuizLength
+        : DEFAULT_QUIZ_LENGTH;
+    if (allQuestions.length < effectiveQuizLength) {
+        showNotification(`Solo hay ${allQuestions.length} preguntas disponibles. Ajusta la cantidad del quiz para continuar.`, 'warning', 4500);
+        showScreen('welcome');
+        return;
+    }
     const shuffledAllQuestions = [...allQuestions].sort(() => 0.5 - Math.random());
-    currentQuizQuestions = shuffledAllQuestions.slice(0, Math.min(15, allQuestions.length));
+    currentQuizQuestions = shuffledAllQuestions.slice(0, Math.min(effectiveQuizLength, allQuestions.length));
 
     if (currentQuizQuestions.length === 0) {
         showNotification("No hay preguntas disponibles para iniciar el quiz.", 'error', 4000);
@@ -369,13 +500,21 @@ function displayQuestion() {
 
 function selectAnswer(event) {
     if (answerSubmitted) return;
-    const selectedButton = event.target;
+    const selectedButton = event.currentTarget;
+    const alreadySelected = selectedButton.classList.contains('selected');
     const selectedKey = selectedButton.dataset.key;
 
     Array.from(optionsContainer.children).forEach(btn => {
         btn.classList.remove('selected', 'correct', 'incorrect');
         btn.setAttribute('aria-pressed', 'false');
     });
+
+    if (alreadySelected) {
+        currentSelectedAnswer = null;
+        answerActions.classList.add('hidden');
+        nextQuestionBtn.disabled = true;
+        return;
+    }
 
     selectedButton.classList.add('selected');
     selectedButton.setAttribute('aria-pressed', 'true');
@@ -431,13 +570,6 @@ function submitAnswer() {
 
     nextQuestionBtn.focus();
     updateLiveStats();
-}
-
-function changeAnswer() {
-    if (answerSubmitted) return;
-    Array.from(optionsContainer.children).forEach(btn => btn.classList.remove('selected'));
-    currentSelectedAnswer = null;
-    answerActions.classList.add('hidden');
 }
 
 function showNextQuestion() {
@@ -507,11 +639,15 @@ async function showResults() {
     }
 }
 
-async function fetchAndDisplayLeaderboard() {
+async function fetchAndDisplayLeaderboard(lengthOverride = selectedLeaderboardLength) {
+    const sanitizedLength = ALLOWED_QUIZ_LENGTHS.includes(Number(lengthOverride))
+        ? Number(lengthOverride)
+        : DEFAULT_QUIZ_LENGTH;
     leaderboardList.innerHTML = '<tr class="loading-row"><td colspan="4"><span class="loading-spinner"></span>Cargando ranking...</td></tr>';
 
     try {
-        const leaderboardData = await fetchLeaderboardTop();
+        const leaderboardRaw = await fetchLeaderboardTop(sanitizedLength);
+        const leaderboardData = sortLeaderboardEntries(leaderboardRaw);
         leaderboardList.innerHTML = '';
         if (leaderboardData && leaderboardData.length > 0) {
             leaderboardData.forEach((entry, index) => {
@@ -523,16 +659,16 @@ async function fetchAndDisplayLeaderboard() {
                 const cellName = row.insertCell();
                 cellName.textContent = formatted.playerName;
                 const cellScore = row.insertCell();
-                cellScore.textContent = formatted.scoreText;
+                cellScore.textContent = formatted.scoreDisplay;
                 const cellDate = row.insertCell();
                 cellDate.textContent = formatted.formattedDate;
             });
         } else {
-            leaderboardList.innerHTML = '<tr><td colspan="4">No hay puntajes en el ranking todavía. ¡Sé el primero!</td></tr>';
+            leaderboardList.innerHTML = `<tr><td colspan="4">No hay puntajes en el ranking de ${sanitizedLength} preguntas todavía. ¡Sé el primero!</td></tr>`;
         }
     } catch (error) {
         console.error('Error fetching leaderboard:', error);
-        leaderboardList.innerHTML = '<tr class="loading-row"><td colspan="4">❌ No se pudo cargar el ranking. Intenta más tarde.</td></tr>';
+        leaderboardList.innerHTML = `<tr class="loading-row"><td colspan="4">❌ No se pudo cargar el ranking de ${sanitizedLength} preguntas. Intenta más tarde.</td></tr>`;
         showNotification('Error al cargar el ranking. Verifica tu conexión.', 'error', 4000);
     }
 }
@@ -640,7 +776,7 @@ async function openLeaderboard() {
     if (leaderboardBackdrop) leaderboardBackdrop.classList.remove('hidden');
     document.body.classList.add('modal-open');
     if (viewLeaderboardBtn) viewLeaderboardBtn.setAttribute('aria-expanded', 'true');
-    await fetchAndDisplayLeaderboard();
+    await setSelectedLeaderboardLength(selectedLeaderboardLength, { persist: false, refresh: true });
     if (closeLeaderboardBtn) closeLeaderboardBtn.focus();
 }
 

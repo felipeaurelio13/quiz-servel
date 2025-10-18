@@ -7,6 +7,15 @@
         { "fieldPath": "score", "order": "DESCENDING" },
         { "fieldPath": "created_at", "order": "ASCENDING" }
       ]
+    },
+    {
+      "collectionGroup": "leaderboard",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "total_questions_in_quiz", "order": "ASCENDING" },
+        { "fieldPath": "score", "order": "DESCENDING" },
+        { "fieldPath": "created_at", "order": "ASCENDING" }
+      ]
     }
   ],
   "fieldOverrides": []
