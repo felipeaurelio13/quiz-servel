@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test - Quiz Electoral Chile</title>
+  <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>🗳️ Quiz Electoral Chile</h1>
+      <p>Test de integración - Nueva arquitectura</p>
+    </header>
+    
+    <main id="quiz-area"></main>
+  </div>
+  
+  <div id="notification-container"></div>
+  
+  <!-- Firebase -->
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js'
+    import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js'
+    
+    const firebaseConfig = {
+      apiKey: "AIzaSyAAqUe9Bm5rGn2kGgUy2MKpLTYL_c7fkJQ",
+      authDomain: "quiz-servel.firebaseapp.com",
+      projectId: "quiz-servel",
+      storageBucket: "quiz-servel.firebasestorage.app",
+      messagingSenderId: "990890933095",
+      appId: "1:990890933095:web:3a0f58f75d4f5ec98f59d2"
+    }
+    
+    const app = initializeApp(firebaseConfig)
+    const db = getFirestore(app)
+    
+    window.__firebaseDB = db
+    
+    console.log('✅ Firebase initialized')
+  </script>
+  
+  <!-- Main App -->
+  <script type="module">
+    import { main } from './src/main.js'
+    
+    // Wait for Firebase
+    const checkFirebase = setInterval(() => {
+      if (window.__firebaseDB) {
+        clearInterval(checkFirebase)
+        console.log('✅ Starting app...')
+        main(window.__firebaseDB).catch(error => {
+          console.error('❌ App initialization failed:', error)
+          document.getElementById('quiz-area').innerHTML = `
+            <div class="card" style="text-align: center; padding: 2rem;">
+              <h2 style="color: #d32f2f;">Error de inicialización</h2>
+              <p>${error.message}</p>
+              <pre style="text-align: left; background: #f5f5f5; padding: 1rem; border-radius: 8px; overflow-x: auto;">${error.stack}</pre>
+              <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.75rem 1.5rem; background: #1976d2; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                Reintentar
+              </button>
+            </div>
+          `
+        })
+      }
+    }, 100)
+  </script>
+</body>
+</html>

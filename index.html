@@ -3,123 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Quiz del Sistema Electoral Chileno - Aprende sobre democracia y participación ciudadana">
+    
+    <!-- ULTRATHINK: Semantic meta tags -->
+    <meta name="theme-color" content="#0066FF">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    
     <title>Quiz Electoral Chile - SERVEL</title>
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- ULTRATHINK: New design system -->
+    <link rel="stylesheet" href="src/styles.css">
+    
+    <!-- Preconnect to Firebase for faster loading -->
+    <link rel="preconnect" href="https://www.gstatic.com">
+    <link rel="dns-prefetch" href="https://firestore.googleapis.com">
 </head>
 <body>
-    <div class="container">
-        <header class="app-header">
-            <h1>Quiz del Sistema de Integridad Electoral</h1>
-            <p>Responde preguntas oficiales y entrena tu conocimiento ciudadano. Guarda tu nombre para competir en el ranking.</p>
-        </header>
-
-        <main id="quiz-area" role="main" aria-live="polite">
-            <section id="welcome-screen" class="card">
-                <h2>Prepárate para el desafío</h2>
-                <p class="welcome-copy">Elige si quieres responder 5, 10 o 15 preguntas aleatorias. Conoce la explicación correcta al instante y sigue tu progreso en tiempo real.</p>
-                <label class="visually-hidden" for="player-name-input">Nombre o apodo</label>
-                <input type="text" id="player-name-input" placeholder="Tu nombre o apodo" maxlength="50" autocomplete="name">
-                <fieldset class="quiz-length-selector" aria-labelledby="quiz-length-legend">
-                    <legend id="quiz-length-legend">Selecciona la cantidad de preguntas</legend>
-                    <div class="quiz-length-options">
-                        <label class="quiz-length-option">
-                            <input type="radio" name="quiz-length" value="5">
-                            <span>5 preguntas</span>
-                        </label>
-                        <label class="quiz-length-option">
-                            <input type="radio" name="quiz-length" value="10">
-                            <span>10 preguntas</span>
-                        </label>
-                        <label class="quiz-length-option">
-                            <input type="radio" name="quiz-length" value="15" checked>
-                            <span>15 preguntas</span>
-                        </label>
-                    </div>
-                </fieldset>
-                <ul class="welcome-tips">
-                    <li>Teclado rápido: usa 1-4 para seleccionar y Enter para avanzar.</li>
-                    <li>Las preguntas se actualizan automáticamente desde Firestore.</li>
-                    <li>Puedes revisar el ranking cuando quieras.</li>
-                </ul>
-                <div class="welcome-actions">
-                    <button id="start-quiz-btn" type="button">Comenzar quiz</button>
-                    <button id="view-leaderboard-btn" type="button" aria-haspopup="dialog" aria-controls="leaderboard-container" aria-expanded="false">Ver ranking</button>
-                </div>
-                <div class="admin-actions" aria-label="Opciones avanzadas">
-                    <button id="update-questions-btn" class="btn-quiet" type="button" aria-describedby="update-questions-hint">
-                        Sincronizar preguntas con Firebase
-                    </button>
-                    <p id="update-questions-hint" class="admin-hint">Uso restringido. Sobrescribe el banco de preguntas remoto.</p>
-                </div>
-            </section>
-
-            <section id="question-screen" class="hidden card" aria-live="polite">
-                <div id="progress-bar-container">
-                    <div id="progress-bar"></div>
-                </div>
-                <div id="question-meta">
-                    <p id="question-counter" class="meta-text"></p>
-                    <div id="live-stats" aria-live="polite">
-                        <span aria-label="Respuestas correctas">✔ <strong id="correct-count">0</strong></span>
-                        <span aria-label="Respuestas incorrectas">✘ <strong id="incorrect-count">0</strong></span>
-                    </div>
-                </div>
-                <h2 id="question-text"></h2>
-                <div id="options-container"></div>
-                <div id="inline-explanation" class="hidden" role="status"></div>
-                <div id="answer-actions" class="hidden">
-                    <button id="next-question-btn" type="button">Siguiente pregunta</button>
-                </div>
-            </section>
-
-            <section id="results-screen" class="hidden card" aria-live="polite">
-                <h2>Resultados del quiz</h2>
-                <p class="results-message">Has completado el desafío, ¡bien hecho!</p>
-                <p class="score-text">Tu puntaje: <span id="score"></span>/<span id="total-questions"></span></p>
-
-                <div class="results-summary">
-                    <h3>Resumen de tus respuestas</h3>
-                    <div id="summary-container"></div>
-                </div>
-                <button id="restart-quiz-btn" class="btn" type="button">Volver a jugar</button>
-            </section>
-        </main>
-
-        <div id="leaderboard-backdrop" class="modal-backdrop hidden" aria-hidden="true"></div>
-        <section id="leaderboard-container" class="hidden" role="dialog" aria-modal="true" aria-labelledby="leaderboard-title">
-            <div class="leaderboard-content">
-                <div class="leaderboard-header">
-                    <h2 id="leaderboard-title">Ranking de puntajes</h2>
-                    <p class="leaderboard-description">Los mejores puntajes se ordenan por precisión y fecha de registro.</p>
-                </div>
-                <div class="leaderboard-length-selector" role="group" aria-label="Selecciona ranking por cantidad de preguntas">
-                    <button class="leaderboard-length-btn" type="button" data-length="5" aria-pressed="false">5 preguntas</button>
-                    <button class="leaderboard-length-btn" type="button" data-length="10" aria-pressed="false">10 preguntas</button>
-                    <button class="leaderboard-length-btn" type="button" data-length="15" aria-pressed="true">15 preguntas</button>
-                </div>
-                <p class="leaderboard-active-length">Mostrando ranking de <strong><span id="leaderboard-length-label">15</span> preguntas</strong>.</p>
-                <div class="leaderboard-table-container" role="region" aria-live="polite">
-                    <table id="leaderboard-table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Posición</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Puntaje</th>
-                                <th scope="col">Fecha</th>
-                            </tr>
-                        </thead>
-                        <tbody id="leaderboard-list"></tbody>
-                    </table>
-                </div>
-                <button id="close-leaderboard-btn" class="btn btn-secondary" type="button">Cerrar</button>
-            </div>
-        </section>
-
-        <footer>
-            <p>&copy; 2025 - Inspirado en el trabajo del Sistema de Integridad Electoral SERVEL · Versión 1.1.0</p>
-        </footer>
+    <!--
+        🧠 ULTRATHINK Architecture
+        
+        Philosophy: The HTML is just a mounting point.
+        The real UI is generated by UIController based on state.
+        
+        Benefits:
+        - Declarative (UI = f(state))
+        - Single source of truth
+        - Easy to reason about
+    -->
+    
+    <div id="quiz-area" role="main" aria-live="polite">
+        <!-- UIController will inject content here -->
+        <div class="card">
+            <h2>Cargando quiz...</h2>
+            <p>Inicializando la aplicación</p>
+        </div>
     </div>
-
-    <script type="module" src="script.js"></script>
+    
+    <!-- 
+        ULTRATHINK: Notifications container
+        Created by NotificationManager, not hardcoded
+    -->
+    
+    <!--
+        ULTRATHINK: Main entry point
+        
+        Type="module" enables:
+        - ES6 imports
+        - Strict mode by default
+        - Top-level await
+        - Deferred execution
+    -->
+    <script type="module" src="src/main.js"></script>
+    
+    <!--
+        ULTRATHINK: Graceful degradation
+        Show message if JS is disabled
+    -->
+    <noscript>
+        <div style="
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 400px;
+        ">
+            <h2>JavaScript Requerido</h2>
+            <p>
+                Esta aplicación requiere JavaScript para funcionar.
+                Por favor, habilita JavaScript en tu navegador.
+            </p>
+        </div>
+    </noscript>
 </body>
 </html>

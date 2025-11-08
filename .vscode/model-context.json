@@ -1,0 +1,9 @@
+{
+  "instructions": [
+    {
+      "role": "system",
+      "content": "Follow the principles from ULTRATHINK.md in all code completions and explanations."
+    }
+  ],
+  "files": ["ULTRATHINK.md"]
+}
