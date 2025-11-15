@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Firebase
+.firebase/
+.firebaserc
+
+# System files
+.DS_Store
+*.log
+
+# Build artifacts
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.bak
+*.backup.*
+questions.txt
+
+# OS
+Thumbs.db

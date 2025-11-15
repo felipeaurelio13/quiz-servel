@@ -16,25 +16,39 @@ Características clave
 - Diseño mobile-first: tarjetas limpias, barra de progreso accesible y modal de ranking con focus automático
 - Recordatorio contextual y consejos iniciales para mejorar la usabilidad
 
-Lo que debes hacer tú
-1) Crear proyecto en Firebase y habilitar Firestore (modo producción)
-2) Registrar app Web y copiar la config
-3) Pegar la config en `script.js` dentro de `firebaseConfig`
-4) Crear colecciones y reglas
+---
 
-Colecciones
-- `questions` (lectura pública)
-  - `question_text` string
-  - `options` array de objetos `{ key, text }`
-  - `correct_answer_key` string ("a"|"b"|"c"|"d")
-  - `explanation` string (opcional)
-- `leaderboard` (lectura pública + create)
-  - `player_name` string 2–50
-  - `score` number >= 0
-  - `total_questions_in_quiz` number > 0
-  - `created_at` timestamp (lo setea la app con `serverTimestamp()`)
+## Configuración Firebase
 
-Reglas Firestore (pegar en Rules)
+### Proyecto actual
+- **Project ID:** `quiz-servel`
+- **Región Firestore:** `nam5` (North America)
+- **Hosting URL:** https://quiz-servel.web.app
+
+### Estructura de archivos
+- `.firebaserc` – Proyecto configurado como `quiz-servel`
+- `firebase.json` – Configuración de Firestore (reglas/índices) y Hosting
+- `firestore.rules` – Reglas de seguridad de Firestore
+- `firestore.indexes.json` – Índices compuestos para consultas
+
+### Colecciones en Firestore
+
+#### `questions` (lectura pública)
+Campos requeridos:
+- `question_text` (string) – Texto de la pregunta
+- `options` (array) – Array de objetos `{ key: string, text: string }`
+- `correct_answer_key` (string) – Clave de respuesta correcta ("a"|"b"|"c"|"d")
+- `explanation` (string, opcional) – Explicación de la respuesta
+
+#### `leaderboard` (lectura pública + create)
+Campos requeridos:
+- `player_name` (string, 2-50 chars) – Nombre del jugador
+- `score` (number, >= 0) – Puntaje obtenido
+- `total_questions_in_quiz` (number, > 0) – Total de preguntas del quiz
+- `created_at` (timestamp) – Fecha de registro (auto con `serverTimestamp()`)
+
+### Reglas de seguridad (firestore.rules)
+
 ```
 rules_version = '2';
 service cloud.firestore {
@@ -59,33 +73,150 @@ service cloud.firestore {
 }
 ```
 
-Índice compuesto recomendado
-- Colección: `leaderboard`
-- Campos: `score` Desc, `created_at` Asc
+### Índice compuesto requerido
 
-Cómo correr
-- Abre `index.html` o usa un servidor estático (Live Server/Vercel/Netlify)
-- Asegúrate de configurar `firebaseConfig` en `script.js`
+En Firestore Console o automático vía `firestore.indexes.json`:
+- **Colección:** `leaderboard`
+- **Campos:** 
+  - `total_questions_in_quiz` (Ascending)
+  - `score` (Descending)
+  - `created_at` (Ascending)
+
+---
+
+## Deployment
+
+### Requisitos previos
+1. Tener instalado Firebase CLI: `npm install -g firebase-tools`
+2. Autenticarse: `firebase login`
+3. Verificar proyecto activo: `firebase use quiz-servel`
+
+### Deploy completo
+```bash
+firebase deploy
+```
+
+### Deploy selectivo
+```bash
+# Solo hosting
+firebase deploy --only hosting
+
+# Solo reglas e índices de Firestore
+firebase deploy --only firestore:rules,firestore:indexes
+
+# Solo reglas
+firebase deploy --only firestore:rules
+```
+
+### Verificar deploy
+Después del deploy, visita:
+- **Hosting:** https://quiz-servel.web.app
+- **Console:** https://console.firebase.google.com/project/quiz-servel/overview
+
+---
+
+## Sincronización de preguntas
+
+### Método 1: Navegador (sync.html)
+1. Levantar servidor local:
+   ```bash
+   npx serve .
+   # o
+   python3 -m http.server 8000
+   ```
+2. Abrir: `http://localhost:8000/sync.html?sync=1`
+3. El script borra todas las preguntas existentes y sube las 78 del archivo `questions.json`
+
+### Método 2: Script de terminal
+Usa las herramientas en `/tools`:
+```bash
+# Validar questions.json
+node tools/validate-questions.mjs
+
+# Renumerar IDs (si es necesario)
+node tools/renumber-ids.mjs
+
+# Deduplicar preguntas
+node tools/dedupe-questions.mjs --threshold=0.8 --lev=0.92
+```
+
+**Nota:** El sync mediante `sync.html` normaliza automáticamente el formato de `questions.json` al esquema de Firestore.
+
+---
+
+## Desarrollo local
 
 ### Ejecutar tests
-- Instala dependencias: `npm install`
-- Corre la suite: `npm test`
+```bash
+npm install
+npm test
+```
 
-Seed (poblar preguntas desde `questions.json`)
-- Temporal: habilitar `create` en reglas de `questions` (ya se usó y luego se volvió a bloquear)
-- Visitar una vez: `/?seed=1` (ej: `https://<tu-hosting>.web.app/?seed=1`)
-- Luego volver a dejar `questions` en solo lectura (como en las reglas de arriba)
+### Estructura de tests
+- `tests/domain.test.js` – Lógica de dominio
+- `tests/quizHelpers.test.js` – Helpers de quiz
+- `tests/quizUtils.test.js` – Utilidades generales
 
-Hosting / Deploy
-- Archivo `firebase.json` incluido (Hosting + Firestore configurados)
-- Despliegue: `firebase deploy --only hosting --project <projectId>`
+Las pruebas validan:
+- Formato correcto de `questions.json`
+- Cálculo de progreso y estadísticas
+- Funciones auxiliares sin dependencias externas
 
-Pruebas locales
-- Requisitos: Node.js 18+
-- Instala dependencias del proyecto (no se descarga nada externo): `npm install`
-- Ejecuta los tests con el runner nativo de Node: `npm test`
-- Las pruebas validan que los datos reales de `questions.json` tengan el formato correcto y que el cálculo de avance funcione sin depender de servicios externos.
+---
 
-Notas
-- `questions.json` es de referencia (esquema difiere del de Firestore) y se usa solo para seed
-- La `apiKey` de Firebase es pública por diseño; mantén reglas RLS estrictas
+## Mantenimiento
+
+### Backup de preguntas
+El script `dedupe-questions.mjs` genera backups automáticos:
+```
+questions.backup.YYYYMMDD_HHMMSS.json
+```
+
+### Limpieza de duplicados
+```bash
+node tools/dedupe-questions.mjs
+```
+- Detecta duplicados exactos y similares (Jaccard + Levenshtein)
+- Conserva la pregunta con ID menor
+- Genera reporte de eliminaciones
+
+### Actualizar preguntas
+1. Editar `questions.json`
+2. Validar: `node tools/validate-questions.mjs`
+3. Sincronizar vía `sync.html?sync=1`
+4. Verificar en Firestore Console
+
+---
+
+## Troubleshooting
+
+### Error: "Unsupported field value: undefined"
+Si el sync falla con este error:
+- **Causa:** Campos requeridos faltantes o undefined en `questions.json`
+- **Solución:** El script ahora valida y filtra automáticamente entradas inválidas
+- **Verificar:** Revisa la consola para ver qué preguntas fueron omitidas
+
+### Validación de questions.json
+Antes de sincronizar, verifica el formato:
+```bash
+node tools/validate-questions.mjs
+```
+
+### Sync parcial o incompleto
+Si solo se suben algunas preguntas:
+1. Revisar la consola del navegador para mensajes de advertencia
+2. Verificar que todas las preguntas tengan:
+   - `question` o `question_text`
+   - `options` array con `key` y `text`
+   - `correctAnswerKey` o `correct_answer_key`
+3. Corregir el JSON y volver a sincronizar
+
+---
+
+## Notas importantes
+
+- La `apiKey` de Firebase es pública por diseño; la seguridad se maneja con reglas de Firestore
+- `questions.json` es el archivo fuente (formato local); Firestore usa un esquema normalizado
+- El ranking es público para todos los usuarios
+- Las preguntas son de solo lectura para usuarios finales
+- El script de sync valida automáticamente los datos y omite preguntas inválidas con advertencias en consola

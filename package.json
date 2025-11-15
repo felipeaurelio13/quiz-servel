@@ -4,7 +4,10 @@
   "description": "Quiz interactivo del Sistema de Integridad Electoral con soporte para pruebas locales",
   "type": "module",
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "import:questions": "node tools/import-questions.mjs",
+    "import:questions:replace": "node tools/import-questions.mjs --replace",
+    "deploy": "firebase use quiz-servel && firebase deploy --only hosting"
   },
   "keywords": [
     "quiz",
@@ -12,5 +15,8 @@
     "firebase"
   ],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "firebase-admin": "^12.6.0"
+  }
 }

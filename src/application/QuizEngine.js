@@ -38,14 +38,16 @@ export class QuizEngine {
   #scoreCalculator
   #questionRepository
   #scoreRepository
+  #storage
   
-  constructor({ scoreCalculator, questionRepository, scoreRepository }) {
+  constructor({ scoreCalculator, questionRepository, scoreRepository, storage }) {
     this.#state = State.IDLE
     this.#questions = []
     this.#currentSession = null
     this.#scoreCalculator = scoreCalculator
     this.#questionRepository = questionRepository
     this.#scoreRepository = scoreRepository
+    this.#storage = storage
   }
   
   /**
@@ -96,6 +98,12 @@ export class QuizEngine {
     // ULTRATHINK: Select and shuffle questions
     const selectedQuestions = this.#selectRandomQuestions(questionCount)
       .map(q => q.withShuffledOptions())
+    
+    // Track seen question IDs
+    const questionIds = selectedQuestions.map((q, idx) => 
+      this.#questions.findIndex(original => original.text === q.text)
+    )
+    this.#storage?.addSeenQuestionIds(questionIds)
     
     this.#currentSession = new QuizSession({
       playerName,
@@ -189,19 +197,37 @@ export class QuizEngine {
   
   /**
    * ULTRATHINK: Private helper
-   * Fisher-Yates shuffle for unbiased randomness
+   * Smart selection: avoids recently seen questions
    */
   #selectRandomQuestions(count) {
-    const pool = [...this.#questions]
-    const selected = []
+    // Get seen question indices
+    const seenIds = new Set(this.#storage?.getSeenQuestionIds() || [])
     
-    for (let i = 0; i < count && pool.length > 0; i++) {
-      const index = Math.floor(Math.random() * pool.length)
-      selected.push(pool[index])
-      pool.splice(index, 1)
+    // Filter unseen questions
+    let availableQuestions = this.#questions
+      .map((q, idx) => ({ question: q, index: idx }))
+      .filter(item => !seenIds.has(item.index))
+    
+    // If not enough unseen, reset and use all
+    if (availableQuestions.length < count) {
+      console.log('Resetting seen questions - you completed the bank!')
+      this.#storage?.clearSeenQuestions()
+      availableQuestions = this.#questions.map((q, idx) => ({ question: q, index: idx }))
     }
     
-    return selected
+    // Regular random selection
+    const selected = this.#fisherYatesShuffle(availableQuestions).slice(0, count)
+    
+    return selected.map(item => item.question)
+  }
+  
+  #fisherYatesShuffle(array) {
+    const result = [...array]
+    for (let i = result.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [result[i], result[j]] = [result[j], result[i]]
+    }
+    return result
   }
 }
 

@@ -93,6 +93,24 @@ export class StorageAdapter {
   }
   
   /**
+   * ULTRATHINK: Track seen question IDs
+   * Prevents repetition across sessions
+   */
+  getSeenQuestionIds() {
+    return this.get('seen_question_ids') || []
+  }
+  
+  addSeenQuestionIds(ids) {
+    const seen = new Set(this.getSeenQuestionIds())
+    ids.forEach(id => seen.add(id))
+    this.set('seen_question_ids', Array.from(seen))
+  }
+  
+  clearSeenQuestions() {
+    this.remove('seen_question_ids')
+  }
+  
+  /**
    * ULTRATHINK: Check if storage is available
    * Useful for privacy mode detection
    */

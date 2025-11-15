@@ -56,22 +56,27 @@ export class FirebaseAdapter {
    */
   async loadQuestions() {
     if (!this.#isConnected) {
+      console.log('Firebase not connected, loading from fallback')
       return this.#loadFromLocalFallback()
     }
     
     try {
+      console.log('Loading questions from Firestore...')
       const snapshot = await getDocs(collection(this.#db, 'questions'))
+      console.log(`Firestore returned ${snapshot.size} documents`)
       
       const questions = snapshot.docs
         .map(doc => {
           try {
             return Question.fromFirestore(doc.data())
           } catch (error) {
-            console.warn('Invalid question in Firestore:', error.message)
+            console.warn('Invalid question in Firestore:', error.message, doc.data())
             return null
           }
         })
         .filter(Boolean)
+      
+      console.log(`Successfully parsed ${questions.length} questions`)
       
       // ULTRATHINK: Cache for offline use
       this.#cacheQuestions(questions)
@@ -79,7 +84,7 @@ export class FirebaseAdapter {
       return questions
       
     } catch (error) {
-      console.warn('Failed to load from Firebase:', error.message)
+      console.error('Failed to load from Firebase:', error)
       return this.#loadFromLocalFallback()
     }
   }
@@ -159,11 +164,21 @@ export class FirebaseAdapter {
     try {
       const cached = localStorage.getItem('quiz_questions_cache')
       if (cached) {
-        const data = JSON.parse(cached)
-        return data.map(q => Question.fromFirestore(q))
+        const cacheData = JSON.parse(cached)
+        // Check if cache has version field (new format)
+        if (cacheData.version === 2 && Array.isArray(cacheData.questions)) {
+          return cacheData.questions.map(q => Question.fromFirestore(q))
+        }
+        // Legacy format: assume it's an array
+        if (Array.isArray(cacheData)) {
+          // Clear old cache and return empty to force refresh
+          localStorage.removeItem('quiz_questions_cache')
+          return []
+        }
       }
     } catch (error) {
       console.warn('Cache load failed:', error.message)
+      localStorage.removeItem('quiz_questions_cache')
     }
     
     // ULTRATHINK: Last resort - return empty array
@@ -174,7 +189,12 @@ export class FirebaseAdapter {
   #cacheQuestions(questions) {
     try {
       const serialized = questions.map(q => q.toJSON())
-      localStorage.setItem('quiz_questions_cache', JSON.stringify(serialized))
+      const cacheData = {
+        version: 2, // Increment to invalidate old caches
+        timestamp: Date.now(),
+        questions: serialized
+      }
+      localStorage.setItem('quiz_questions_cache', JSON.stringify(cacheData))
     } catch (error) {
       // Storage full or disabled - not critical
       console.warn('Could not cache questions:', error.message)

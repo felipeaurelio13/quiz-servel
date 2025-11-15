@@ -1,30 +1,6 @@
 [
     {
         "id": 1,
-        "question": "Según el cronograma de la licitación, ¿cuál es el plazo que tiene el SERVEL para publicar las respuestas a las consultas de los oferentes, contados desde el término del plazo de preguntas?",
-        "options": [
-            {
-                "key": "a",
-                "text": "10 días hábiles."
-            },
-            {
-                "key": "b",
-                "text": "30 días contados desde la recepción de ofertas."
-            },
-            {
-                "key": "c",
-                "text": "Dentro de los 5 días contados desde la fecha y hora de término de preguntas."
-            },
-            {
-                "key": "d",
-                "text": "El día de la apertura electrónica de las ofertas."
-            }
-        ],
-        "correctAnswerKey": "c",
-        "explanation": "La publicación de respuestas se realizará 'Dentro de los 05 (cinco) días contado desde la fecha y hora de término de preguntas de la presente licitación en el portal Mercado Público'."
-    },
-    {
-        "id": 2,
         "question": "¿Cuál es la principal función del Sistema de Integridad Electoral (SIE) según las definiciones operacionales del procedimiento de resultados preliminares?",
         "options": [
             {
@@ -48,7 +24,7 @@
         "explanation": "El Sistema de Integridad Electoral (SIE) 'es el sistema responsable de procesar los datos recibidos para su cómputo y verificación de integridad de los resultados y de publicar los resultados tanto a la ciudadanía como a los medios de comunicación'."
     },
     {
-        "id": 3,
+        "id": 2,
         "question": "En la Primera Votación para la Elección de Presidente, si más de dos candidatos empatan en la primera mayoría, ¿cuál es el procedimiento a seguir para la publicación de los resultados?",
         "options": [
             {
@@ -72,7 +48,7 @@
         "explanation": "En el Caso 1 (más de dos candidatos con empate en la primera mayoría), se debe 'Marcar como CANDIDATO CON EMPATE (con DOBLE ASTERISCO) todos los candidatos que presentan esta condición. En este caso se descartan los candidatos de segunda mayoría'."
     },
     {
-        "id": 4,
+        "id": 3,
         "question": "Si una mesa es clasificada como 'No Revisada' por el Colegio Escrutador, según el Protocolo de Intercambio de Datos para Colegios Escrutadores, ¿qué información se envía respecto a los votos de dicha mesa?",
         "options": [
             {
@@ -96,7 +72,7 @@
         "explanation": "Para una mesa 'No Revisada', la mesa no fue revisada por el Colegio Escrutador dando validez a los resultados preliminares. Aunque el campo <tipoRevision> sería 'N', 'En el caso de Mesa “No Revisada”, se enviarán igualmente los resultados preliminares de la mesa'."
     },
     {
-        "id": 5,
+        "id": 4,
         "question": "En el Procedimiento de Publicación de Resultados Preliminares, ¿cuáles de las siguientes categorías de incidencia NO están contempladas para ser publicadas bajo la sección 'Mesas con incidencias'?",
         "options": [
             {
@@ -120,31 +96,7 @@
         "explanation": "Las mesas con incidencias publicadas son: Mesas no instaladas, Mesas no escrutadas, Mesas con supera inscritos, y Mesas con acta descuadrada."
     },
     {
-        "id": 6,
-        "question": "Dentro de los criterios objetivos de evaluación para la licitación, ¿cuál es la ponderación asignada a la Oferta Técnica (A) y a la Experiencia del Oferente y del Equipo de Trabajo (C), respectivamente?",
-        "options": [
-            {
-                "key": "a",
-                "text": "Oferta Técnica 40%, Experiencia 30%."
-            },
-            {
-                "key": "b",
-                "text": "Oferta Técnica 25%, Experiencia 30%."
-            },
-            {
-                "key": "c",
-                "text": "Oferta Técnica 40%, Experiencia 25%."
-            },
-            {
-                "key": "d",
-                "text": "Oferta Técnica 30%, Experiencia 40%."
-            }
-        ],
-        "correctAnswerKey": "a",
-        "explanation": "Los criterios de evaluación son: A) Oferta Técnica 40%; B) Oferta Económica 25%; C) Experiencia del Oferente y Experiencia del Equipo de Trabajo 30%; D) Requisitos Formales 5%."
-    },
-    {
-        "id": 7,
+        "id": 5,
         "question": "En el ARCHIVO CABECERA (DataEscenario_..._CAB.txt) enviado a los Colegios Escrutadores, ¿en qué formato debe informarse el campo FECHA (fecha de la información preliminar)?",
         "options": [
             {
@@ -168,7 +120,7 @@
         "explanation": "El campo FECHA se define como Texto (Tamaño 10) y el formato es yyyy-mm-dd."
     },
     {
-        "id": 8,
+        "id": 6,
         "question": "Según el Protocolo de Intercambio de Datos Electorales (XML de Votación), ¿qué valor debe contener la etiqueta <tipoEnvio> para marcar una mesa como descuadrada debido a que 'supera inscritos'?",
         "options": [
             {
@@ -192,31 +144,7 @@
         "explanation": "El valor SI se utiliza para indicar 'Marca mesa descuadrada, por concepto que supera inscritos'. El valor M se usa para marcar como 'inconsistente, o descuadrada'."
     },
     {
-        "id": 9,
-        "question": "Para la evaluación de la experiencia demostrable del Gerente de Proyecto, ¿cuál es el periodo de tiempo que se considera para acreditar proyectos similares?",
-        "options": [
-            {
-                "key": "a",
-                "text": "Mínimo 10 años, sin importar la fecha de cierre de presentación de ofertas."
-            },
-            {
-                "key": "b",
-                "text": "Los últimos 5 años, es decir, desde el año 2020 en adelante, a partir de la fecha de cierre de presentación de ofertas."
-            },
-            {
-                "key": "c",
-                "text": "Solo la experiencia relacionada con el Servicio Electoral (SERVEL)."
-            },
-            {
-                "key": "d",
-                "text": "Los últimos 3 años anteriores a la fecha de publicación de las bases."
-            }
-        ],
-        "correctAnswerKey": "b",
-        "explanation": "La experiencia demostrable del Gerente de Proyecto se evalúa en 'los últimos 5 años, a partir de la fecha de cierre de presentación de ofertas, es decir, desde el año 2020 en adelante en servicios similares'."
-    },
-    {
-        "id": 10,
+        "id": 7,
         "question": "Para poder visualizar la vista de datos 'Escrutinio Colegio Escrutador' para la Elección de Diputados en el proceso de Resultados Provisorios, ¿cuáles son los ítems de filtros requeridos para acceder a esta vista?",
         "options": [
             {
@@ -238,8 +166,9 @@
         ],
         "correctAnswerKey": "c",
         "explanation": "Para la vista a nivel de Colegio Escrutador, la Elección de Diputados requiere los ítems de filtro: Región, Colegio escrutador y Distrito."
-    }, {
-        "id": 11,
+    },
+    {
+        "id": 8,
         "question": "Según el cronograma de actos electorales de 2025, ¿cuáles son las fechas programadas para las Elecciones Generales y la eventual Segunda Votación Presidencial?",
         "options": [
             {
@@ -263,31 +192,7 @@
         "explanation": "Las Elecciones Generales de Presidente de la República, Senadores y Diputados están programadas para el 16 de noviembre de 2025, y la Eventual segunda votación presidencial para diciembre de 2025."
     },
     {
-        "id": 12,
-        "question": "¿Cuál es el número máximo de registros de mesas que puede contener un solo archivo XML de transmisión de datos (para constitución, instalación o votación) enviado al servicio WEB?",
-        "options": [
-            {
-                "key": "a",
-                "text": "10 registros."
-            },
-            {
-                "key": "b",
-                "text": "50 registros."
-            },
-            {
-                "key": "c",
-                "d": "100 registros."
-            },
-            {
-                "key": "d",
-                "text": "La cantidad es ilimitada si son del mismo local de votación."
-            }
-        ],
-        "correctAnswerKey": "b",
-        "explanation": "El contenido del XML puede contener un máximo de 50 registros de mesas, las cuales pueden ser de un mismo o distintos locales de votación."
-    },
-    {
-        "id": 13,
+        "id": 9,
         "question": "En la Primera Votación Presidencial, si hay un candidato con primera mayoría y dos o más candidatos empatados en segunda mayoría (Caso 2), ¿qué marcación se utiliza para el candidato que presenta la primera mayoría (Mayoría1)?",
         "options": [
             {
@@ -311,7 +216,7 @@
         "explanation": "El Caso 2 establece que el candidato con primera mayoría (Mayoría1) debe ser marcado como CANDIDATO CON MAYORÍA (con ASTERISCO ENTRE PARÉNTESIS)."
     },
     {
-        "id": 14,
+        "id": 10,
         "question": "Al exportar las actas clasificadas como 'No Conforme' (con errores de digitación) desde el Sistema de Verificación de la Integridad de la Digitación de Actas (SVIDA), ¿cuál de los siguientes campos es requerido en el formato de archivo XLS (Excel) de salida?",
         "options": [
             {
@@ -335,55 +240,7 @@
         "explanation": "El archivo de salida XLS para actas 'No Conforme' debe informar campos como UBICACIÓN ARCHIVO TIFF, MESA, COD CANDIDATO, COD ERROR y DESCRIPCION ERROR, entre otros."
     },
     {
-        "id": 15,
-        "question": "En el XML de envío de datos de votaciones de mesa desde los Colegios Escrutadores (Resultados Provisorios), ¿qué valor se utiliza en la etiqueta <tipoEnvio> para indicar que una mesa fue marcada como descuadrada por el concepto 'Supera Inscritos'?",
-        "options": [
-            {
-                "key": "a",
-                "text": "M"
-            },
-            {
-                "key": "b",
-                "text": "E"
-            },
-            {
-                "key": "c",
-                "text": "N"
-            },
-            {
-                "key": "d",
-                "text": "SI"
-            }
-        ],
-        "correctAnswerKey": "d",
-        "explanation": "La etiqueta <tipoEnvio> utiliza 'SI' para marcar una mesa como descuadrada por concepto que supera inscritos. Este es el valor que se verifica en el proceso de Mesas Con Supera Inscritos."
-    },
-    {
-        "id": 16,
-        "question": "Según el algoritmo para determinar electos en elecciones de Senadores y Diputados, en el paso 2 de determinación de escaños por lista, ¿cuál es la regla fundamental aplicada a la división de votos?",
-        "options": [
-            {
-                "key": "a",
-                "text": "Se divide por 1, 3, 5, 7, y así sucesivamente."
-            },
-            {
-                "key": "b",
-                "text": "Se utiliza la cifra repartidora y se redondea al número entero más cercano."
-            },
-            {
-                "key": "c",
-                "text": "Se divide la cantidad de votos de cada lista por 1, 2, 3, y hasta 'n' (cargos a elegir), considerando todos los decimales sin aproximar."
-            },
-            {
-                "key": "d",
-                "text": "Se suman los votos válidamente emitidos y se dividen por la cantidad de candidatos."
-            }
-        ],
-        "correctAnswerKey": "c",
-        "explanation": "El Paso 2 del algoritmo indica dividir la cantidad de votos obtenidos en cada lista por 1, 2, 3 y hasta n (donde n es igual a los cargos a elegir en ese territorio), considerando todos sus decimales, sin aproximar."
-    },
-    {
-        "id": 17,
+        "id": 11,
         "question": "En el XML de envío de datos de votación desde los Colegios Escrutadores, ¿qué etiqueta dentro del detalle del registro (<vot:registro>) indica si la mesa fue revisada o si se da validez a los resultados preliminares por no haber acta?",
         "options": [
             {
@@ -407,55 +264,7 @@
         "explanation": "La etiqueta <tipoRevision> contiene el tipo de transacción y puede ser 'R' (Revisada) o 'N' (No Revisada). 'No Revisada' se aplica cuando la mesa no fue revisada por el Colegio Escrutador, dando validez a los resultados preliminares."
     },
     {
-        "id": 18,
-        "question": "De acuerdo con las bases de licitación, ¿cuál es la función principal del Sistema de Integridad Electoral (SIE)?",
-        "options": [
-            {
-                "key": "a",
-                "text": "Administrar el inventario de software y hardware de Servel."
-            },
-            {
-                "key": "b",
-                "text": "Capturar los datos de constitución e instalación directamente en los locales de votación."
-            },
-            {
-                "key": "c",
-                "text": "Procesar datos para su cómputo, verificar la integridad de resultados y publicar a la ciudadanía y medios."
-            },
-            {
-                "key": "d",
-                "text": "Diseñar la maqueta de las cédulas de votación."
-            }
-        ],
-        "correctAnswerKey": "c",
-        "explanation": "El SIE es el sistema responsable de procesar los datos recibidos para su cómputo y verificación de integridad de los resultados, así como de publicar los resultados tanto a la ciudadanía como a los medios de comunicación."
-    },
-    {
-        "id": 19,
-        "question": "Según las bases técnicas, ¿cuál de los siguientes elementos es clasificado como información confidencial que es de propiedad exclusiva del SERVEL y está prohibida su difusión por el adjudicatario?",
-        "options": [
-            {
-                "key": "a",
-                "text": "El número total de locales de votación referenciales."
-            },
-            {
-                "key": "b",
-                "text": "La glosa de las elecciones (Ej. Elección de Senadores)."
-            },
-            {
-                "key": "c",
-                "text": "Diseños de software, algoritmos, diagramas de flujos de programas y listados de códigos fuente u objeto creados o aprendidos en relación con el proyecto."
-            },
-            {
-                "key": "d",
-                "text": "El porcentaje de mesas instaladas al mediodía."
-            }
-        ],
-        "correctAnswerKey": "c",
-        "explanation": "Se consideran confidenciales, entre otros, los diseños de hardware, software, algoritmos, diagramas de flujos de programas, listados de códigos fuente u objeto, programas de computación, documentación y otros informes creados o aprendidos por el adjudicatario con relación a este proyecto. Toda esta información es de propiedad exclusiva del SERVEL."
-    },
-    {
-        "id": 20,
+        "id": 12,
         "question": "Para la generación de Boletines informativos (de Constitución, Instalación o Escrutinios) en el portal interno, ¿cuál es el formato de fecha y hora utilizado para el nombre de archivo que indica la hora del cómputo de los datos?",
         "options": [
             {
@@ -479,31 +288,7 @@
         "explanation": "El formato requerido para la fecha y hora del cómputo en el nombre del archivo del boletín es aammdd–HHmm, rellenando con ceros si corresponde a un número de un dígito (Ejemplo: 250627_0115)."
     },
     {
-        "id": 21,
-        "question": "Al utilizar los filtros de datos de territorio en el portal de resultados (División Electoral o Geográfica Chile), ¿cuál es el comportamiento si el usuario selecciona un nivel superior (ej. Región)?",
-        "options": [
-            {
-                "key": "a",
-                "text": "Se limpian todos los filtros inferiores y el sistema muestra inmediatamente el resultado agregado nacional."
-            },
-            {
-                "key": "b",
-                "text": "Se activa y completa automáticamente el nivel de filtro inmediatamente inferior (ej. Circunscripción Senatorial) con las opciones disponibles para la selección superior."
-            },
-            {
-                "key": "c",
-                "text": "Se despliega un mensaje de error si no se han completado todos los niveles de filtro inferiores."
-            },
-            {
-                "key": "d",
-                "text": "El sistema no permite seleccionar un nivel superior si antes no ha seleccionado todos los niveles inferiores."
-            }
-        ],
-        "correctAnswerKey": "b",
-        "explanation": "La selección de un nivel superior llenará el nivel inferior inmediatamente siguiente. Por ejemplo, si el usuario selecciona una Región, se completará la lista Circunscripción Senatorial para la región seleccionada. Los resultados asociados se desplegarán al seleccionar un filtro."
-    },
-    {
-        "id": 22,
+        "id": 13,
         "question": "¿Qué protocolo de transferencia de archivos se utiliza para la transmisión de las imágenes TIFF de las Actas y Formularios digitalizados desde los locales de votación hacia el servicio WEB de SCE?",
         "options": [
             {
@@ -527,31 +312,7 @@
         "explanation": "La transmisión de actas digitalizadas en locales de votación se realizará a través del protocolo SFTP (SSH File Transfer Protocol). El SCDE deberá invocar un servicio WEB dispuesto por el SCE, basado en Amazon SFTP."
     },
     {
-        "id": 23,
-        "question": "¿Cuál es el requisito de idioma para la presentación de las ofertas técnicas y económicas en el proceso de licitación?",
-        "options": [
-            {
-                "key": "a",
-                "text": "Deben presentarse en español e inglés obligatoriamente."
-            },
-            {
-                "key": "b",
-                "text": "Deben ser presentadas en español. Se aceptan documentos anexos complementarios en idioma inglés."
-            },
-            {
-                "key": "c",
-                "text": "Pueden presentarse en cualquier idioma oficial de la ONU, con traducción jurada."
-            },
-            {
-                "key": "d",
-                "text": "Solo se requiere que el resumen ejecutivo esté en español."
-            }
-        ],
-        "correctAnswerKey": "b",
-        "explanation": "Los documentos requeridos por las Bases como parte de las Ofertas Técnicas y Económicas deberán ser presentados en idioma español. Se aceptará la presentación de documentos anexos, en idioma inglés, que complementen o clarifiquen la oferta."
-    },
-    {
-        "id": 24,
+        "id": 14,
         "question": "En el contexto de la publicación de resultados (preliminares o provisorios), ¿qué consideración aplica si el usuario intenta aplicar el filtro 'En el Extranjero' a las elecciones de Senadores o Diputados?",
         "options": [
             {
@@ -575,7 +336,7 @@
         "explanation": "Para las elecciones de Senadores o de Diputados, no existe voto fuera del territorio nacional. Si se selecciona el filtro 'En el Extranjero', se debe cambiar la opción de Filtro a 'Total Votación' y desplegar la vista de Total Votación para la elección seleccionada."
     },
     {
-        "id": 25,
+        "id": 15,
         "question": "En las vistas pop-up de detalle de mesas con incidencias (Mesas No Escrutadas, Con Supera Inscritos, Con Acta Descuadrada), ¿cuál de los siguientes es un valor disponible para seleccionar la cantidad de 'Filas por página' en la paginación?",
         "options": [
             {
@@ -599,7 +360,7 @@
         "explanation": "La paginación incorpora una lista desplegable 'Filas por página' cuyos valores disponibles son: 5, 10, 15 y 20."
     },
     {
-        "id": 26,
+        "id": 16,
         "question": "En el XML de envío de datos de votación, si una mesa debe ser marcada como inconsistente o descuadrada (con errores detectados en el acta de la mesa de votación), ¿qué valor se utiliza en la etiqueta <tipoEnvio>?",
         "options": [
             {
@@ -623,7 +384,7 @@
         "explanation": "El valor 'M' en la etiqueta <tipoEnvio> significa: Marcar una mesa como inconsistente, o descuadrada (con errores detectados en el acta de la mesa de votación). Esto se utiliza en el proceso Provisorio para mesas Con Acta Descuadrada."
     },
     {
-        "id": 27,
+        "id": 17,
         "question": "Para la vista a nivel agregado del 'Escrutinio Colegio Escrutador' de la Elección de Diputados en los Resultados Provisorios, ¿cuáles son los filtros requeridos por el sistema?",
         "options": [
             {
@@ -647,7 +408,7 @@
         "explanation": "La opción de filtro 'Escrutinio Colegio Escrutador' para la Elección Diputados debe desplegar las opciones de filtro Región, Colegio escrutador y Distrito."
     },
     {
-        "id": 28,
+        "id": 18,
         "question": "¿Cuál es la fórmula utilizada por el SCE/SIE para calcular el dato 'Total Votación' en los resultados preliminares o provisorios de un territorio?",
         "options": [
             {
@@ -671,31 +432,7 @@
         "explanation": "El campo 'Total Votación' corresponde a la sumatoria de votos de las preferencias, votos nulos y votos en blanco, para el territorio en cuestión."
     },
     {
-        "id": 29,
-        "question": "En el contexto del Procedimiento de Revisión y Corrección de Errores de Digitación, ¿cuál de los siguientes es un ejemplo de 'Información Reservada' según la Ley 20.285?",
-        "options": [
-            {
-                "key": "a",
-                "text": "Nombres de los locales de votación."
-            },
-            {
-                "key": "b",
-                "text": "Datos personales o sensibles, y afiliaciones políticas."
-            },
-            {
-                "key": "c",
-                "text": "Actas de constitución de mesa."
-            },
-            {
-                "key": "d",
-                "text": "Protocolos de intercambio de datos."
-            }
-        ],
-        "correctAnswerKey": "b",
-        "explanation": "La Información Reservada es de alta sensibilidad y debe ser protegida. Ejemplo de esta categoría son: datos personales o sensibles, antecedentes de procesos sancionatorios, afiliaciones políticas, entre otros, de acuerdo con el art. 21 de la Ley 20.285."
-    },
-    {
-        "id": 30,
+        "id": 19,
         "question": "En el Sitio Web Interno de publicación de resultados, ¿cómo se reflejan los resultados de un nuevo ciclo de cómputo en las vistas de datos?",
         "options": [
             {
@@ -719,7 +456,7 @@
         "explanation": "La periodicidad de publicación en el portal interno será manual. El usuario debe presionar un ícono de 'refresco', representado por un símbolo de círculo con una flecha ( ), que permitirá actualizar los datos con los resultados del último cómputo."
     },
     {
-        "id": 31,
+        "id": 20,
         "question": "En los subtítulos y leyendas de los portales de resultados, ¿qué preposición se debe utilizar para el ítem de filtro 'Circunscripción Senatorial'?",
         "options": [
             {
@@ -743,7 +480,7 @@
         "explanation": "Según la tabla de Preposición en subtítulos y leyendas, el filtro 'Circunscripción Senatorial' corresponde a la preposición 'de la'."
     },
     {
-        "id": 32,
+        "id": 21,
         "question": "En caso de que ocurra un empate entre los candidatos en la Eventual Segunda Votación Presidencial, ¿cómo se deben marcar los candidatos en la publicación de resultados?",
         "options": [
             {
@@ -767,31 +504,7 @@
         "explanation": "En el caso de empate en la Segunda Votación, se debe Marcar como CANDIDATO CON EMPATE (con DOBLE ASTERISCO) a ambos candidatos."
     },
     {
-        "id": 33,
-        "question": "Según la forma de pago por hitos, ¿cuál es el porcentaje del Monto Ofertado que se pagará por el Acto Eleccionario General (Noviembre 2025) y sus entregables?",
-        "options": [
-            {
-                "key": "a",
-                "text": "20% del monto total, luego de la publicación de resultados preliminares."
-            },
-            {
-                "key": "b",
-                "text": "60% del monto total, contra la entrega del Plan de contingencia e Informes de pruebas de contingencia y post-evento."
-            },
-            {
-                "key": "c",
-                "text": "40% del monto total, una vez finalizado el escrutinio de los Colegios Escrutadores."
-            },
-            {
-                "key": "d",
-                "text": "100%, después de la eventual Segunda Votación Presidencial."
-            }
-        ],
-        "correctAnswerKey": "b",
-        "explanation": "El pago 2 corresponde al 60% del Monto ofertado en el Anexo N°3, por el Acto eleccionario General de Noviembre 2025, contra la entrega del Plan de contingencia, Informe de resultado de Pruebas de Contingencia, Informes de pruebas realizadas e Informe de post-evento."
-    },
-    {
-        "id": 34,
+        "id": 22,
         "question": "¿Cuál de las siguientes aplicaciones o sistemas no requiere la generación de códigos hash para verificar la integridad de las aplicaciones en ejecución en el ambiente de producción?",
         "options": [
             {
@@ -815,7 +528,7 @@
         "explanation": "Los sistemas listados para la generación de códigos hash son: Sistema de integridad de cómputo, Sitio web de Publicación de resultados electorales, Envío de resultados a medios de comunicación acreditados, y los sistemas de verificación de la integridad de la digitación de actas electorales (durante y post evento)."
     },
     {
-        "id": 35,
+        "id": 23,
         "question": "En el diseño del portal de resultados (Layout), ¿qué porcentaje del espacio horizontal total de la página debe ocupar el menú lateral izquierdo?",
         "options": [
             {
@@ -839,31 +552,7 @@
         "explanation": "En cuanto a la ubicación del menú lateral izquierdo, éste debe ocupar el 25% del espacio horizontal total de la página."
     },
     {
-        "id": 36,
-        "question": "En el Protocolo de envío de archivos a Colegios Escrutadores, ¿cómo se define específicamente la sigla 'SIE'?",
-        "options": [
-            {
-                "key": "a",
-                "text": "Servicio de Infraestructura Electoral."
-            },
-            {
-                "key": "b",
-                "text": "El sistema interno de escrutinio de Servel."
-            },
-            {
-                "key": "c",
-                "text": "La empresa adjudicada en la licitación del Sistema de Cómputo y Verificación Electoral."
-            },
-            {
-                "key": "d",
-                "text": "Sistema de Interoperabilidad Electrónica."
-            }
-        ],
-        "correctAnswerKey": "c",
-        "explanation": "El documento establece que se denominará como 'SIE' a la empresa adjudicada en la licitación del Sistema de Cómputo y Verificación Electoral."
-    },
-    {
-        "id": 37,
+        "id": 24,
         "question": "En el XML de envío de Datos de Votaciones (<vot:VotacionMesa>), ¿qué campo en la cabecera (<vot:cabecera>) contiene el tipo de evento (ej. Elección Presidencial, Senadores, etc.)?",
         "options": [
             {
@@ -887,7 +576,7 @@
         "explanation": "La etiqueta <vot:tipo> contiene el tipo de evento, con valores posibles como P (Elección Presidencial), S (Elección Senadores), D (Elección Diputados), entre otros."
     },
     {
-        "id": 38,
+        "id": 25,
         "question": "¿Cuál de las siguientes condiciones es clasificada como un 'Error digitalización' en el proceso de revisión de actas en SVIDA?",
         "options": [
             {
@@ -911,7 +600,7 @@
         "explanation": "Los criterios de clasificación para 'Error digitalización' incluyen Calidad deficiente, Ennegrecida 1 o 2 caras, No hay imagen, Imagen errónea (ejemplo: adjunta otra mesa), y Otro. Las opciones a, b y d son errores de digitación o ilegibilidad."
     },
     {
-        "id": 39,
+        "id": 26,
         "question": "En el protocolo de intercambio de datos electorales (transmisión de datos), ¿cuál es el Código de Estado de Respuesta HTTP que se utiliza para indicar un error de 'Unauthorized' (No autorizado)?",
         "options": [
             {
@@ -935,7 +624,7 @@
         "explanation": "Entre los Códigos de Estado de Respuesta HTTP que pueden entregar el SCE se encuentra el Código 401 - Unauthorized."
     },
     {
-        "id": 40,
+        "id": 27,
         "question": "El Sistema de Revisión de Integridad (SRI) requiere que el componente HTML que muestra el lugar o territorio actual de la visualización (Ej: Región de Arica y Parinacota) tenga un ID. ¿Cuál es el ID estático sugerido para este componente?",
         "options": [
             {
@@ -957,5 +646,1825 @@
         ],
         "correctAnswerKey": "c",
         "explanation": "Para el componente con la información del lugar que se está visualizando, el SRI sugiere un ID dinámico (ej. {idLugar}) o un ID estático, siendo este último id = \"lugar_actual\"."
+    },
+    {
+        "id": 28,
+        "question": "En los resultados preliminares del proceso de Instalación de Mesas, ¿cómo se calcula el campo \"Porcentaje Instaladas\" (D)?",
+        "options": [
+            {
+                "key": "a",
+                "text": "D = B - A * 100"
+            },
+            {
+                "key": "b",
+                "text": "D = A / B * 100"
+            },
+            {
+                "key": "c",
+                "text": "D = (A + B) / A * 100"
+            },
+            {
+                "key": "d",
+                "text": "D = B / A * 100"
+            }
+        ],
+        "correctAnswerKey": "d",
+        "explanation": "El porcentaje de mesas instaladas (D) se calcula dividiendo la cantidad de mesas instaladas (B) entre la cantidad total de mesas del escenario (A) y multiplicando por 100 [1, 2]."
+    },
+    {
+        "id": 29,
+        "question": "En el Portal de Resultados Preliminares para las Elecciones Generales 2025, si la consulta se realiza el domingo de la elección a partir de las 18:01 horas, ¿qué opción de menú debe desplegarse seleccionada por defecto?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Instalación"
+            },
+            {
+                "key": "b",
+                "text": "Constitución"
+            },
+            {
+                "key": "c",
+                "text": "Presidente"
+            },
+            {
+                "key": "d",
+                "text": "Senadores"
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "Para la jornada del domingo a partir de las 18:01 horas, se debe desplegar seleccionada por defecto el menú Presidente [3, 4]."
+    },
+    {
+        "id": 30,
+        "question": "Cuál de las siguientes opciones de filtro territorial aplica para la categoría \"En el Extranjero\" en la publicación de Resultados Preliminares?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Región"
+            },
+            {
+                "key": "b",
+                "text": "Circunscripción Senatorial"
+            },
+            {
+                "key": "c",
+                "text": "Continente"
+            },
+            {
+                "key": "d",
+                "text": "Distrito"
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "Las opciones de filtro para la categoría \"En el Extranjero\" incluyen Continente, País, Consulado, Circunscripción Electoral y Mesa [5]."
+    },
+    {
+        "id": 31,
+        "question": "Las Elecciones Generales de noviembre de 2025 incluyen la renovación de la Cámara de Diputados. ¿Cuántos distritos están implicados en esta elección?",
+        "options": [
+            {
+                "key": "a",
+                "text": "16 distritos"
+            },
+            {
+                "key": "b",
+                "text": "28 distritos"
+            },
+            {
+                "key": "c",
+                "text": "155 distritos"
+            },
+            {
+                "key": "d",
+                "text": "7 distritos"
+            }
+        ],
+        "correctAnswerKey": "b",
+        "explanation": "La elección de Diputados en las Elecciones Generales de 2025 implica 155 escaños en 28 distritos [6]."
+    },
+    {
+        "id": 32,
+        "question": "Cuál es el Título (Título2) que debe desplegarse en la \"Vista pop-up nivel Detalle En el Extranjero Mesas No Instaladas\" en los Resultados Preliminares?",
+        "options": [
+            {
+                "key": "a",
+                "text": "RESUMEN MESAS NO INSTALADAS"
+            },
+            {
+                "key": "b",
+                "text": "DETALLE MESAS NO INSTALADAS"
+            },
+            {
+                "key": "c",
+                "text": "MESAS NO INSTALADAS"
+            },
+            {
+                "key": "d",
+                "text": "DETALLE POR CONTINENTE"
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "El Título2 (centrado) para la vista pop-up de detalle de Mesas No Instaladas es \"MESAS NO INSTALADAS\" [8, 9]."
+    },
+    {
+        "id": 33,
+        "question": "Según la definición de preposiciones a usar en subtítulos y leyendas de resultados preliminares, ¿cuál es la preposición correcta para el filtro \"Región\"?",
+        "options": [
+            {
+                "key": "a",
+                "text": "en la"
+            },
+            {
+                "key": "b",
+                "text": "del"
+            },
+            {
+                "key": "c",
+                "text": "de la"
+            },
+            {
+                "key": "d",
+                "text": "por la"
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "La preposición a usar para la opción de filtro \"Región\" es \"de la\" [10]."
+    },
+    {
+        "id": 34,
+        "question": "Qué método se utiliza para el refresco de datos en el sitio web PÚBLICO de resultados de cómputo (preliminares)?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Automático con intervalos de 5 minutos"
+            },
+            {
+                "key": "b",
+                "text": "Manual mediante un ícono de \"refresco\""
+            },
+            {
+                "key": "c",
+                "text": "Automático únicamente cuando existe un nuevo cómputo"
+            },
+            {
+                "key": "d",
+                "text": "Únicamente al cambiar de opción de menú o filtro"
+            }
+        ],
+        "correctAnswerKey": "b",
+        "explanation": "En el sitio público, el refresco de los datos del último resultado de cómputo disponible se deberá realizar de forma manual, usando un ícono de \"refresco\" [11]."
+    },
+    {
+        "id": 35,
+        "question": "En el contexto del envío de datos de Colegios Escrutadores, ¿cuál es la definición de una Mesa \"No Revisada\" (`<tipoRevision> = N`)?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Mesa que fue escrutada pero no cuadrada"
+            },
+            {
+                "key": "b",
+                "text": "Mesa no instalada en la jornada de votación"
+            },
+            {
+                "key": "c",
+                "text": "Mesa que no fue revisada por carecer del acta, dando validez a los resultados preliminares"
+            },
+            {
+                "key": "d",
+                "text": "Mesa que no fue enviada por el SCDE."
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "Una Mesa \"No Revisada\" es aquella que no fue revisada por el Colegio Escrutador, por carecer del acta, dando validez a los resultados preliminares [13]."
+    },
+    {
+        "id": 36,
+        "question": "En el XML de envío de datos de votaciones desde Colegios Escrutadores (`VotacionMesaColegio`), ¿qué indica el valor \"N\" en la etiqueta `<tipoEnvio>`?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Nuevo envío de datos revisados"
+            },
+            {
+                "key": "b",
+                "text": "Nulos en la mesa"
+            },
+            {
+                "key": "c",
+                "text": "No se recibió el acta papel físico"
+            },
+            {
+                "key": "d",
+                "text": "Mesa No escrutada"
+            }
+        ],
+        "correctAnswerKey": "d",
+        "explanation": "El valor \"N\" en `<tipoEnvio>` corresponde a \"Mesa No escrutada\" [15, 16]."
+    },
+    {
+        "id": 37,
+        "question": "En las vistas de votación a nivel Candidato para Elecciones Parlamentarias, si un Candidato es independiente asociado a un partido, ¿cómo debe desplegarse la Sigla del Partido?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Solo la Sigla del Partido"
+            },
+            {
+                "key": "b",
+                "text": "\"IND\" seguido de la Sigla del Partido"
+            },
+            {
+                "key": "c",
+                "text": "El nombre completo del Partido"
+            },
+            {
+                "key": "d",
+                "text": "Se despliega la sigla del partido en blanco."
+            }
+        ],
+        "correctAnswerKey": "b",
+        "explanation": "Para el caso de Candidato independiente asociado a un partido, a la sigla del partido se le debe anteponer el texto \"IND \" [18-20]."
+    },
+    {
+        "id": 38,
+        "question": "Si, en una elección presidencial, se produce un empate entre dos candidatos que no cumplen con la mayoría simple requerida, ¿qué símbolo se utiliza para marcarlos?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Un ticket de color NEGRO (✓)"
+            },
+            {
+                "key": "b",
+                "text": "Un asterisco (*)"
+            },
+            {
+                "key": "c",
+                "text": "Dos asteriscos de color NEGRO (**)"
+            },
+            {
+                "key": "d",
+                "text": "Una letra E de \"Electo\""
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "Si no se cumple candidato con mayoría simple y hay empate, se marcan ambos candidatos como CANDIDATO CON EMPATE (con DOBLE ASTERISCO) [21]."
+    },
+    {
+        "id": 39,
+        "question": "Cuáles de las siguientes opciones DE INCIDENCIA están disponibles en la lista desplegable de \"Vista Mesas\" para los Resultados Provisorios?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Mesas no instaladas, Mesas no escrutadas, Mesas con Supera Inscritos"
+            },
+            {
+                "key": "b",
+                "text": "Mesas no escrutadas, Mesas con Acta Descuadrada, Mesas con Supera Inscritos"
+            },
+            {
+                "key": "c",
+                "text": "Mesas no instaladas, Mesas con Acta Descuadrada, Mesas no escrutadas"
+            },
+            {
+                "key": "d",
+                "text": "Mesas con error de magnitud, Mesas no escrutadas, Mesas instaladas"
+            }
+        ],
+        "correctAnswerKey": "b",
+        "explanation": "Las opciones de vista de mesas con incidencias para los Resultados Provisorios son: No escrutadas, Con supera inscritos y Con Acta descuadrada, además de la opción 'Volver a resultados' [22, 23]."
+    },
+    {
+        "id": 40,
+        "question": "Cuál es la función específica del ícono \"Excel+\" ( ) introducido en las vistas pop-up de Mesas con incidencia (Preliminares y Provisorios)?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Abrir la vista de Excel en línea"
+            },
+            {
+                "key": "b",
+                "text": "Exportar únicamente los datos visibles en la página actual"
+            },
+            {
+                "key": "c",
+                "text": "Exportar la lista completa de mesas con la incidencia consultada"
+            },
+            {
+                "key": "d",
+                "text": "Generar un reporte PDF detallado"
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "El ícono Excel+ ( ) tiene la función de exportar la lista completa de mesas que presentan la incidencia consultada [24-27]."
+    },
+    {
+        "id": 41,
+        "question": "Cuál es la estructura de nombre de archivo correcta para el Formulario 48 (ACTA DEL COLEGIO ESCRUTADOR) transmitido desde los Colegios Escrutadores?",
+        "options": [
+            {
+                "key": "a",
+                "text": "<código de colegio><tipo elección>_Form48_<999>.TIFF"
+            },
+            {
+                "key": "b",
+                "text": "<código de colegio>_Form48_<999>.TIFF"
+            },
+            {
+                "key": "c",
+                "text": "Form48_<tipo elección>_<código de colegio>_<999>.TIFF"
+            },
+            {
+                "key": "d",
+                "text": "ACTA_<código de colegio>_<tipo elección>.TIFF"
+            }
+        ],
+        "correctAnswerKey": "a",
+        "explanation": "El nombre del archivo para el Formulario 48 tiene el formato: `< código de colegio ><tipo elección> + “_Form48_” + <999> + “.TIFF” [29]."
+    },
+    {
+        "id": 42,
+        "question": "En el envío de datos de Colegios Escrutadores, ¿qué se debe enviar en el campo de votos para una \"Mesa No Escrutada\" (N)?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Se envían los resultados preliminares de la mesa"
+            },
+            {
+                "key": "b",
+                "text": "Se envían en cero (0) los datos de votos de la mesa"
+            },
+            {
+                "key": "c",
+                "text": "Se deja el campo en blanco"
+            },
+            {
+                "key": "d",
+                "text": "Se marca como \"Mesa Descuadrada\""
+            }
+        ],
+        "correctAnswerKey": "b",
+        "explanation": "En el caso de las Mesas “No Escrutadas” (`<tipoEnvio> = N`), se enviarán en cero (0) los datos de votos de la mesa [13]."
+    },
+    {
+        "id": 43,
+        "question": "En los archivos de escenario enviados a Medios de Comunicación, ¿qué código de `TIPO_ZONA` corresponde a \"Continente\"?",
+        "options": [
+            {
+                "key": "a",
+                "text": "P"
+            },
+            {
+                "key": "b",
+                "text": "R"
+            },
+            {
+                "key": "c",
+                "text": "N"
+            },
+            {
+                "key": "d",
+                "text": "I"
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "El código de `TIPO_ZONA` para Continente es \"N\" [30-32]."
+    },
+    {
+        "id": 44,
+        "question": "En el Procedimiento de Revisión y Corrección de Errores de Digitación en Actas con \"Supera Inscritos\", ¿qué hace referencia a un \"Dato Ilegible\"?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Información que no coincide con los inscritos de la mesa"
+            },
+            {
+                "key": "b",
+                "text": "Información que no puede ser interpretada con certeza por falta de claridad o nitidez"
+            },
+            {
+                "key": "c",
+                "text": "Un campo con valor en cero (0)"
+            },
+            {
+                "key": "d",
+                "text": "Un dato faltante en el formulario F040"
+            }
+        ],
+        "correctAnswerKey": "b",
+        "explanation": "Un 'Dato Ilegible' hace referencia a la información contenida en el acta de escrutinio (formulario F040) que no puede ser interpretada de manera certera por presentar falta de claridad, nitidez o legibilidad [33]."
+    },
+    {
+        "id": 45,
+        "question": "En las ventanas emergentes (pop-up) de Mesas con incidencia (Mesas No Escrutadas, Supera Inscritos, Acta Descuadrada), ¿qué elemento debe aparecer como `Título1`?",
+        "options": [
+            {
+                "key": "a",
+                "text": "La fecha y hora del cómputo"
+            },
+            {
+                "key": "b",
+                "text": "El nombre de la elección"
+            },
+            {
+                "key": "c",
+                "text": "El nombre del nivel territorial"
+            },
+            {
+                "key": "d",
+                "text": "El total de mesas con incidencia"
+            }
+        ],
+        "correctAnswerKey": "b",
+        "explanation": "Se agrega el Nombre de la elección como primer título (`Título1`) en las vistas pop-up de Mesas con incidencia [26, 34]."
+    },
+    {
+        "id": 46,
+        "question": "En la clasificación de actas \"No conforme\" por Error de Digitación en SVIDA, ¿qué error específico se aplica cuando el error es en el campo de Votos Nulos?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Error digitalización"
+            },
+            {
+                "key": "b",
+                "text": "Error digitación en preferencias"
+            },
+            {
+                "key": "c",
+                "text": "Error digitación en total de votos en la urna"
+            },
+            {
+                "key": "d",
+                "text": "Error digitación en nulos"
+            }
+        ],
+        "correctAnswerKey": "d",
+        "explanation": "La clasificación de errores de digitación incluye explícitamente el 'Error digitación en nulos' [37]."
+    },
+    {
+        "id": 47,
+        "question": "Cuál es el ID estático sugerido para el componente que muestra la leyenda de las mesas escrutadas (ej: \"506 mesas escrutadas de un total de 506 mesas...\")?",
+        "options": [
+            {
+                "key": "a",
+                "text": "tabla_principal"
+            },
+            {
+                "key": "b",
+                "text": "lugar_actual"
+            },
+            {
+                "key": "c",
+                "text": "mesas_escrutadas"
+            },
+            {
+                "key": "d",
+                "text": "fecha_hora"
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "El ID estático sugerido para este componente es `id = \"mesas_escrutadas\"` [38]."
+    },
+    {
+        "id": 48,
+        "question": "Qué tipo de información debe documentarse en el Anexo N° 11 \"CUMPLIMIENTO DE METODOLOGIA Y PLAN DE TRABAJO\"?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Experiencia del personal clave"
+            },
+            {
+                "key": "b",
+                "text": "Metodología, Plan de Trabajo y Gestión de la configuración"
+            },
+            {
+                "key": "c",
+                "text": "Requerimientos de ciberseguridad"
+            },
+            {
+                "key": "d",
+                "text": "Locales de votación y Colegios Escrutadores referenciales."
+            }
+        ],
+        "correctAnswerKey": "b",
+        "explanation": "El Anexo N° 11 incluye Metodología, Plan de Trabajo y Gestión de la configuración, entre otros [43]."
+    },
+    {
+        "id": 49,
+        "question": "Si un Boletín de Escrutinio de Resultados Preliminares (por ejemplo, PR) se genera manualmente por segunda vez para los mismos datos de cómputo, ¿qué sufijo eventual debe llevar?",
+        "options": [
+            {
+                "key": "a",
+                "text": "M1"
+            },
+            {
+                "key": "b",
+                "text": "M2"
+            },
+            {
+                "key": "c",
+                "text": "PR2"
+            },
+            {
+                "key": "d",
+                "text": "A2"
+            }
+        ],
+        "correctAnswerKey": "b",
+        "explanation": "Si el boletín fue generado manualmente, llevará el sufijo M más el correlativo 1, 2... Si se genera por segunda vez, corresponde a M2 (Ejemplo: Boletín Escrutinio PR 250629-1915_M2) [44]."
+    },
+    {
+        "id": 50,
+        "question": "Para facilitar el scraping (SRI), ¿cuál de los siguientes elementos de la interfaz se requiere que tenga un ID estático?",
+        "options": [
+            {
+                "key": "a",
+                "text": "La tabla de electores por región"
+            },
+            {
+                "key": "b",
+                "text": "El componente del encabezado con el logo de SERVEL"
+            },
+            {
+                "key": "c",
+                "text": "El botón de navegación \"En el Extranjero\""
+            },
+            {
+                "key": "d",
+                "text": "La barra de progreso de los resultados."
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "El componente de los botones de navegación, incluyendo \"En el Extranjero\", requiere un ID estático para el scraper [45]."
+    },
+    {
+        "id": 51,
+        "question": "En el Sistema de Integridad de Cómputo (SIE), ¿qué sistema transmite los datos digitalizados y digitados de las actas de los procesos de Constitución, Instalación y Votación?",
+        "options": [
+            {
+                "key": "a",
+                "text": "SVIDA"
+            },
+            {
+                "key": "b",
+                "text": "SCE"
+            },
+            {
+                "key": "c",
+                "text": "SCDE"
+            },
+            {
+                "key": "d",
+                "text": "Colesc"
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "El SIE dispone de un mecanismo de recepción de datos que se transmite mediante el sistema SCDE [48, 49]."
+    },
+    {
+        "id": 52,
+        "question": "En la vista de resultados de Votación a nivel Candidato (Elecciones Parlamentarias), ¿cómo se despliega el texto del Candidato?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Solo su nombre completo"
+            },
+            {
+                "key": "b",
+                "text": "El nombre del pacto, seguido del nombre del candidato"
+            },
+            {
+                "key": "c",
+                "text": "Su número de identificación, seguido de un blanco y luego su nombre completo"
+            },
+            {
+                "key": "d",
+                "text": "El número de página, seguido de su nombre."
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "El texto que se despliega se compone de su número de identificación, seguido de un blanco y a continuación su nombre completo [50-52]."
+    },
+    {
+        "id": 53,
+        "question": "Para asegurar la integridad del software, ¿cuándo se debe comprobar que los códigos hash de las aplicaciones en ejecución en el entorno de producción sean los mismos que los entregados el día del cierre?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Antes de la primera prueba funcional del 10%"
+            },
+            {
+                "key": "b",
+                "text": "El día del cierre de la presentación de ofertas"
+            },
+            {
+                "key": "c",
+                "text": "El día de la jornada electoral"
+            },
+            {
+                "key": "d",
+                "text": "72 horas después del aviso de término de servicio."
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "El día de la jornada electoral, se comprobará que los códigos hash, de las aplicaciones en ejecución en el entorno de producción, son los mismos que los entregados el día del cierre [53]."
+    },
+    {
+        "id": 54,
+        "question": "En las vistas de Votación (Presidente), si se tiene un ítem de filtro seleccionado (e.g., Región), ¿cuál es la estructura que compone el `Detalle filtro` (Subtítulo)?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Total Votación – <valor del filtro>"
+            },
+            {
+                "key": "b",
+                "text": "Total Votación <Preposición> <nombre del filtro> – <valor del filtro>"
+            },
+            {
+                "key": "c",
+                "text": "Resultados de la votación del <nombre del filtro>"
+            },
+            {
+                "key": "d",
+                "text": "Total Votación – NACIONAL"
+            }
+        ],
+        "correctAnswerKey": "b",
+        "explanation": "Si se tiene un ítem de filtro seleccionado, el Detalle filtro se compone de: “Total Votación ” + `<Preposición en subtítulos y leyendas>` + “ ” + `<nombre del filtro>` + “ - “ + `<valor del filtro>` [54-56]."
+    },
+    {
+        "id": 55,
+        "question": "Según el Protocolo de Intercambio de Datos Electorales (XML Votación Mesa), ¿cuál es la definición de una \"Mesa Cuadrada\"?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Suma de votos de candidatos + nulos + blancos es menor al total de inscritos."
+            },
+            {
+                "key": "b",
+                "text": "Suma de votos de candidatos + nulos + blancos = totalEmitidos (total votos en urna)."
+            },
+            {
+                "key": "c",
+                "text": "Suma de votos de candidatos + nulos + blancos <> totalEmitidos (total votos en urna)."
+            },
+            {
+                "key": "d",
+                "text": "El acta papel físico fue recibida."
+            }
+        ],
+        "correctAnswerKey": "b",
+        "explanation": "Mesa Cuadrada se define como: Suma de votosCandidatos/candidato/voto + nulos + blancos = totalEmitidos (total votos en urna) [57]."
+    },
+    {
+        "id": 56,
+        "question": "Para el subcriterio de \"Experiencia de la empresa en proyectos similares\" (durante los últimos 5 años), ¿cuál es el puntaje máximo que puede obtener la empresa por acreditar cada experiencia?",
+        "options": [
+            {
+                "key": "a",
+                "text": "30 puntos"
+            },
+            {
+                "key": "b",
+                "text": "50 puntos"
+            },
+            {
+                "key": "c",
+                "text": "10 puntos"
+            },
+            {
+                "key": "d",
+                "text": "100 puntos"
+            }
+        ],
+        "correctAnswerKey": "a",
+        "explanation": "Se otorgan 10 puntos por cada experiencia acreditable en los últimos 5 años, hasta un máximo de 30 puntos [58]."
+    },
+    {
+        "id": 57,
+        "question": "En el XML de votación de Colegios Escrutadores, ¿qué evento electoral se representa con el tipo 'P' en la cabecera?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Primarias Presidente"
+            },
+            {
+                "key": "b",
+                "text": "Elección Presidencial"
+            },
+            {
+                "key": "c",
+                "text": "Elección de Gobernadores Regionales"
+            },
+            {
+                "key": "d",
+                "text": "Presidente Segunda Vuelta"
+            }
+        ],
+        "correctAnswerKey": "b",
+        "explanation": "El valor 'P' en la etiqueta `<tipo>` de la cabecera corresponde a \"Elección Presidencial\" [65]."
+    },
+    {
+        "id": 58,
+        "question": "En la vista de Votación (Presidente, Nacional) en Resultados Preliminares, ¿cuál es la fuente de donde se obtiene el dato de \"Votos\" (cantidad total de votos válidamente emitidos para el Candidato)?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Dato calculado por SCE/SIE"
+            },
+            {
+                "key": "b",
+                "text": "Dato fijo según el escenario"
+            },
+            {
+                "key": "c",
+                "text": "Dato recibido desde SCDE(Mincap)"
+            },
+            {
+                "key": "d",
+                "text": "Dato validado por SVIDA"
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "El dato es \"recibido desde SCDE(Mincap) y procesado para cómputo por SCE/SIE\" [66]."
+    },
+    {
+        "id": 59,
+        "question": "En la nomenclatura de archivos de envío (Ej. Colegios Escrutadores), el correlativo (de 1 a 999) debe cumplir una condición de formato. ¿Cuál es esta condición?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Debe tener 5 dígitos"
+            },
+            {
+                "key": "b",
+                "text": "Debe completarse con ceros a la izquierda si es menor a 100"
+            },
+            {
+                "key": "c",
+                "text": "Debe ser un número romano"
+            },
+            {
+                "key": "d",
+                "text": "Debe tener un sufijo alfabético"
+            }
+        ],
+        "correctAnswerKey": "b",
+        "explanation": "El correlativo de envío debe tener 3 dígitos, y si es menor a 100, debe completarse con ceros a la izquierda [67-69]."
+    },
+    {
+        "id": 60,
+        "question": "Según los requerimientos de SRI (Sistema Revisión de Integridad), ¿qué componente de la interfaz requiere que cada ítem (país, región, circunscripción, comuna, etc.) tenga su propio ID estático para ayudar al scraper paramétrico?",
+        "options": [
+            {
+                "key": "a",
+                "text": "La tabla principal de votos"
+            },
+            {
+                "key": "b",
+                "text": "El componente de fecha y hora"
+            },
+            {
+                "key": "c",
+                "text": "El componente de filtro"
+            },
+            {
+                "key": "d",
+                "text": "El componente de mesas escrutadas"
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "Se requiere que cada filtro de lugar (país, región, circunscripción, comuna, local, etc.) tenga su propio ID en el componente de filtro [71, 72]."
+    },
+    {
+        "id": 61,
+        "question": "Qué código de tipo de elección se utiliza para la \"Elección Senadores\" en el nombre del archivo TIFF del Formulario 47 (CUADRO ESCRUTINIO) enviado por Colegios Escrutadores?",
+        "options": [
+            {
+                "key": "a",
+                "text": "D"
+            },
+            {
+                "key": "b",
+                "text": "P"
+            },
+            {
+                "key": "c",
+                "text": "E"
+            },
+            {
+                "key": "d",
+                "text": "S"
+            }
+        ],
+        "correctAnswerKey": "d",
+        "explanation": "El código de tipo de elección para Senadores es 'S' [73]."
+    },
+    {
+        "id": 62,
+        "question": "Cuál es el número de \"Total de Mesas\" (NACIONAL) utilizado en los ejemplos de las vistas de resultados preliminares de Instalación de Mesas?",
+        "options": [
+            {
+                "key": "a",
+                "text": "40.361"
+            },
+            {
+                "key": "b",
+                "text": "15.450.377"
+            },
+            {
+                "key": "c",
+                "text": "40.014"
+            },
+            {
+                "key": "d",
+                "text": "347"
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "El número total de mesas según el escenario para el territorio nacional (NACIONAL) es 40.014 [74]."
+    },
+    {
+        "id": 63,
+        "question": "En el despliegue de Resultados Provisorios, ¿qué tipo de alineación deben tener los campos numéricos y sus títulos?",
+        "options": [
+            {
+                "key": "a",
+                "text": "A la izquierda"
+            },
+            {
+                "key": "b",
+                "text": "Centrados"
+            },
+            {
+                "key": "c",
+                "text": "A la derecha"
+            },
+            {
+                "key": "d",
+                "text": "Justificados"
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "Los campos numéricos, así como sus títulos, deben estar alineados a la derecha [78, 79]."
+    },
+    {
+        "id": 64,
+        "question": "Según las Bases de Licitación, ¿qué tipo de adjudicación se contempla para el Servicio de Provisión del Sistema de Integridad Electoral (SIE)?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Adjudicación compleja sujeta a subastas inversas."
+            },
+            {
+                "key": "b",
+                "text": "Múltiple, a un máximo de tres oferentes."
+            },
+            {
+                "key": "c",
+                "text": "Simple, adjudicación a un (1) oferente."
+            },
+            {
+                "key": "d",
+                "text": "Por ítem, adjudicación parcial."
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "El tipo de adjudicación es Simple, adjudicación a un (1) oferente."
+    },
+    {
+        "id": 65,
+        "question": "En el encabezado del mensaje XML de Envío de Datos de Constitución de mesas, ¿qué valor posible de la etiqueta <tipo> se utiliza para indicar una 'Actualización de Vocales de mesa'?",
+        "options": [
+            {
+                "key": "a",
+                "text": "E (Envío normal)."
+            },
+            {
+                "key": "b",
+                "text": "R (Revisión de datos)."
+            },
+            {
+                "key": "c",
+                "text": "V (Actualización de Vocales de mesa)."
+            },
+            {
+                "key": "d",
+                "text": "A (Acta completa)."
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "El valor V en la etiqueta <tipo> indica 'Actualización de Vocales de mesa'."
+    },
+    {
+        "id": 66,
+        "question": "¿Qué protocolo de transferencia se utiliza para la transmisión de las imágenes TIFF de las Actas digitalizadas desde los locales de votación al SCE?",
+        "options": [
+            {
+                "key": "a",
+                "text": "SFTP (SSH File Transfer Protocol)."
+            },
+            {
+                "key": "b",
+                "text": "HTTPS REST API."
+            },
+            {
+                "key": "c",
+                "text": "AWS CLI (usando Checksum)."
+            },
+            {
+                "key": "d",
+                "text": "FTP tradicional."
+            }
+        ],
+        "correctAnswerKey": "a",
+        "explanation": "La transmisión de actas digitalizadas en locales de votación se realizará a través del protocolo SFTP (SSH File Transfer Protocol)."
+    },
+    {
+        "id": 67,
+        "question": "Cuando un Colegio Escrutador envía datos de votación, ¿qué valor de la etiqueta <tipoEnvio> se utiliza para marcar una mesa como “Mesa No escrutada”?",
+        "options": [
+            {
+                "key": "a",
+                "text": "E (Envío de datos)."
+            },
+            {
+                "key": "b",
+                "text": "SI (Supera inscritos)."
+            },
+            {
+                "key": "c",
+                "text": "M (Inconsistente o descuadrada)."
+            },
+            {
+                "key": "d",
+                "text": "N (Mesa No escrutada)."
+            }
+        ],
+        "correctAnswerKey": "d",
+        "explanation": "El valor N en la etiqueta <tipoEnvio> de los datos de Colegios Escrutadores corresponde a 'Mesa No escrutada'."
+    },
+    {
+        "id": 68,
+        "question": "En el Procedimiento de Recepción y Cómputo de Actas de Escrutinio, ¿cuál es el parámetro que define el tramo de minutos que transcurre entre cada ciclo de cómputo de votaciones?",
+        "options": [
+            {
+                "key": "a",
+                "text": "[Minutos entre cómputos]"
+            },
+            {
+                "key": "b",
+                "text": "[Segundos previos]"
+            },
+            {
+                "key": "c",
+                "text": "[Hora de Corte]"
+            },
+            {
+                "key": "d",
+                "text": "[Frecuencia de refresco]"
+            }
+        ],
+        "correctAnswerKey": "a",
+        "explanation": "El parámetro [Minutos entre cómputos] corresponde al tramo de minutos que transcurre entre cada ciclo de cómputo de votaciones."
+    },
+    {
+        "id": 69,
+        "question": "Según el Procedimiento Preliminar, un archivo XML de votaciones se incluye en un ciclo de cómputo si su fecha/hora de cabecera es anterior o igual a:",
+        "options": [
+            {
+                "key": "a",
+                "text": "La hora de cierre de la mesa."
+            },
+            {
+                "key": "b",
+                "text": "{Fecha/Hora Cómputo a ejecutar} – [Segundos previos]."
+            },
+            {
+                "key": "c",
+                "text": "La hora de ejecución del cómputo."
+            },
+            {
+                "key": "d",
+                "text": "La hora de entrega del acta al digitador."
+            }
+        ],
+        "correctAnswerKey": "b",
+        "explanation": "El criterio de corte es: {Fecha/Hora Cómputo a ejecutar} – [Segundos previos]."
+    },
+    {
+        "id": 70,
+        "question": "De las siguientes opciones, ¿cuál es un filtro de datos territorial disponible en la categoría “En el Extranjero” para la publicación de Resultados Preliminares?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Distrito."
+            },
+            {
+                "key": "b",
+                "text": "Región."
+            },
+            {
+                "key": "c",
+                "text": "País."
+            },
+            {
+                "key": "d",
+                "text": "Circunscripción Senatorial."
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "Las opciones de filtro para la categoría 'En el Extranjero' incluyen Continente, País, Consulado, Circunscripción Electoral y Mesa."
+    },
+    {
+        "id": 71,
+        "question": "Cuando existe un nuevo cómputo de resultados preliminares que aún no ha sido visualizado en el portal público, ¿qué mensaje de advertencia debe desplegarse sobre el ícono de “refresco”?",
+        "options": [
+            {
+                "key": "a",
+                "text": "NUEVOS RESULTADOS DISPONIBLES."
+            },
+            {
+                "key": "b",
+                "text": "CÓMPUTO EN PROCESO."
+            },
+            {
+                "key": "c",
+                "text": "ACTUALICE LOS DATOS."
+            },
+            {
+                "key": "d",
+                "text": "EXISTEN NUEVOS DATOS PARA ACTUALIZAR."
+            }
+        ],
+        "correctAnswerKey": "d",
+        "explanation": "La notificación de advertencia sobre el ícono de refresco debe ser: “EXISTEN NUEVOS DATOS PARA ACTUALIZAR”."
+    },
+    {
+        "id": 72,
+        "question": "En el detalle del mensaje XML de Envío de Datos de Votaciones, ¿cuál de las siguientes etiquetas es de carácter obligatorio (Requerido: SI)?",
+        "options": [
+            {
+                "key": "a",
+                "text": "vot:totalEmitidos"
+            },
+            {
+                "key": "b",
+                "text": "vot:subtotal"
+            },
+            {
+                "key": "c",
+                "text": "vot:codigoAgrupacion"
+            },
+            {
+                "key": "d",
+                "text": "vot:totalGeneral"
+            }
+        ],
+        "correctAnswerKey": "a",
+        "explanation": "La etiqueta <vot:totalEmitidos> es obligatoria (SI)."
+    },
+    {
+        "id": 73,
+        "question": "En el archivo CABECERA de resultados preliminares enviado a los Colegios Escrutadores (DataEscenario_..._CAB.txt), ¿cómo se representan los campos que están en blanco?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Se utiliza un guion (-)."
+            },
+            {
+                "key": "b",
+                "text": "Se informa con un cero (0)."
+            },
+            {
+                "key": "c",
+                "text": "Con un campo vacío entre dos separadores de campo (“;”)."
+            },
+            {
+                "key": "d",
+                "text": "Se omite el campo del registro."
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "Si la mesa tiene campos en blanco, el campo correspondiente del registro quedará vacío, informado entre dos separadores de campo (“;”)."
+    },
+    {
+        "id": 74,
+        "question": "En el proceso de Inyección Automática del XML corregido desde SVIDA al Sistema de Cómputo (SCE/SIE), ¿qué parámetro limita la aplicación de las correcciones, alertando al Encargado del Sistema si se excede?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Número máximo de errores de digitación."
+            },
+            {
+                "key": "b",
+                "text": "Límite de mesas descuadradas."
+            },
+            {
+                "key": "c",
+                "text": "Cantidad de correcciones permitidas por elección."
+            },
+            {
+                "key": "d",
+                "text": "Tiempo de procesamiento del XML."
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "La inyección automática no debe exceder el parámetro de 'Cantidad de correcciones permitidas por elección'."
+    },
+    {
+        "id": 75,
+        "question": "¿Cuál es la fecha programada para las Elecciones Generales de Presidente de la República, Senadores y Diputados en 2025?",
+        "options": [
+            {
+                "key": "a",
+                "text": "29 de junio de 2025."
+            },
+            {
+                "key": "b",
+                "text": "16 de noviembre de 2025."
+            },
+            {
+                "key": "c",
+                "text": "1 de diciembre de 2025."
+            },
+            {
+                "key": "d",
+                "text": "27 de octubre de 2024."
+            }
+        ],
+        "correctAnswerKey": "b",
+        "explanation": "Las Elecciones Generales de Presidente de la República, Senadores y Diputados están programadas para el 16 de noviembre de 2025."
+    },
+    {
+        "id": 76,
+        "question": "En la exportación de datos de resultados (PDF/XLS), ¿qué formato de hora (HH:mm) debe utilizarse para la 'Emisión' y la fecha/hora de los 'Datos'?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Formato de 12 horas (AM/PM)."
+            },
+            {
+                "key": "b",
+                "text": "Solo formato HHMM sin separadores."
+            },
+            {
+                "key": "c",
+                "text": "Formato de 24 horas (HH:mm)."
+            },
+            {
+                "key": "d",
+                "text": "Se omite la hora en el encabezado."
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "Se requiere que la hora se muestre en formato de 24 horas (HH:mm) en la exportación de datos."
+    },
+    {
+        "id": 77,
+        "question": "Según los documentos de Procedimiento de Publicación de Resultados (Preliminares y Provisorios), ¿qué porcentaje del espacio horizontal total de la página debe ocupar el menú lateral izquierdo?",
+        "options": [
+            {
+                "key": "a",
+                "text": "25%."
+            },
+            {
+                "key": "b",
+                "text": "50%."
+            },
+            {
+                "key": "c",
+                "text": "15%."
+            },
+            {
+                "key": "d",
+                "text": "10%."
+            }
+        ],
+        "correctAnswerKey": "a",
+        "explanation": "El menú lateral izquierdo debe ocupar el 25% del espacio horizontal total de la página."
+    },
+    {
+        "id": 78,
+        "question": "Para confirmar la recepción de los archivos de votaciones, ¿qué extensión de archivo deben crear los medios de comunicación acreditados?",
+        "options": [
+            {
+                "key": "a",
+                "text": ".TXT"
+            },
+            {
+                "key": "b",
+                "text": ".CONF"
+            },
+            {
+                "key": "c",
+                "text": ".ZIP"
+            },
+            {
+                "key": "d",
+                "text": ".ACK"
+            }
+        ],
+        "correctAnswerKey": "d",
+        "explanation": "Para confirmar la recepción, los medios de comunicación deben crear un archivo con la misma base del nombre pero con extensión .ACK."
+    },
+    {
+        "id": 79,
+        "question": "En SVIDA, un acta clasificada como 'No Conforme' por origen de Digitalización (Error digitalización) puede ser clasificada bajo el criterio:",
+        "options": [
+            {
+                "key": "a",
+                "text": "Calidad deficiente (tenue, por ejemplo)."
+            },
+            {
+                "key": "b",
+                "text": "Error digitación en preferencias."
+            },
+            {
+                "key": "c",
+                "text": "Error digitación en nulos."
+            },
+            {
+                "key": "d",
+                "text": "Número o carácter ilegible."
+            }
+        ],
+        "correctAnswerKey": "a",
+        "explanation": "La clasificación de 'Error digitalización' incluye 'Calidad deficiente (tenue por ejemplo)', 'Ennegrecida 1 o 2 caras', 'No hay imagen', 'Imagen errónea', y 'Otro'."
+    },
+    {
+        "id": 80,
+        "question": "En el archivo de resultados de votación preliminares enviado a los Medios de Comunicación, ¿qué carácter se utiliza como delimitador de campos?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Pipe (|)."
+            },
+            {
+                "key": "b",
+                "text": "Punto y coma (;)."
+            },
+            {
+                "key": "c",
+                "text": "Coma (,)."
+            },
+            {
+                "key": "d",
+                "text": "Tabulación."
+            }
+        ],
+        "correctAnswerKey": "b",
+        "explanation": "El delimitador de campos será “;” (punto y coma)."
+    },
+    {
+        "id": 81,
+        "question": "¿Cuál es la estructura del contenido del archivo de control (CTRL) en el protocolo de envío de archivos de escenarios a Colegios Escrutadores?",
+        "options": [
+            {
+                "key": "a",
+                "text": "<fecha de creación> <versión> "
+            },
+            {
+                "key": "b",
+                "text": " <hora de envío>"
+            },
+            {
+                "key": "c",
+                "text": " <hora de envío>"
+            },
+            {
+                "key": "d",
+                "text": "Solo la fecha actual en formato dd-mm-yyyy"
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "El contenido del archivo de control será:  <hora de envío>."
+    },
+    {
+        "id": 82,
+        "question": "En los Resultados Provisorios, si se está utilizando un filtro territorial nacional y el usuario se cambia a otra elección, ¿qué consideración aplica a los filtros de territorio nacional seleccionados?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Deben mantenerse el mismo filtro y valores de filtro seleccionados (para filtros a y b)."
+            },
+            {
+                "key": "b",
+                "text": "Los filtros se mantienen solo si la nueva elección es del mismo tipo (ej. parlamentaria)."
+            },
+            {
+                "key": "c",
+                "text": "Los filtros se restablecen a 'Total Votación'."
+            },
+            {
+                "key": "d",
+                "text": "Solo se mantiene el filtro de nivel superior (Región)."
+            }
+        ],
+        "correctAnswerKey": "a",
+        "explanation": "Al filtrar por algún territorio nacional en una elección y cambiarse a otra elección, debe mantenerse el mismo filtro y valores de filtro seleccionados."
+    },
+    {
+        "id": 83,
+        "question": "¿Qué tabla de la especificación de tablas de escenario de elecciones contiene la relación jerárquica entre las zonas (por ejemplo, Región -> Provincia)?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Tabla Mesas."
+            },
+            {
+                "key": "b",
+                "text": "Tabla Zonas Padre."
+            },
+            {
+                "key": "c",
+                "text": "Tabla Zonas."
+            },
+            {
+                "key": "d",
+                "text": "Tabla de Colegios Zonas."
+            }
+        ],
+        "correctAnswerKey": "b",
+        "explanation": "La tabla ZonasPadre contiene la relación jerárquica entre las zonas."
+    },
+    {
+        "id": 84,
+        "question": "Además de los resultados de participación y votación, ¿qué información específica relacionada con el trabajo de las entidades escrutadoras se publica en el portal de Resultados Provisorios?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Escrutinio de colegios escrutadores y escrutinio de colegios escrutadores especiales."
+            },
+            {
+                "key": "b",
+                "text": "Resultados definitivos del Tribunal Calificador de Elecciones (TRICEL)."
+            },
+            {
+                "key": "c",
+                "text": "Constitución e Instalación de mesas."
+            },
+            {
+                "key": "d",
+                "text": "Solo actas con incidencia 'Acta Descuadrada'."
+            }
+        ],
+        "correctAnswerKey": "a",
+        "explanation": "La información a publicar en Resultados Provisorios incluye 'Escrutinio de colegios escrutadores' y 'Escrutinio de colegios escrutadores especiales'."
+    },
+    {
+        "id": 85,
+        "question": "Durante el proceso de evaluación de ofertas, si la Comisión Evaluadora solicita aclaraciones a los oferentes, ¿qué principio no pueden alterar dichas aclaraciones?",
+        "options": [
+            {
+                "key": "a",
+                "text": "La experiencia del oferente."
+            },
+            {
+                "key": "b",
+                "text": "La oferta o el precio de esta."
+            },
+            {
+                "key": "c",
+                "text": "El plan de trabajo propuesto."
+            },
+            {
+                "key": "d",
+                "text": "La solución técnica propuesta."
+            }
+        ],
+        "correctAnswerKey": "b",
+        "explanation": "Las aclaraciones que se pidan o que se den, o la información que se solicite o se acompañe, no podrán alterar la oferta o el precio de esta."
+    },
+    {
+        "id": 86,
+        "question": "¿Cuál de los siguientes entregables es requerido para el segundo hito de pago (60% del Monto ofertado) correspondiente al Acto Eleccionario General de noviembre de 2025?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Informe de post-evento."
+            },
+            {
+                "key": "b",
+                "text": "Informe de resultado de Pruebas de Contingencia."
+            },
+            {
+                "key": "c",
+                "text": "Garantía de Fiel Cumplimiento."
+            },
+            {
+                "key": "d",
+                "text": "Finalización de los servicios."
+            }
+        ],
+        "correctAnswerKey": "b",
+        "explanation": "Para el Acto eleccionario Generales, el segundo hito de pago requiere, entre otros, el 'Informe de resultado de Pruebas de Contingencia' y el 'Informe de post-evento'."
+    },
+    {
+        "id": 87,
+        "question": "En la versión 1.7 del Procedimiento de Resultados Provisorios, ¿qué columna se agregó al detalle de la vista pop-up de Mesas No Escrutadas a nivel nacional para distinguir el estado de las mesas?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Columna que indica si la mesa fue Constituida."
+            },
+            {
+                "key": "b",
+                "text": "Columna de Total de Mesas No Escrutadas."
+            },
+            {
+                "key": "c",
+                "text": "Columna que indica si la mesa fue Instalada."
+            },
+            {
+                "key": "d",
+                "text": "Columna de Total de Votos Nulos."
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "En el detalle de las Mesas No Escrutadas, se agrega una columna que indica si la mesa fue instalada (Versión 1.3 y 1.7 de Provisorios)."
+    },
+    {
+        "id": 88,
+        "question": "¿Qué sección es obligatoria en la estructura formal de la oferta, según los Puntos 8 y 9 de las Bases de Licitación?",
+        "options": [
+            {
+                "key": "a",
+                "text": "De la Vigencia de las Ofertas."
+            },
+            {
+                "key": "b",
+                "text": "Contenido de las Ofertas."
+            },
+            {
+                "key": "c",
+                "text": "Garantía de Seriedad de la Oferta."
+            },
+            {
+                "key": "d",
+                "text": "Costos de la Oferta."
+            }
+        ],
+        "correctAnswerKey": "b",
+        "explanation": "El punto 8 se titula 'CONTENIDO DE LAS OFERTAS'."
+    },
+    {
+        "id": 89,
+        "question": "El sistema SVIDA debe permitir exportar las actas identificadas como 'No Conforme' (con errores de digitación) en un archivo de formato:",
+        "options": [
+            {
+                "key": "a",
+                "text": "XML"
+            },
+            {
+                "key": "b",
+                "text": "CSV"
+            },
+            {
+                "key": "c",
+                "text": "XLS (Excel)"
+            },
+            {
+                "key": "d",
+                "text": "PDF"
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "Las actas identificadas como 'No Conforme' deben ser exportables a un archivo en formato XLS (Excel), junto con las imágenes de dichas actas."
+    },
+    {
+        "id": 90,
+        "question": "En el criterio de evaluación de la Metodología y Plan de Trabajo (PPT), ¿cuál es el puntaje máximo (en puntos) que se otorga por presentar un Plan de trabajo, cronograma de actividades, riesgos y medidas de mitigación?",
+        "options": [
+            {
+                "key": "a",
+                "text": "5 puntos."
+            },
+            {
+                "key": "b",
+                "text": "25 puntos."
+            },
+            {
+                "key": "c",
+                "text": "20 puntos."
+            },
+            {
+                "key": "d",
+                "text": "10 puntos."
+            }
+        ],
+        "correctAnswerKey": "b",
+        "explanation": "Se otorgan hasta 25 puntos por presentar Plan de trabajo, cronograma de actividades, riesgos y medidas de mitigación."
+    },
+    {
+        "id": 91,
+        "question": "¿Qué debe incluir una propuesta para obtener el máximo puntaje (25 puntos) en el subcriterio de Evaluación de la Gestión de la Configuración?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Solo documentos y versiones de software."
+            },
+            {
+                "key": "b",
+                "text": "Documentos, versiones de software y cualquier otro ítem de configuración asociado al proyecto durante todas las etapas de desarrollo y mantención."
+            },
+            {
+                "key": "c",
+                "text": "Únicamente el plan de trabajo."
+            },
+            {
+                "key": "d",
+                "text": "Solo versiones de software durante todas las etapas."
+            }
+        ],
+        "correctAnswerKey": "b",
+        "explanation": "Para obtener 25 puntos, la propuesta debe incluir documentos, versiones de software y cualquier otro ítem de configuración asociado al proyecto, durante todas las etapas de desarrollo y mantención."
+    },
+    {
+        "id": 92,
+        "question": "En el Archivo de Escenario de Elecciones enviado a los Medios de Comunicación, ¿qué código de TIPO_ELECCION representa la “Elección Senadores”?",
+        "options": [
+            {
+                "key": "a",
+                "text": "P"
+            },
+            {
+                "key": "b",
+                "text": "D"
+            },
+            {
+                "key": "c",
+                "text": "Q"
+            },
+            {
+                "key": "d",
+                "text": "S"
+            }
+        ],
+        "correctAnswerKey": "d",
+        "explanation": "El código S corresponde a 'Elección Senadores'."
+    },
+    {
+        "id": 93,
+        "question": "¿Cuál es la etiqueta raíz (Root Tag) del XML de envío de Datos de Votaciones desde los Colegios Escrutadores?",
+        "options": [
+            {
+                "key": "a",
+                "text": "<vot:detalle>"
+            },
+            {
+                "key": "b",
+                "text": "<vot:VotacionMesa>"
+            },
+            {
+                "key": "c",
+                "text": "<vot:VotacionMesaColegio>"
+            },
+            {
+                "key": "d",
+                "text": "<cns:constitucionMesa>"
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "La etiqueta raíz del XML de votaciones para Colegios Escrutadores es <vot:VotacionMesaColegio>."
+    },
+    {
+        "id": 94,
+        "question": "Según el cronograma de la licitación, ¿cuál es el plazo máximo para la recepción de las ofertas, contado desde la publicación en Mercado Público?",
+        "options": [
+            {
+                "key": "a",
+                "text": "10 días, hasta las 15:00 horas."
+            },
+            {
+                "key": "b",
+                "text": "45 días, hasta las 17:00 horas."
+            },
+            {
+                "key": "c",
+                "text": "Dentro de los 30 (treinta) días, hasta las 15:00 horas."
+            },
+            {
+                "key": "d",
+                "text": "20 días, hasta las 18:00 horas."
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "La recepción de las ofertas es Dentro de los 30 (treinta) días contados desde la publicación, hasta las 15:00 horas."
+    },
+    {
+        "id": 95,
+        "question": "¿Cuál es el puntaje máximo que puede obtener la experiencia acreditable del Jefe de Desarrollo de Software en la evaluación de la oferta?",
+        "options": [
+            {
+                "key": "a",
+                "text": "20 puntos (20%)."
+            },
+            {
+                "key": "b",
+                "text": "100 puntos."
+            },
+            {
+                "key": "c",
+                "text": "30 puntos."
+            },
+            {
+                "key": "d",
+                "text": "50 puntos."
+            }
+        ],
+        "correctAnswerKey": "b",
+        "explanation": "Se otorgan 20 puntos por cada experiencia acreditable, hasta un máximo de 100 puntos."
+    },
+    {
+        "id": 96,
+        "question": "En la Primera Votación Presidencial, si un candidato obtiene la mayoría simple requerida, ¿cuál es el símbolo que lo marca en la publicación de resultados?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Doble asterisco (**)."
+            },
+            {
+                "key": "b",
+                "text": "Ticket negro (✓)."
+            },
+            {
+                "key": "c",
+                "text": "Asterisco simple (*)."
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "El símbolo (*) marca al 'candidato con mayoría'."
+    },
+    {
+        "id": 97,
+        "question": "¿Qué detalle obligatorio deben incluir los planes de contingencia presentados por el oferente?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Tiempos máximos de reposición del servicio y si existen redundancias."
+            },
+            {
+                "key": "b",
+                "text": "Costos asociados a la recuperación del servicio."
+            },
+            {
+                "key": "c",
+                "text": "Nombres y CVs del personal de contingencia."
+            },
+            {
+                "key": "d",
+                "text": "Un listado completo de fallas históricas del SERVEL."
+            }
+        ],
+        "correctAnswerKey": "a",
+        "explanation": "Los planes de contingencia deberán indicar los tiempos máximos de reposición del servicio, y señalar si existen redundancias."
+    },
+    {
+        "id": 98,
+        "question": "En la publicación de Resultados Provisorios, ¿cuál es la preposición correcta que debe utilizarse en subtítulos y leyendas para el filtro “Provincia”?",
+        "options": [
+            {
+                "key": "a",
+                "text": "de la."
+            },
+            {
+                "key": "b",
+                "text": "en la."
+            },
+            {
+                "key": "c",
+                "text": "del."
+            },
+            {
+                "key": "d",
+                "text": "por la."
+            }
+        ],
+        "correctAnswerKey": "a",
+        "explanation": "La tabla de preposiciones indica 'de la' para el filtro Provincia."
+    },
+    {
+        "id": 99,
+        "question": "En el protocolo SFTP para el envío de imágenes (Actas/Formularios), ¿cómo se solicita la retransmisión de un archivo al SCE?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Enviando un correo electrónico al administrador del SCE."
+            },
+            {
+                "key": "b",
+                "text": "Dejando un archivo .RET en la carpeta Salida."
+            },
+            {
+                "key": "c",
+                "text": "Dejando un archivo vacío con extensión “.ok” en la carpeta Retransmision."
+            },
+            {
+                "key": "d",
+                "text": "Dejando un archivo .ERR en la carpeta Error."
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "Al momento de retransmitir el archivo, se debe dejar un archivo vacío en la carpeta Retransmisión con el mismo nombre pero con extensión “.ok”."
+    },
+    {
+        "id": 100,
+        "question": "En el nombre de archivo de votaciones enviado a los medios (VOTACION<CODIGO_ELECCION><YYYY>.TXT.ZIP), ¿qué representa el componente <XXXXX>?",
+        "options": [
+            {
+                "key": "a",
+                "text": "El correlativo de envío."
+            },
+            {
+                "key": "b",
+                "text": "El total de mesas escrutadas."
+            },
+            {
+                "key": "c",
+                "text": "El código del colegio escrutador."
+            },
+            {
+                "key": "d",
+                "text": "El porcentaje de mesas escrutadas, redondeado a dos decimales."
+            }
+        ],
+        "correctAnswerKey": "d",
+        "explanation": "El componente <XXXXX> representa el porcentaje de mesas escrutadas, redondeado a dos decimales."
+    },
+    {
+        "id": 101,
+        "question": "¿Cuántos días corridos previos al evento electoral debe realizarse la primera prueba funcional oficial (10% de los locales de votación)?",
+        "options": [
+            {
+                "key": "a",
+                "text": "15 días corridos."
+            },
+            {
+                "key": "b",
+                "text": "45 días corridos."
+            },
+            {
+                "key": "c",
+                "text": "30 días corridos."
+            },
+            {
+                "key": "d",
+                "text": "72 horas."
+            }
+        ],
+        "correctAnswerKey": "b",
+        "explanation": "La primera prueba oficiales desde el 10% de los locales de votación se realiza 45 días corridos previos al evento electoral."
+    },
+    {
+        "id": 102,
+        "question": "En el despliegue de resultados a nivel de una Mesa receptora de sufragios (Preliminares), ¿qué texto informativo se despliega para la incidencia “Acta supera inscritos”?",
+        "options": [
+            {
+                "key": "a",
+                "text": "Acta supera inscritos, solo se publica el total de votos válidamente emitidos."
+            },
+            {
+                "key": "b",
+                "text": "Mesa no escrutada."
+            },
+            {
+                "key": "c",
+                "text": "Acta supera inscritos, los datos de esta mesa no están incluidos en los resultados."
+            },
+            {
+                "key": "d",
+                "text": "Acta descuadrada."
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "El 'Texto incidencia mesa' para 'Acta supera inscritos' es: 'Acta supera inscritos, los datos de esta mesa no están incluidos en los resultados'."
+    },
+    {
+        "id": 103,
+        "question": "En la tabla Mesas de la especificación de escenario de elecciones, ¿qué campo indica el tipo de mesa (M, V, N)?",
+        "options": [
+            {
+                "key": "a",
+                "text": "GLOSA_MESA"
+            },
+            {
+                "key": "b",
+                "text": "NUMERO"
+            },
+            {
+                "key": "c",
+                "text": "TIPO_MESA"
+            },
+            {
+                "key": "d",
+                "text": "TIPO_ZONA"
+            }
+        ],
+        "correctAnswerKey": "c",
+        "explanation": "El campo TIPO_MESA (Texto, Tamaño 1) indica el Tipo de mesa (M, V, N)."
     }
 ]

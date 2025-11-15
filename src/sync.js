@@ -16,12 +16,12 @@ import {
 } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js'
 
 const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyB64Cy-_BGVuki1OF8CBZI0N1HHwvXFpo4",
-  authDomain: "quiz-servel-app.firebaseapp.com",
-  projectId: "quiz-servel-app",
-  storageBucket: "quiz-servel-app.firebasestorage.app",
-  messagingSenderId: "914422302247",
-  appId: "1:914422302247:web:a42e492e754aca33367002"
+  apiKey: "AIzaSyBAzyXi8wKMSN3NceSqPfBhrvePnbp2uyg",
+  authDomain: "quiz-servel.firebaseapp.com",
+  projectId: "quiz-servel",
+  storageBucket: "quiz-servel.firebasestorage.app",
+  messagingSenderId: "515841741198",
+  appId: "1:515841741198:web:4762502ddc6b35819794df"
 }
 
 class QuestionSyncer {
@@ -73,16 +73,41 @@ class QuestionSyncer {
     
     const data = await response.json()
     
-    // Normalize to Firestore format
-    return data.map(q => ({
-      question_text: q.question || q.question_text,
-      options: q.options.map(opt => ({
-        key: opt.key || opt.option_key,
-        text: opt.text || opt.label
-      })),
-      correct_answer_key: q.answer || q.correct_answer_key || q.correctAnswerKey,
-      explanation: q.detail || q.explanation || ''
-    }))
+    // Normalize to Firestore format and filter out invalid entries
+    return data
+      .map((q, index) => {
+        // Validate required fields
+        const questionText = q.question || q.question_text
+        const correctAnswerKey = q.correctAnswerKey || q.correct_answer_key || q.answer
+        
+        if (!questionText || !Array.isArray(q.options) || !correctAnswerKey) {
+          console.warn(`⚠️  Skipping invalid question at index ${index}:`, {
+            hasQuestion: !!questionText,
+            hasOptions: Array.isArray(q.options),
+            hasAnswer: !!correctAnswerKey
+          })
+          return null
+        }
+        
+        // Build normalized object with only defined values
+        const normalized = {
+          question_text: questionText,
+          options: q.options.map(opt => ({
+            key: opt.key || opt.option_key || '',
+            text: opt.text || opt.label || ''
+          })),
+          correct_answer_key: correctAnswerKey
+        }
+        
+        // Only add explanation if it exists and is not empty
+        const explanation = q.explanation || q.detail || ''
+        if (explanation) {
+          normalized.explanation = explanation
+        }
+        
+        return normalized
+      })
+      .filter(q => q !== null) // Remove invalid entries
   }
   
   async #upload(questions) {

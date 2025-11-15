@@ -244,6 +244,7 @@ export class UIController {
   #handleStart() {
     const nameInput = document.getElementById('player-name-input')
     const lengthInput = document.querySelector('input[name="quiz-length"]:checked')
+    const dailyToggle = document.getElementById('daily-quiz-toggle')
     
     if (!nameInput || !lengthInput) {
       this.#notifications.error('Error al leer el formulario')
@@ -252,6 +253,7 @@ export class UIController {
     
     const playerName = nameInput.value.trim()
     const questionCount = parseInt(lengthInput.value, 10)
+    const useDailySeed = dailyToggle?.checked || false
     
     // Validation
     if (!playerName) {
@@ -271,7 +273,10 @@ export class UIController {
     
     // Start quiz
     try {
-      const { question, progress } = this.#engine.start({ playerName, questionCount })
+      const { question, progress } = this.#engine.start({ 
+        playerName, 
+        questionCount
+      })
       this.#showQuestion(question, progress)
     } catch (error) {
       this.#notifications.error(error.message)
@@ -381,10 +386,35 @@ export class UIController {
     // Show modal
     modal.style.display = 'flex'
     
-    // Attach listeners
-    container.querySelector('.close-btn').addEventListener('click', () => {
-      modal.style.display = 'none'
+    // Filter button listeners
+    const filterButtons = container.querySelectorAll('.filter-btn')
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const length = parseInt(btn.dataset.length, 10)
+        this.#storage.set('quiz_length', length)
+
+        // Update active state
+        filterButtons.forEach(b => b.classList.remove('active'))
+        btn.classList.add('active')
+
+        // Update category text
+        const categoryText = container.querySelector('.leaderboard-category strong')
+        if (categoryText) {
+          categoryText.textContent = `Top de ${length} preguntas`
+        }
+
+        // Reload leaderboard
+        await this.#loadLeaderboardEntries(length)
+      })
     })
+
+    // Close button listener
+    const closeBtn = container.querySelector('.close-btn')
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none'
+      })
+    }
     
     // Load entries
     await this.#loadLeaderboardEntries(this.#storage.get('quiz_length') || 15)
@@ -401,14 +431,30 @@ export class UIController {
         questionCount: length,
         limit: 50
       })
+
+      // Update stats
+      const totalEntriesEl = document.getElementById('total-entries')
+      const bestScoreEl = document.getElementById('best-score')
+
+      if (totalEntriesEl) {
+        totalEntriesEl.textContent = entries.length
+      }
+
+      if (bestScoreEl && entries.length > 0) {
+        const best = entries[0]
+        const percentage = ((best.score / best.total_questions_in_quiz) * 100).toFixed(1)
+        bestScoreEl.textContent = `${best.score}/${best.total_questions_in_quiz} (${percentage}%)`
+      } else if (bestScoreEl) {
+        bestScoreEl.textContent = '—'
+      }
       
       tbody.innerHTML = entries.length > 0
         ? entries.map((entry, i) => this.#renderLeaderboardRow(entry, i)).join('')
-        : '<tr><td colspan="4" style="text-align: center; padding: 2rem;">No hay puntajes registrados</td></tr>'
+        : '<tr><td colspan="4" style="text-align: center; padding: 2rem;">No hay puntajes registrados para esta categoría</td></tr>'
         
     } catch (error) {
       console.error('Leaderboard error:', error)
-      tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; padding: 2rem;">Error al cargar</td></tr>'
+      tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; padding: 2rem;">Error al cargar el ranking</td></tr>'
     }
   }
   
@@ -442,27 +488,43 @@ export class UIController {
     const currentLength = this.#storage.get('quiz_length') || 15
     
     return `
-      <div class="leaderboard">
+      <div class="leaderboard minimal">
         <div class="leaderboard-header">
-          <h2>🏆 Ranking</h2>
-          <p>Los mejores puntajes del quiz</p>
+          <h2 class="leaderboard-title">🏆 Ranking</h2>
+          <p class="leaderboard-description">Precisión sobre número de preguntas respondidas</p>
+          <div class="leaderboard-meta">
+            <span class="category" aria-label="Categoría seleccionada">${currentLength} preguntas</span>
+            <div class="leaderboard-stats compact" id="leaderboard-stats">
+              <div class="stat"><span class="label">Registros</span><span class="value" id="total-entries">—</span></div>
+              <div class="stat"><span class="label">Mejor</span><span class="value" id="best-score">—</span></div>
+            </div>
+          </div>
         </div>
-        
+        <div class="leaderboard-filters segmented" role="group" aria-label="Selecciona cantidad de preguntas">
+          ${this.#config.allowedLengths.map(len => `
+            <button 
+              class="filter-btn ${len === currentLength ? 'active' : ''}" 
+              data-length="${len}"
+              aria-pressed="${len === currentLength}" 
+            >
+              ${len}
+            </button>
+          `).join('')}
+        </div>
         <div class="leaderboard-table-wrapper">
-          <table class="leaderboard-table">
+          <table class="leaderboard-table" aria-describedby="leaderboard-stats">
             <thead>
               <tr>
-                <th>Pos</th>
-                <th>Jugador</th>
-                <th>Puntaje</th>
-                <th>Fecha</th>
+                <th scope="col">Pos</th>
+                <th scope="col">Jugador</th>
+                <th scope="col">Puntaje</th>
+                <th scope="col">Fecha</th>
               </tr>
             </thead>
             <tbody id="leaderboard-tbody"></tbody>
           </table>
         </div>
-        
-        <button class="close-btn">Cerrar</button>
+        <button class="close-btn" aria-label="Cerrar ranking">✕</button>
       </div>
     `
   }
@@ -474,45 +536,44 @@ export class UIController {
   #renderWelcome({ savedName, savedLength }) {
     return `
       <section class="welcome card">
-        <h2>Prepárate para el desafío</h2>
-        <p class="subtitle">Responde preguntas del Sistema Electoral Chileno</p>
-        
-        <input 
-          type="text" 
-          id="player-name-input" 
-          placeholder="Tu nombre o apodo"
-          value="${savedName}"
-          maxlength="${this.#config.maximumNameLength}"
-          autocomplete="name"
-        />
-        
-        <fieldset class="quiz-length-selector">
-          <legend>Selecciona la cantidad de preguntas</legend>
+        <div class="welcome-header">
+          <h1 class="welcome-title">Quiz Electoral Chile</h1>
+          <p class="welcome-subtitle">Pon a prueba tus conocimientos sobre el proceso electoral</p>
+        </div>
+
+        <div class="start-row">
+          <div class="start-field">
+            <label for="player-name-input" class="input-label">Tu nombre</label>
+            <input 
+              type="text" 
+              id="player-name-input" 
+              placeholder="Ingresa tu nombre"
+              value="${savedName}"
+              maxlength="${this.#config.maximumNameLength}"
+              autocomplete="name"
+              class="name-input-large"
+            />
+          </div>
+          <button id="start-quiz-btn" class="start-btn-large" disabled>Comenzar</button>
+        </div>
+
+        <fieldset class="quiz-length-selector compact">
+          <legend>Cantidad de preguntas</legend>
           ${this.#config.allowedLengths.map(len => `
-            <label>
+            <label class="length-option">
               <input 
                 type="radio" 
                 name="quiz-length" 
                 value="${len}"
                 ${len === savedLength ? 'checked' : ''}
               />
-              <span>${len} preguntas</span>
+              <span class="length-label">${len}</span>
             </label>
           `).join('')}
         </fieldset>
-        
-        <div class="keyboard-shortcuts-info">
-          <p><strong>⌨️ Atajos de teclado:</strong></p>
-          <ul>
-            <li><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd><kbd>4</kbd> - Seleccionar opción</li>
-            <li><kbd>Enter</kbd> - Siguiente pregunta</li>
-            <li><kbd>Esc</kbd> - Cerrar modal</li>
-          </ul>
-        </div>
-        
-        <div class="actions">
-          <button id="start-quiz-btn" disabled>Cargando preguntas...</button>
-          <button id="view-leaderboard-btn" class="secondary">Ver ranking</button>
+
+        <div class="secondary-actions">
+          <button id="view-leaderboard-btn" class="link-btn subtle">Ver ranking</button>
         </div>
       </section>
     `
@@ -589,7 +650,7 @@ export class UIController {
         </div>
         
         <div class="actions">
-          <button id="restart-btn">Jugar de nuevo</button>
+          <button id="restart-btn">Volver</button>
           <button id="view-leaderboard-btn" class="secondary">Ver ranking</button>
         </div>
       </section>

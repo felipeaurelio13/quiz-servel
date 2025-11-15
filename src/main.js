@@ -41,12 +41,12 @@ const APP_CONFIG = {
   },
   
   firebase: {
-    apiKey: "AIzaSyB64Cy-_BGVuki1OF8CBZI0N1HHwvXFpo4",
-    authDomain: "quiz-servel-app.firebaseapp.com",
-    projectId: "quiz-servel-app",
-    storageBucket: "quiz-servel-app.firebasestorage.app",
-    messagingSenderId: "914422302247",
-    appId: "1:914422302247:web:a42e492e754aca33367002"
+    apiKey: "AIzaSyBAzyXi8wKMSN3NceSqPfBhrvePnbp2uyg",
+    authDomain: "quiz-servel.firebaseapp.com",
+    projectId: "quiz-servel",
+    storageBucket: "quiz-servel.firebasestorage.app",
+    messagingSenderId: "515841741198",
+    appId: "1:515841741198:web:4762502ddc6b35819794df"
   }
 }
 
@@ -74,7 +74,8 @@ class Application {
     this.#engine = new QuizEngine({
       scoreCalculator,
       questionRepository: this.#firebase,
-      scoreRepository: this.#firebase
+      scoreRepository: this.#firebase,
+      storage: this.#storage
     })
     
     // Presentation layer: UI coordination
